@@ -2,3 +2,26 @@
 STYLESHEET: BOX
 
 ******************************************************************/
+
+.box {
+    background-color: $white;
+
+    &-section {
+        padding: 30px 25px;
+
+        &-dark {
+            background-color: $c-light;
+        }
+    }
+}
+
+@include medium {
+
+    .box {
+
+        &-section {
+            padding-left: 45px;
+            padding-right: 45px;
+        }
+    }
+}

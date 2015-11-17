@@ -1,0 +1,49 @@
+/******************************************************************
+STYLESHEET: FIELDS
+
+******************************************************************/
+
+.fields {
+
+    &-section {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    &-heading {
+
+    }
+
+    &-item {
+        margin: 5px;
+        position: relative;
+        background-color: $white;
+
+        &-frame {
+            position: relative;
+            border: 1px solid $c-medium;
+            padding: 15px 10px;
+            background: transparent;
+            z-index: 10;
+
+            &:focus + label {
+                color: $c-alt-light;
+                @include font-size(0.6);
+                top: 3px;
+                left: 12px;
+                transition: 0.1s all ease-out;
+            }
+        }
+
+        &-placeholder {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            z-index: 5;
+        }
+
+        &-inline {
+            display: inline-block;
+        }
+    }
+}

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>My Boilerplate</title>
+        <title>Checkout UX</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,11 +15,112 @@
         <script src="dist/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 
-        <h1>Hello! This is Checkout!</h1>
+        <div class="wrapper">
+
+            <nav class="steps clearfix">
+                <a href="" class="steps-item steps-item--active">Lieferangaben</a>
+                <a href="" class="steps-item">Rechnungsart</a>
+                <a href="" class="steps-item lastitem">Überprüfung</a>
+            </nav>
+
+            <div class="box">
+                <div class="box-section">
+                    <h2 class="box-section-heading">Lieferadresse</h2>
+                    <div class="fields">
+                        <div class="fields-section">
+                            <h3 class="fields-heading">Persönliche Angaben</h3>
+                            <div class="fields-item fields-item-inline">
+                                <input class="fields-item-frame" type="radio" name="female" checked>
+                                <label class="fields-item-label" for="female">Frau</label>
+                            </div>
+                            <div class="fields-item fields-item-inline">
+                                <input class="fields-item-frame" type="radio" name="male">
+                                <label class="fields-item-label" for="male">Mann</label>
+                            </div>
+                            <div class="fields-item fields-item-optional">
+                                <select class="fields-item-frame" name="title">
+                                    <option value="">Prof.</option>
+                                    <option value="">Dr.</option>
+                                </select>
+                                <label class="fields-item-label" for="title"></label>
+                            </div>
+                            <div class="fields-item">
+                                <input class="fields-item-frame" type="text" name="name">
+                                <label class="fields-item-label fields-item-placeholder" for="name">Vorname</label>
+                            </div>
+                            <div class="fields-item">
+                                <input class="fields-item-frame" type="text" name="surname">
+                                <label class="fields-item-label fields-item-placeholder" for="surname">Nachname</label>
+                            </div>
+                            <div class="fields-item fields-item-optional">
+                                <input class="fields-item-frame" type="text" name="company">
+                                <label class="fields-item-label fields-item-placeholder" for="company">Firma</label>
+                            </div>
+                        </div>
+                        <div class="fields-section">
+                            <h3 class="fields-heading">Adresse</h3>
+                            <div class="fields-item">
+                                <input class="fields-item-frame" type="text" name="street">
+                                <label class="fields-item-label fields-item-placeholder" for="street">Straße</label>
+                            </div>
+                            <div class="fields-item">
+                                <input class="fields-item-frame" type="text" name="number">
+                                <label class="fields-item-label fields-item-placeholder" for="number">Nr.</label>
+                            </div>
+                            <div class="fields-item fields-item-optional">
+                                <input class="fields-item-frame" type="text" name="additional">
+                                <label class="fields-item-label fields-item-placeholder" for="additional">Zusatz</label>
+                            </div>
+                            <div class="fields-item">
+                                <input class="fields-item-frame" type="text" name="city">
+                                <label class="fields-item-label fields-item-placeholder" for="city">Ort</label>
+                            </div>
+                            <div class="fields-item">
+                                <input class="fields-item-frame" type="text" name="plz">
+                                <label class="fields-item-label fields-item-placeholder" for="plz">Postleitzahl</label>
+                            </div>
+                            <div class="fields-item">
+                                <select class="fields-item-frame" name="country">
+                                    <option value="">Deutschland</option>
+                                    <option value="">Schweiz</option>
+                                </select>
+                                <label class="fields-item-label" for="country"></label>
+                            </div>
+                        </div>
+                        <div class="fields-section">
+                            <h3 class="fields-heading">Kontakt</h3>
+                            <div class="fields-item">
+                                <input class="fields-item-frame" type="text" name="mail">
+                                <label class="fields-item-label fields-item-placeholder" for="mail">E-Mail</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-section box-section-dark">
+                    <h2 class="box-section-heading">Versandart</h2>
+                    <p class="box-text box-text-info">Lieferung voraussichtlich am Montag, den 13.12.2015</p>
+                    <div class="fields">
+                        <div class="fields-section">
+                            <input type="radio" name="standardversand" checked>
+                            <label for="standardversand">0,00 € Standardversand</label>
+                            <p class="fields-text">2-4 Werktage nach Bestelleingang</p>
+                        </div>
+                        <div class="fields-section">
+                            <input type="radio" name="expressversand">
+                            <label for="expressversand">3,99 € Expressversand</label>
+                            <p class="fields-text">Am nächsten Morgen nach Bestelleingang</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-wrapper clearfix">
+                <a href="" class="button button-prev">Zurück zum Warenkorb</a>
+                <a href="" class="button button-next lastitem">Weiter zur Bezahlungsart</a>
+            </div>
+
+        </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="dist/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>

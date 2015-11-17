@@ -2,3 +2,23 @@
 STYLESHEET: GRID
 
 ******************************************************************/
+
+.wrapper {
+    margin: 0 2% 30px 2%;
+}
+
+@include medium {
+
+    .wrapper {
+        margin: 0 10% 100px 10%;
+    }
+}
+
+@include large {
+
+    .wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 100px;
+    }
+}

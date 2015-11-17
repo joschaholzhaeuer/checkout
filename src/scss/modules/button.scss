@@ -1,0 +1,30 @@
+/******************************************************************
+STYLESHEET: BUTTON
+
+******************************************************************/
+
+.button {
+    text-decoration: none;
+    padding: 10px 15px;
+    float: left;
+    width: 49%;
+    margin-right: 2%;
+    text-align: center;
+
+    &-wrapper {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    &-prev {
+        background-color: $c-dark;
+        border: 2px solid $c-medium;
+        color: $c-medium;
+    }
+
+    &-next {
+        background-color: $c-alt-light;
+        border: 2px solid $c-alt-dark;
+        color: $white;
+    }
+}

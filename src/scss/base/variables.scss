@@ -10,30 +10,38 @@ This is the place for all variables.
 ******************************************************************/
 
 // COLORS
-$white:  #fff;
-$black:  #000;
-$grey:   #e1e2e5;
+$white:        #fff;
+$black:        #000;
+$grey-light:   #ecf0f1;
+$grey-dark:    #bdc3c7;
+$blue-light:   #34495e;
+$blue-dark:    #2c3e50;
+$green-light:  #1abc9c;
+$green-dark:   #16a085;
+$red:          #e74c3c;
 
-$c-dark:   $black;
-$c-medium: $grey;
-$c-light:  $white;
+$c-dark:   $blue-dark;
+$c-medium: $grey-dark;
+$c-light:  $grey-light;
 
-$c-base: $black;
+$c-base: $blue-light;
+$c-alt-light: $green-light;
+$c-alt-dark: $green-dark;
 
 
 // FONTS
 $merriweathersans: 'Merriweather Sans', 'Helvetica', 'Arial', 'sans-serif';
 $merriweather:     'Merriweather', 'Helvetica', 'Arial', 'sans-serif';
 
-$f-base:    $merriweather;
+$f-base:    $merriweathersans;
 $f-heading: $merriweathersans;
 $f-link:    $merriweathersans;
-$f-text:    $merriweather;
+$f-text:    $merriweathersans;
 
 
 // BREAKPOINTS
 $w-small:  681px;
-$w-medium: 961px;
+$w-medium: 900px;
 $w-large:  1361px;
 
 

@@ -1,0 +1,44 @@
+/******************************************************************
+STYLESHEET: TEXT
+
+******************************************************************/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $f-heading;
+}
+
+h1 {
+    text-transform: uppercase;
+    margin-top: $m-small;
+    margin-bottom: $m-medium;
+}
+
+h2 {
+
+}
+
+h3 {
+
+}
+
+h4 {
+
+}
+
+h5 {
+
+}
+
+h6 {
+
+}
+
+p {
+    margin-top: $m-small;
+    margin-bottom: $m-medium;
+}

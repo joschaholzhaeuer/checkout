@@ -19,8 +19,8 @@
         <div class="wrapper">
 
             <nav class="steps clearfix">
-                <a href="" class="steps-item steps-item--active">Lieferangaben</a>
-                <a href="" class="steps-item">Rechnungsart</a>
+                <a href="index.html" class="steps-item steps-item--active">Lieferangaben</a>
+                <a href="rechnungsart.html" class="steps-item">Bezahlungsart</a>
                 <a href="" class="steps-item lastitem">Überprüfung</a>
             </nav>
 
@@ -29,15 +29,15 @@
                     <h2 class="box-section-heading">Lieferangaben</h2>
                     <div class="fields">
                         <div class="fields-section">
-                            <h3 class="fields-heading">Adresse</h3>
+                            <h3 class="fields-heading">Lieferadresse</h3>
                             <div class="fields-item-wrapper clearfix">
                                 <div class="fields-item fields-item-inline fields-item-radio">
-                                    <input class="fields-radio" type="radio" name="gender" value="female" checked>
-                                    <label class="fields-label" for="female">Frau</label>
+                                    <input id="female" class="fields-radio" type="radio" name="gender" value="female" checked>
+                                    <label class="fields-label fields-label-radio" for="female">Frau</label>
                                 </div>
                                 <div class="fields-item fields-item-inline fields-item-radio">
-                                    <input class="fields-radio" type="radio" name="gender" value="male">
-                                    <label class="fields-label" for="male">Mann</label>
+                                    <input id="male" class="fields-radio" type="radio" name="gender" value="male">
+                                    <label class="fields-label fields-label-radio" for="male">Mann</label>
                                 </div>
                             </div>
                             <div class="fields-item-wrapper clearfix">
@@ -50,7 +50,7 @@
                                     <label class="fields-item-label fields-item-placeholder" for="surname">Nachname</label>
                                 </div>
                             </div>
-                            <div class="fields-item fields-item-optional">
+                            <div class="fields-item fields-item-optional fields-item--left fields-item--long">
                                 <input class="fields-item-frame" type="text" name="company">
                                 <label class="fields-item-label fields-item-placeholder" for="company">Firma (optional)</label>
                             </div>
@@ -101,15 +101,15 @@
                     <div class="fields">
                         <div class="fields-section">
                             <div class="fields-item-radio">
-                                <input class="fields-radio" type="radio" name="versand" value="standard" checked>
-                                <label class="fields-label" for="standard">€ 0,00 Standardversand</label>
+                                <input id="standard" class="fields-radio" type="radio" name="versand" value="standard" checked>
+                                <label class="fields-label fields-label-radio" for="standard">€ 0,00 Standardversand</label>
                             </div>
                             <p class="fields-text">Lieferung 2-4 Werktage nach Bestelleingang</p>
                         </div>
                         <div class="fields-section">
                             <div class="fields-item-radio">
-                                <input class="fields-radio" type="radio" name="versand" value="express">
-                                <label class="fields-label" for="express">€ 3,99 Expressversand</label>
+                                <input id="express" class="fields-radio" type="radio" name="versand" value="express">
+                                <label class="fields-label fields-label-radio" for="express">€ 3,99 Expressversand</label>
                             </div>
                             <p class="fields-text">Lieferung am nächsten Morgen nach Bestelleingang</p>
                         </div>

@@ -12,6 +12,27 @@ STYLESHEET: BOX
 
         &-dark {
             background-color: $c-light;
+            position: relative;
+
+            &:before {
+                content: "";
+                display: inline-block;
+                width: 0;
+                height: 0;
+                border-left: 20px solid transparent;
+                border-right: 20px solid transparent;
+                border-bottom: 20px solid $c-light;
+                position: absolute;
+                top: -15px;
+                left: 50px;
+            }
+        }
+    }
+
+    &-text {
+
+        &-light {
+            color: $c-medium;
         }
     }
 }

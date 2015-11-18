@@ -20,12 +20,21 @@ STYLESHEET: BUTTON
         background-color: $c-dark;
         border: 2px solid $c-medium;
         color: $c-medium;
+
+        &:hover {
+            border: 2px solid $c-alt-light;
+            color: $c-alt-light;
+        }
     }
 
     &-next {
         background-color: $c-alt-light;
         border: 2px solid $c-alt-dark;
         color: $white;
+
+        &:hover {
+            background-color: $c-alt-dark;
+        }
     }
 }
 
@@ -34,8 +43,8 @@ STYLESHEET: BUTTON
     .button {
 
         &-wrapper {
-            width: 70%;
-            margin-left: 30%;
+            //width: 70%;
+            //margin-left: 30%;
         }
     }
 }

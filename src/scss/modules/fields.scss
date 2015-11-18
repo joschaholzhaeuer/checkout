@@ -29,34 +29,79 @@ STYLESHEET: FIELDS
         &:before {
             content: "";
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
+            width: 21px;
+            height: 21px;
             margin-right: 10px;
             position: absolute;
             left: 0;
-            bottom: -1px;
-            border: 1px solid $c-base;
+            top: 0;
+            border: 2px solid $c-medium;
+        }
+
+        &-check {
+
+            &:before {
+                border-radius: 5px;
+            }
+        }
+
+        &-radio {
+
+            &:before {
+                border-radius: 50%;
+            }
         }
     }
 
     &-text {
         margin-left: 30px;
+        margin-bottom: 6px;
+        @include font-size(0.9);
     }
 
     &-radio {
         opacity: 0;
         position: absolute;
         z-index: 30;
-        width: 20px;
-        height: 20px;
+        width: 21px;
+        height: 21px;
 
         &:checked + label:before {
             content: "\2022";
-            color: $c-base;
+            color: $c-alt-light;
             text-align: center;
             @include font-size(1.3);
             line-height: 16px;
+            border: 2px solid $c-alt-light;
+        }
+    }
+
+    &-check {
+        @extend .fields-radio;
+
+        &:checked + label:before {
+            content: "\2714";
+            color: $white;
+            text-align: center;
+            @include font-size(1);
+            line-height: 16px;
+            background-color: $c-alt-light;
+            border: 2px solid $c-alt-light;
+        }
+    }
+
+    &-img {
+        margin-left: 30px;
+        margin-top: 10px;
+        display: inline-block;
+
+        + .fields-img {
+            margin-left: 6px;
+        }
+
+        &-large {
+            margin-bottom: 6px;
+            width: 100%;
         }
     }
 
@@ -64,6 +109,10 @@ STYLESHEET: FIELDS
         margin-bottom: 6px;
         position: relative;
         background-color: $white;
+
+        &--dark {
+            background-color: $c-light;
+        }
 
         &-frame {
             position: relative;
@@ -99,7 +148,8 @@ STYLESHEET: FIELDS
             margin-bottom: 16px;
         }
 
-        &-radio {
+        &-radio,
+        &-check {
             position: relative;
         }
     }
@@ -133,10 +183,26 @@ STYLESHEET: FIELDS
 
             &--left {
                 border-right: 3px solid $white;
+
+                &--dark {
+                    border-right: 3px solid $c-light;
+                }
             }
 
             &--right {
                 border-left: 3px solid $white;
+
+                &--dark {
+                    border-left: 3px solid $c-light;
+                }
+            }
+        }
+
+        &-img {
+
+            &-large {
+                padding-left: 18px;
+                margin-bottom: 0;
             }
         }
     }

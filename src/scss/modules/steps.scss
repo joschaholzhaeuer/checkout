@@ -5,7 +5,12 @@ STYLESHEET: STEPS
 
 .steps {
     width: 100%;
-    margin-bottom: 7px;
+    font-weight: 700;
+    position: fixed;
+    z-index: 50;
+    margin: 0 2%;
+    left: 0;
+    right: 0;
 
     &-item {
         background-color: $c-light;
@@ -13,13 +18,36 @@ STYLESHEET: STEPS
         text-decoration: none;
         float: left;
         width: 32%;
-        margin-right: 2%;
         padding-top: 20px;
         padding-bottom: 20px;
         text-align: center;
+        border-bottom: 6px solid $c-dark;
 
         &--active {
             background-color: $c-alt-light;
+        }
+    }
+}
+
+@include medium {
+
+    .steps {
+        margin: 0 11%;
+
+        &-item {
+            width: 26%;
+        }
+    }
+}
+
+@include large {
+
+    .steps {
+        max-width: 798px;
+        margin: 0 auto;
+
+        &-item {
+            width: 266px;
         }
     }
 }

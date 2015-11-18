@@ -18,6 +18,25 @@ STYLESHEET: HELPERS
     margin-right: 0;
 }
 
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+@include small {
+
+    .fl-s {
+        float: left;
+    }
+
+    .fr-s {
+        float: right;
+    }
+}
+
 .firstitem {
     margin-top: 0;
     margin-left: 0;

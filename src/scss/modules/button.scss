@@ -28,3 +28,14 @@ STYLESHEET: BUTTON
         color: $white;
     }
 }
+
+@include large {
+
+    .button {
+
+        &-wrapper {
+            width: 70%;
+            margin-left: 30%;
+        }
+    }
+}

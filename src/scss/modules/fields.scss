@@ -7,15 +7,61 @@ STYLESHEET: FIELDS
 
     &-section {
         padding-top: 10px;
-        padding-bottom: 10px;
+        padding-bottom: 25px;
+        position: relative;
     }
 
     &-heading {
+        @include font-size(1);
 
+        &:after {
+            content: "";
+            display: block;
+            margin-top: 10px;
+            border-bottom: 1px dashed $c-light;
+        }
+    }
+
+    &-label {
+        font-weight: 700;
+        margin-left: 30px;
+
+        &:before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            border: 1px solid $c-base;
+        }
+    }
+
+    &-text {
+        margin-left: 30px;
+    }
+
+    &-radio {
+        opacity: 0;
+        position: absolute;
+        z-index: 30;
+        width: 20px;
+        height: 20px;
+
+        &:checked + label:before {
+            content: "\2022";
+            color: $c-base;
+            text-align: center;
+            @include font-size(1.3);
+            line-height: 16px;
+        }
     }
 
     &-item {
-        margin: 5px;
+        margin-bottom: 6px;
         position: relative;
         background-color: $white;
 
@@ -25,6 +71,7 @@ STYLESHEET: FIELDS
             padding: 15px 10px;
             background: transparent;
             z-index: 10;
+            width: 100%;
 
             &:focus + label {
                 color: $c-alt-light;
@@ -42,8 +89,79 @@ STYLESHEET: FIELDS
             z-index: 5;
         }
 
+        &-optional {
+            color: $c-medium;
+        }
+
         &-inline {
-            display: inline-block;
+            float: left;
+            margin-right: 16px;
+            margin-bottom: 16px;
+        }
+
+        &-radio {
+            position: relative;
+        }
+    }
+}
+
+@include small {
+
+    .fields {
+
+        &-heading {
+            @include font-size(1.1);
+        }
+
+        &-item {
+
+            &-wrapper {
+                width: 100%;
+            }
+
+            &--half {
+                width: 50%;
+            }
+
+            &--long {
+                width: 70%;
+            }
+
+            &--short {
+                width: 30%;
+            }
+
+            &--left {
+                border-right: 3px solid $white;
+            }
+
+            &--right {
+                border-left: 3px solid $white;
+            }
+        }
+    }
+}
+
+@include medium {
+
+    .fields {
+
+        &-radio {
+
+            &:checked + label:before {
+                line-height: 15px;
+                @include font-size(1.2);
+            }
+        }
+    }
+}
+
+@include large {
+
+    .fields{
+
+        &-heading {
+            @include font-size(1.2);
         }
     }
 }

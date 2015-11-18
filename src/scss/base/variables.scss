@@ -30,19 +30,18 @@ $c-alt-dark: $green-dark;
 
 
 // FONTS
-$merriweathersans: 'Merriweather Sans', 'Helvetica', 'Arial', 'sans-serif';
-$merriweather:     'Merriweather', 'Helvetica', 'Arial', 'sans-serif';
+$lato: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
 
-$f-base:    $merriweathersans;
-$f-heading: $merriweathersans;
-$f-link:    $merriweathersans;
-$f-text:    $merriweathersans;
+$f-base:    $lato;
+$f-heading: $lato;
+$f-link:    $lato;
+$f-text:    $lato;
 
 
 // BREAKPOINTS
-$w-small:  681px;
-$w-medium: 900px;
-$w-large:  1361px;
+$w-small:  520px;
+$w-medium: 750px;
+$w-large:  1000px;
 
 
 // MARGINS/PADDINGS

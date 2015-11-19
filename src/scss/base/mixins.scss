@@ -35,6 +35,12 @@ STYLESHEET: STYLE
     }
 }
 
+@mixin wide {
+    @media only screen and (min-width: #{$w-wide}) {
+        @content;
+    }
+}
+
 
 
 // VENDOR_PREFIXES_HELPER

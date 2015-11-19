@@ -11,6 +11,14 @@ STYLESHEET: BUTTON
     margin-right: 2%;
     text-align: center;
 
+    &-change {
+        border: 2px solid $c-medium;
+        color: $c-medium;
+        margin-top: 15px;
+        width: 100px;
+        margin-bottom: 0;
+    }
+
     &-wrapper {
         width: 100%;
         margin-top: 15px;

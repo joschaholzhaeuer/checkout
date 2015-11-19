@@ -49,3 +49,28 @@ STYLESHEET: HELPERS
 .no-border-right {
     border-right: none;
 }
+
+.no-border-top {
+    border-top: none;
+}
+
+.mt {
+    margin-top: 10px;
+}
+
+.show-m {
+    display: none;
+}
+
+@include medium {
+
+    .show-m {
+        display: block;
+    }
+}
+
+@include medium {
+    .nm-m {
+        margin-right: 0;
+    }
+}

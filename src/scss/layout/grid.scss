@@ -7,21 +7,10 @@ STYLESHEET: GRID
     margin: 0 2% 30px 2%;
 }
 
-@include small {
-
-}
-
-@include medium {
-
-    .wrapper {
-        margin: 0 11% 100px 11%;
-    }
-}
-
 @include large {
 
     .wrapper {
-        max-width: 798px;
+        max-width: 900px;
         margin: 0 auto 100px auto;
     }
 }

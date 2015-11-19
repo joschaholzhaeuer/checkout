@@ -29,25 +29,14 @@ STYLESHEET: STEPS
     }
 }
 
-@include medium {
-
-    .steps {
-        margin: 0 11%;
-
-        &-item {
-            width: 26%;
-        }
-    }
-}
-
 @include large {
 
     .steps {
-        max-width: 798px;
+        max-width: 900px;
         margin: 0 auto;
 
         &-item {
-            width: 266px;
+            width: 300px;
         }
     }
 }

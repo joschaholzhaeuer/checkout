@@ -9,6 +9,10 @@ STYLESHEET: FIELDS
         padding-top: 10px;
         padding-bottom: 25px;
         position: relative;
+
+        &--inline {
+            width: 100%;
+        }
     }
 
     &-heading {
@@ -159,6 +163,14 @@ STYLESHEET: FIELDS
 
     .fields {
 
+        &-section {
+
+            &--inline {
+                width: 50%;
+                min-height: 260px;
+            }
+        }
+
         &-heading {
             @include font-size(1.1);
         }
@@ -211,6 +223,15 @@ STYLESHEET: FIELDS
 @include medium {
 
     .fields {
+
+        &-section {
+
+            &--inline {
+                width: 23%;
+                min-height: 0;
+                margin-right: 2%;
+            }
+        }
 
         &-radio {
 

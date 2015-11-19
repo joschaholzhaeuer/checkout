@@ -42,3 +42,10 @@ p {
     margin-top: $m-small;
     margin-bottom: $m-medium;
 }
+
+.heading {
+    width: 100%;
+    background-color: $c-alt-light;
+    margin-bottom: 6px;
+    color: $white;
+}

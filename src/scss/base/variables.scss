@@ -13,7 +13,7 @@ This is the place for all variables.
 $white:        #fff;
 $black:        #000;
 $grey-light:   #ecf0f1;
-$grey-dark:    #bdc3c7;
+$grey-dark:    #cdd3d7;
 $blue-light:   #34495e;
 $blue-dark:    #2c3e50;
 $green-light:  #1abc9c;
@@ -27,6 +27,7 @@ $c-light:  $grey-light;
 $c-base: $blue-light;
 $c-alt-light: $green-light;
 $c-alt-dark: $green-dark;
+$c-error: $red;
 
 
 // FONTS

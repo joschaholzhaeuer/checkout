@@ -126,10 +126,15 @@ STYLESHEET: FIELDS
             z-index: 10;
             width: 100%;
 
+            &:focus {
+                border: 1px solid $c-alt-light;
+                outline: 0;
+            }
+
             &:focus + label {
                 color: $c-alt-light;
-                @include font-size(0.6);
-                top: 3px;
+                @include font-size(0.7);
+                top: 1px;
                 left: 12px;
                 transition: 0.1s all ease-out;
             }
@@ -155,6 +160,21 @@ STYLESHEET: FIELDS
         &-radio,
         &-check {
             position: relative;
+        }
+    }
+
+    &-error {
+        position: absolute;
+        top: 1px;
+        left: 0;
+        //background-color: $c-error;
+        width: 100%;
+        @include font-size(0.7);
+        color: $c-error;
+        padding-left: 15px;
+
+        &-frame {
+            border: 1px solid $c-error;
         }
     }
 }

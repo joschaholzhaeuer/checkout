@@ -54,3 +54,17 @@ STYLESHEET: VISIBILITY
     @extend .label--focused;
     color: $c-medium;
 }
+
+.box--hidden {
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+}
+
+.rechnung-toggle {
+    z-index: 30;
+}
+
+.kredit-toggle {
+    @extend .rechnung-toggle;
+}

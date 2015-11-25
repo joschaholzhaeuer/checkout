@@ -4,13 +4,16 @@ JAVASCRIPT: MAIN.JS
 ******************************************************************/
 
 function adressbox() {
+    console.log('yes');
 
-    if ($('.fields-label-check').hasClass('checked')) {
-        $('.fields-label-check').removeClass('checked');
-        $('.adressbox').hide();
+    var $label = $('.fields-label-check');
+
+    if ($label.hasClass('checked')) {
+        $label.removeClass('checked');
+        $('.adressbox').removeClass('box--hidden');
     } else {
-        $('.fields-label-check').addClass('checked');
-        $('.adressbox').show();
+        $label.addClass('checked');
+        $('.adressbox').addClass('box--hidden');
     }
 }
 
@@ -92,21 +95,25 @@ $(document).ready(function($) {
 
 
     // Show and hide additional boxes when checked/unchecked
-    if ($('.fields-label-check').hasClass('checked')) {
-        $('.fields-label-check').removeClass('checked');
-        $('.adressbox').hide();
-    }
+    $(document).on('click', '.rechnung-toggle', function() {
 
-    $(document).on('click', '.fields-item-check', function() {
-        adressbox();
-        console.log('test');
+        if (!$(this).data('isClicked')) {
+            var $trigger = $(this);
+
+            adressbox();
+
+            // Using a timer to prevent multiple clicks
+            $trigger.data('isClicked', true);
+            setTimeout(function() {
+                $trigger.removeData('isClicked');
+            }, 100);
+        }
     });
 
-    $('.kreditbox').hide();
 
     $(document).on('click', '.kredit-toggle', function() {
-        kreditbox();
-        console.log('test');
+        //kreditbox();
+        //console.log('test');
     });
 
 

@@ -31,3 +31,26 @@ STYLESHEET: VISIBILITY
         width: auto;
     }
 }
+
+.label--fixed {
+    @include font-size(0.8);
+    font-weight: 700;
+    position: absolute;
+    color: $c-medium;
+    top: 3px;
+    left: 15px;
+}
+
+.label--focused {
+    color: $c-alt-light;
+    font-weight: 700;
+    @include font-size(0.8);
+    top: 3px;
+    left: 15px;
+    transition: 0.1s all ease-out;
+}
+
+.label--correct {
+    @extend .label--focused;
+    color: $c-medium;
+}

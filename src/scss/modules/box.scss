@@ -5,8 +5,9 @@ STYLESHEET: BOX
 
 .box {
     background-color: $white;
-    border-top: 68px solid $c-dark;
+    padding-top: 60px;
     position: relative;
+    box-shadow: 0 0 15px 5px $c-medium;
 
     &-section {
         padding: 30px 25px;
@@ -70,6 +71,10 @@ STYLESHEET: BOX
     }
 
     &-text {
+
+        &-info {
+            margin-top: 0;
+        }
 
         &--light {
             color: $c-medium;

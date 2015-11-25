@@ -11,9 +11,11 @@ STYLESHEET: STEPS
     margin: 0 2%;
     left: 0;
     right: 0;
+    // border-bottom: 5px solid $c-alt-light;
+    // box-shadow: 0 12px 15px -10px $c-medium;
 
     &-item {
-        background-color: $c-light;
+        background-color: $c-alt-dark;
         color: $white;
         text-decoration: none;
         float: left;
@@ -21,10 +23,12 @@ STYLESHEET: STEPS
         padding-top: 20px;
         padding-bottom: 20px;
         text-align: center;
-        border-bottom: 6px solid $c-dark;
+        // border-bottom: 6px solid $c-dark;
+        // box-shadow: inset 14px 0 24px -13px rgba(0,0,0,0.3);
 
         &--active {
             background-color: $c-alt-light;
+            // box-shadow: 14px 0 24px -13px rgba(0,0,0,0.3);
         }
     }
 }

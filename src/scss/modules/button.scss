@@ -5,11 +5,14 @@ STYLESHEET: BUTTON
 
 .button {
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 15px 15px;
     float: left;
     width: 49%;
     margin-right: 2%;
     text-align: center;
+    font-weight: 700;
+    box-shadow: 0 0 15px -1px $c-medium;
+    transition: 0.1s all ease-out;
 
     &-change {
         border: 2px solid $c-medium;
@@ -21,27 +24,34 @@ STYLESHEET: BUTTON
 
     &-wrapper {
         width: 100%;
-        margin-top: 15px;
+        margin-top: 30px;
     }
 
     &-prev {
-        background-color: $c-dark;
-        border: 2px solid $c-medium;
-        color: $c-medium;
+        background-color: $c-medium;
+        //border: 2px solid $c-medium;
+        //background: linear-gradient($c-base, $c-dark);
+        border-radius: 3px;
+        color: $white;
 
         &:hover {
-            border: 2px solid $c-alt-light;
-            color: $c-alt-light;
+            //border: 2px solid $c-alt-light;
+            //color: $c-alt-light;
+            //background: linear-gradient($c-dark, $c-base);
+            background-color: $c-base;
         }
     }
 
     &-next {
         background-color: $c-alt-light;
-        border: 2px solid $c-alt-dark;
+        //border: 2px solid $c-alt-dark;
+        // background: linear-gradient($c-alt-light, $c-alt-dark);
+        border-radius: 3px;
         color: $white;
 
         &:hover {
-            background-color: $c-alt-dark;
+            background-color: $c-base;
+            // background: linear-gradient($c-alt-dark, $c-alt-light);
         }
     }
 }

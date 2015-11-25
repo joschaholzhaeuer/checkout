@@ -43,7 +43,7 @@
                             <div class="fields-item-wrapper clearfix">
                                 <div class="fields-item fields-item--half fields-item--left fl-s">
                                     <input class="fields-item-frame fields-error-frame" type="text" name="name">
-                                    <label class="fields-item-label fields-item-placeholder" for="name">Vorname</label>
+                                    <label class="fields-item-label fields-item-placeholder" for="name"></label>
                                     <span class="fields-error">Bitte geben Sie einen Vornamen ein.</span>
                                 </div>
                                 <div class="fields-item fields-item--half fields-item--right fl-s">
@@ -51,9 +51,9 @@
                                     <label class="fields-item-label fields-item-placeholder" for="surname">Nachname</label>
                                 </div>
                             </div>
-                            <div class="fields-item fields-item-optional fields-item--left fields-item--long">
+                            <div class="fields-item fields-item--left fields-item--long">
                                 <input class="fields-item-frame" type="text" name="company">
-                                <label class="fields-item-label fields-item-placeholder" for="company">Firma (optional)</label>
+                                <label class="fields-item-label fields-item-placeholder fields-item-optional" for="company">Firma (optional)</label>
                             </div>
                             <div class="fields-item-wrapper clearfix">
                                 <div class="fields-item fields-item--long fields-item--left fl-s">
@@ -65,9 +65,9 @@
                                     <label class="fields-item-label fields-item-placeholder" for="number">Nr.</label>
                                 </div>
                             </div>
-                            <div class="fields-item fields-item-optional fields-item--left fields-item--long">
+                            <div class="fields-item fields-item--left fields-item--long">
                                 <input class="fields-item-frame" type="text" name="additional">
-                                <label class="fields-item-label fields-item-placeholder" for="additional">Zusatz (optional)</label>
+                                <label class="fields-item-label fields-item-placeholder fields-item-optional" for="additional">Zusatz (optional)</label>
                             </div>
                             <div class="fields-item-wrapper clearfix">
                                 <div class="fields-item fields-item--long fields-item--left fl-s">
@@ -80,11 +80,11 @@
                                 </div>
                             </div>
                             <div class="fields-item fields-item--left fields-item--long">
-                                <select class="fields-item-frame" name="country">
+                                <select class="fields-item-frame fields-item-frame--select" name="country">
                                     <option value="">Deutschland</option>
                                     <option value="">Schweiz</option>
                                 </select>
-                                <label class="fields-item-label" for="country"></label>
+                                <label class="label--fixed" for="country">Land</label>
                             </div>
                         </div>
                         <div class="fields-section">
@@ -92,11 +92,12 @@
                             <div class="fields-item fields-item--left fields-item--long">
                                 <input class="fields-item-frame" type="text" name="mail">
                                 <label class="fields-item-label fields-item-placeholder" for="mail">E-Mail</label>
+                                <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">max.mustermax@gmail.com</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="box-section box-section--dark box-section-icon">
+                <div class="box-section box-section--dark">
                     <h2 class="box-section-heading">Versandart</h2>
                     <p class="box-text box-text-info">Lieferung voraussichtlich am Montag, den 13.12.2015</p>
                     <div class="fields">

@@ -14,9 +14,10 @@ STYLESHEET: CART
         display: block;
         background-color: $c-light;
         position: absolute;
-        top: 0;
+        top: 62px;
         right: -335px;
         width: 320px;
+        box-shadow: 0 0 15px 5px $c-medium;
 
         &-wrapper {
             padding: 15px 45px 30px 45px;

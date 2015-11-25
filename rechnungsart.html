@@ -31,12 +31,12 @@
                         <div class="fields-section">
                             <div class="fields-item-check">
                                 <input id="rechnungsadresse" class="fields-check" type="checkbox" name="adresse" checked>
-                                <label class="fields-label fields-label-check" for="rechnungsadresse">Rechnungsadresse identisch mit Lieferadresse</label>
+                                <label class="fields-label fields-label-check checked" for="rechnungsadresse">Rechnungsadresse identisch mit Lieferadresse</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="box-section box-section--dark box-section-icon">
+                <div class="box-section box-section--dark box-section-icon adressbox">
                     <div class="fields">
                         <div class="fields-section">
                             <h3 class="fields-heading">Rechnungsadresse</h3>
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="fields-item fields-item--left--dark fields-item--long">
-                                <select class="fields-item-frame" name="country">
+                                <select class="fields-item-frame fields-item-frame--select" name="country">
                                     <option value="">Deutschland</option>
                                     <option value="">Schweiz</option>
                                 </select>
@@ -117,7 +117,7 @@
                             <img class="fields-img" src="http://placehold.it/100x50" alt="PayPal Logo">
                         </div>
                         <div class="fields-section">
-                            <div class="fields-item-radio">
+                            <div class="fields-item-radio kredit-toggle">
                                 <input id="kreditkarte" class="fields-radio" type="radio" name="versand" value="kreditkarte">
                                 <label class="fields-label fields-label-radio" for="kreditkarte">Kreditkarte</label>
                             </div>
@@ -126,23 +126,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="box-section box-section--dark box-section-icon">
+                <div class="box-section box-section--dark box-section-icon kreditbox">
                     <h2 class="box-section-heading">Sichere Zahlung mit Kreditkarte</h2>
                     <p class="box-text box-text-info box-text--light">Diese Zahlungsmethode wird mit 128-SSL sicher verschlüsselt.</p>
-                    <div class="fields">
-                        <div class="fields-section clearfix">
+                    <div class="fields fields-section">
+                        <div class="clearfix">
                             <div class="fields-item fields-item--long fl-s">
                                 <input class="fields-item-frame" type="text" name="cardnumber">
                                 <label class="fields-item-label fields-item-placeholder" for="cardnumber">Kreditkartennummer</label>
                             </div>
                             <img class="fields-img-large fields-item--short fl-s" src="http://placehold.it/300x150" alt="Sie finden die Nummer auf der Vorderseite">
+                        </div>
+                        <div class="clearfix">
                             <div class="fields-item fields-item--short fl-s">
                                 <input class="fields-item-frame" type="text" name="code">
                                 <label class="fields-item-label fields-item-placeholder" for="code">Sicherheitscode</label>
                             </div>
                             <img class="fields-img-large fields-item--short" src="http://placehold.it/300x150" alt="Sie finden den Code auf der Rückseite">
                         </div>
-                        <div class="fields-section clearfix">
+                        <div class="fields-item-wrapper clearfix">
+                            <div class="fields-item fields-item--short">
+                                <input class="fields-item-frame" type="text" name="city">
+                                <label class="fields-item-label fields-item-placeholder" for="city">Gültig bis</label>
+                                <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">MM/JJ</span>
+                            </div>
+                        </div>
+                        <!-- <div class="fields-section clearfix">
                             <h3 class="fields-heading">Gültig bis:</h3>
                             <div class="fields-item fields-item--left--dark fields-item--short fl-s">
                                 <select class="fields-item-frame" name="country">
@@ -175,7 +184,7 @@
                                 </select>
                                 <label class="fields-item-label" for="country"></label>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="cart">

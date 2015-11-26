@@ -40,20 +40,26 @@ $(document).ready(function($) {
         cart_offset = $cart.offset().top;
 
 
+    // Hide loading spinner
+    $('.spinner').hide();
+
+
     function scrollCart() {
         var scroll_offset = $(window).scrollTop(),
             cart_scroll_offset = cart_offset + scroll_offset;
 
         $cart.css('top', cart_scroll_offset);
-
-        console.log(scroll_offset);
-        console.log(cart_offset);
-        console.log(cart_scroll_offset);
     }
 
 
     // Animate and switch tabs an nav clicks
     $(document).on('click', '.steps-item', function() {
+
+        //smooth scroll to top
+        $('body,html').animate({
+            scrollTop: 0 ,
+            }, 300
+        );
 
         var $clicked_tab = $(this),
         $tab_one     = $('.tab-one'),
@@ -61,81 +67,98 @@ $(document).ready(function($) {
         $tab_three   = $('.tab-three'),
         $step_one    = $('.step-one'),
         $step_two    = $('.step-two'),
-        $step_three  = $('.step-three');
+        $step_three  = $('.step-three'),
+        $tab_active  = $('.tab--active > .box'),
+        $spinner     = $('.spinner');
 
-        // click on tab 1
-        if ($clicked_tab.hasClass('step-one') && !$clicked_tab.hasClass('steps-item--active')) {
-            $tab_one.removeClass('tab--inactive');
-            $tab_one.addClass('tab--active');
-            $tab_two.removeClass('tab--active');
-            $tab_two.addClass('tab--inactive');
-            $tab_three.removeClass('tab--active');
-            $tab_three.addClass('tab--inactive');
+        // Show loading spinner on click
+        $tab_active.addClass('box-overlay');
+        $spinner.show();
 
-            $step_one.addClass('steps-item--active');
-            if ($step_two.hasClass('steps-item--active')) {
-                $step_two.removeClass('steps-item--active');
-            } else if ($step_three.hasClass('steps-item--active')) {
-                $step_three.removeClass('steps-item--active');
+        setTimeout(delay_one, 1500);
+        function delay_one() {
+
+            // click on tab 1
+            if ($clicked_tab.hasClass('step-one') && !$clicked_tab.hasClass('steps-item--active')) {
+                $tab_one.removeClass('tab--inactive');
+                $tab_one.addClass('tab--active');
+                $tab_two.removeClass('tab--active');
+                $tab_two.addClass('tab--inactive');
+                $tab_three.removeClass('tab--active');
+                $tab_three.addClass('tab--inactive');
+
+                $step_one.addClass('steps-item--active');
+                if ($step_two.hasClass('steps-item--active')) {
+                    $step_two.removeClass('steps-item--active');
+                } else if ($step_three.hasClass('steps-item--active')) {
+                    $step_three.removeClass('steps-item--active');
+                }
+
+                if ($step_one.hasClass('steps-item--done')) {
+                    $step_one.removeClass('steps-item--done');
+                }
+                if ($step_two.hasClass('steps-item--done')) {
+                    $step_two.removeClass('steps-item--done');
+                }
+
+            // click on tab 2
+            } else if ($clicked_tab.hasClass('step-two') && !$clicked_tab.hasClass('steps-item--active')) {
+                $tab_two.removeClass('tab--inactive');
+                $tab_two.addClass('tab--active');
+                $tab_one.removeClass('tab--active');
+                $tab_one.addClass('tab--inactive');
+                $tab_three.removeClass('tab--active');
+                $tab_three.addClass('tab--inactive');
+
+                $step_two.addClass('steps-item--active');
+                $step_one.addClass('steps-item--done');
+                if ($step_one.hasClass('steps-item--active')) {
+                    $step_one.removeClass('steps-item--active');
+                } else if ($step_three.hasClass('steps-item--active')) {
+                    $step_three.removeClass('steps-item--active');
+                }
+
+                if ($step_two.hasClass('steps-item--done')) {
+                    $step_two.removeClass('steps-item--done');
+                }
+
+            // click on tab 3
+            } else if ($clicked_tab.hasClass('step-three') && !$clicked_tab.hasClass('steps-item--active')) {
+                $tab_three.removeClass('tab--inactive');
+                $tab_three.addClass('tab--active');
+                $tab_one.removeClass('tab--active');
+                $tab_one.addClass('tab--inactive');
+                $tab_two.removeClass('tab--active');
+                $tab_two.addClass('tab--inactive');
+
+                $step_three.addClass('steps-item--active');
+                $step_one.addClass('steps-item--done');
+                $step_two.addClass('steps-item--done');
+                if ($step_one.hasClass('steps-item--active')) {
+                    $step_one.removeClass('steps-item--active');
+                } else if ($step_two.hasClass('steps-item--active')) {
+                    $step_two.removeClass('steps-item--active');
+                }
             }
 
-            if ($step_one.hasClass('steps-item--done')) {
-                $step_one.removeClass('steps-item--done');
-            }
-            if ($step_two.hasClass('steps-item--done')) {
-                $step_two.removeClass('steps-item--done');
-            }
-
-        // click on tab 2
-        } else if ($clicked_tab.hasClass('step-two') && !$clicked_tab.hasClass('steps-item--active')) {
-            $tab_two.removeClass('tab--inactive');
-            $tab_two.addClass('tab--active');
-            $tab_one.removeClass('tab--active');
-            $tab_one.addClass('tab--inactive');
-            $tab_three.removeClass('tab--active');
-            $tab_three.addClass('tab--inactive');
-
-            $step_two.addClass('steps-item--active');
-            $step_one.addClass('steps-item--done');
-            if ($step_one.hasClass('steps-item--active')) {
-                $step_one.removeClass('steps-item--active');
-            } else if ($step_three.hasClass('steps-item--active')) {
-                $step_three.removeClass('steps-item--active');
-            }
-
-            if ($step_two.hasClass('steps-item--done')) {
-                $step_two.removeClass('steps-item--done');
-            }
-
-        // click on tab 3
-        } else if ($clicked_tab.hasClass('step-three') && !$clicked_tab.hasClass('steps-item--active')) {
-            $tab_three.removeClass('tab--inactive');
-            $tab_three.addClass('tab--active');
-            $tab_one.removeClass('tab--active');
-            $tab_one.addClass('tab--inactive');
-            $tab_two.removeClass('tab--active');
-            $tab_two.addClass('tab--inactive');
-
-            $step_three.addClass('steps-item--active');
-            $step_one.addClass('steps-item--done');
-            $step_two.addClass('steps-item--done');
-            if ($step_one.hasClass('steps-item--active')) {
-                $step_one.removeClass('steps-item--active');
-            } else if ($step_two.hasClass('steps-item--active')) {
-                $step_two.removeClass('steps-item--active');
+            setTimeout(delay_spinner, 300);
+            function delay_spinner() {
+                // Hide loading spinner after tab-switch
+                $tab_active.removeClass('box-overlay');
+                $spinner.hide();
             }
         }
+    });
+
+
+    // Animate and switch tabs on button clicks
+    $(document).on('click', '.button', function() {
 
         //smooth scroll to top
         $('body,html').animate({
             scrollTop: 0 ,
             }, 300
         );
-    });
-
-
-    // Animate and switch tabs on button clicks
-    $(document).on('click', '.button', function() {
 
         var $clicked_button = $(this),
         $tab_one     = $('.tab-one'),
@@ -144,82 +167,93 @@ $(document).ready(function($) {
         $tab_four    = $('.tab-four'),
         $step_one    = $('.step-one'),
         $step_two    = $('.step-two'),
-        $step_three  = $('.step-three');
+        $step_three  = $('.step-three'),
+        $tab_active  = $('.tab--active > .box'),
+        $spinner     = $('.spinner');
 
-        // click on button 1
-        if ($clicked_button.hasClass('button-one')) {
-            $tab_one.removeClass('tab--inactive');
-            $tab_one.addClass('tab--active');
-            $tab_two.removeClass('tab--active');
-            $tab_two.addClass('tab--inactive');
-            $tab_three.removeClass('tab--active');
-            $tab_three.addClass('tab--inactive');
+        // Show loading spinner on click
+        $tab_active.addClass('box-overlay');
+        $spinner.show();
 
-            $step_one.addClass('steps-item--active');
-            if ($step_two.hasClass('steps-item--active')) {
-                $step_two.removeClass('steps-item--active');
-            } else if ($step_three.hasClass('steps-item--active')) {
-                $step_three.removeClass('steps-item--active');
+        setTimeout(delay_two, 2000);
+        function delay_two() {
+
+            // click on button 1
+            if ($clicked_button.hasClass('button-one')) {
+                $tab_one.removeClass('tab--inactive');
+                $tab_one.addClass('tab--active');
+                $tab_two.removeClass('tab--active');
+                $tab_two.addClass('tab--inactive');
+                $tab_three.removeClass('tab--active');
+                $tab_three.addClass('tab--inactive');
+
+                $step_one.addClass('steps-item--active');
+                if ($step_two.hasClass('steps-item--active')) {
+                    $step_two.removeClass('steps-item--active');
+                } else if ($step_three.hasClass('steps-item--active')) {
+                    $step_three.removeClass('steps-item--active');
+                }
+
+                if ($step_one.hasClass('steps-item--done')) {
+                    $step_one.removeClass('steps-item--done');
+                }
+
+            // click on button 2
+            } else if ($clicked_button.hasClass('button-two')) {
+                $tab_two.removeClass('tab--inactive');
+                $tab_two.addClass('tab--active');
+                $tab_one.removeClass('tab--active');
+                $tab_one.addClass('tab--inactive');
+                $tab_three.removeClass('tab--active');
+                $tab_three.addClass('tab--inactive');
+
+                $step_two.addClass('steps-item--active');
+                $step_one.addClass('steps-item--done');
+                if ($step_one.hasClass('steps-item--active')) {
+                    $step_one.removeClass('steps-item--active');
+                } else if ($step_three.hasClass('steps-item--active')) {
+                    $step_three.removeClass('steps-item--active');
+                }
+
+                if ($step_two.hasClass('steps-item--done')) {
+                    $step_two.removeClass('steps-item--done');
+                }
+
+            // click on button 3
+            } else if ($clicked_button.hasClass('button-three')) {
+                $tab_three.removeClass('tab--inactive');
+                $tab_three.addClass('tab--active');
+                $tab_one.removeClass('tab--active');
+                $tab_one.addClass('tab--inactive');
+                $tab_two.removeClass('tab--active');
+                $tab_two.addClass('tab--inactive');
+
+                $step_three.addClass('steps-item--active');
+                $step_one.addClass('steps-item--done');
+                $step_two.addClass('steps-item--done');
+                if ($step_one.hasClass('steps-item--active')) {
+                    $step_one.removeClass('steps-item--active');
+                } else if ($step_two.hasClass('steps-item--active')) {
+                    $step_two.removeClass('steps-item--active');
+                }
+
+            // click on button 4
+            } else if ($clicked_button.hasClass('button-four')) {
+                $tab_four.removeClass('tab--inactive');
+                $tab_four.addClass('tab--active');
+                $tab_three.removeClass('tab--active');
+                $tab_three.addClass('tab--inactive');
+
+                $('.steps').hide();
             }
 
-            if ($step_one.hasClass('steps-item--done')) {
-                $step_one.removeClass('steps-item--done');
+            setTimeout(delay_spinner2, 300);
+            function delay_spinner2() {
+                // Hide loading spinner after tab-switch
+                $tab_active.removeClass('box-overlay');
+                $spinner.hide();
             }
-
-        // click on button 2
-        } else if ($clicked_button.hasClass('button-two')) {
-            $tab_two.removeClass('tab--inactive');
-            $tab_two.addClass('tab--active');
-            $tab_one.removeClass('tab--active');
-            $tab_one.addClass('tab--inactive');
-            $tab_three.removeClass('tab--active');
-            $tab_three.addClass('tab--inactive');
-
-            $step_two.addClass('steps-item--active');
-            $step_one.addClass('steps-item--done');
-            if ($step_one.hasClass('steps-item--active')) {
-                $step_one.removeClass('steps-item--active');
-            } else if ($step_three.hasClass('steps-item--active')) {
-                $step_three.removeClass('steps-item--active');
-            }
-
-            if ($step_two.hasClass('steps-item--done')) {
-                $step_two.removeClass('steps-item--done');
-            }
-
-        // click on button 3
-        } else if ($clicked_button.hasClass('button-three')) {
-            $tab_three.removeClass('tab--inactive');
-            $tab_three.addClass('tab--active');
-            $tab_one.removeClass('tab--active');
-            $tab_one.addClass('tab--inactive');
-            $tab_two.removeClass('tab--active');
-            $tab_two.addClass('tab--inactive');
-
-            $step_three.addClass('steps-item--active');
-            $step_one.addClass('steps-item--done');
-            $step_two.addClass('steps-item--done');
-            if ($step_one.hasClass('steps-item--active')) {
-                $step_one.removeClass('steps-item--active');
-            } else if ($step_two.hasClass('steps-item--active')) {
-                $step_two.removeClass('steps-item--active');
-            }
-
-        // click on button 4
-        } else if ($clicked_button.hasClass('button-four')) {
-            $tab_four.removeClass('tab--inactive');
-            $tab_four.addClass('tab--active');
-            $tab_three.removeClass('tab--active');
-            $tab_three.addClass('tab--inactive');
-
-            $('.steps').hide();
         }
-
-        //smooth scroll to top
-        $('body,html').animate({
-            scrollTop: 0 ,
-            }, 300
-        );
     });
 
 

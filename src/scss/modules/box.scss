@@ -15,6 +15,7 @@ STYLESHEET: BOX
         &--highlighted {
             background-color: $c-alt-light;
             color: $white;
+            padding: 15px 25px;
         }
 
         &--dark {
@@ -67,6 +68,10 @@ STYLESHEET: BOX
             &--right {
                 float: right;
             }
+        }
+
+        &--strong {
+            color: $c-alt-light;
         }
     }
 

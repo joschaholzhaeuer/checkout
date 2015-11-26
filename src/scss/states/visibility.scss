@@ -55,9 +55,20 @@ STYLESHEET: VISIBILITY
     color: $c-medium;
 }
 
+.adressbox {
+    max-height: 2000px;
+    height: auto;
+}
+
+.box--transition {
+    transition: 0.3s all ease-in-out;
+}
+
 .box--hidden {
+    opacity: 0;
     visibility: hidden;
     height: 0;
+    max-height: 0;
     padding: 0;
 }
 

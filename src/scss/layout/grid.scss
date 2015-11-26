@@ -4,7 +4,8 @@ STYLESHEET: GRID
 ******************************************************************/
 
 .wrapper {
-    margin: 0 2% 30px 2%;
+    margin: 0 2% 0 2%;
+    position: relative;
 }
 
 @include large {

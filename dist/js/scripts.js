@@ -9,26 +9,22 @@ function adressbox() {
 
     if ($label.hasClass('checked')) {
         $label.removeClass('checked');
-        $('.adressbox').removeClass('box--hidden');
-        $('.adressbox').addClass('box--transition');
+        $('.adressbox').slideDown('fast');
     } else {
         $label.addClass('checked');
-        $('.adressbox').addClass('box--hidden');
-        $('.adressbox').removeClass('box--transition');
+        $('.adressbox').slideUp('fast');
     }
 }
 
 function showKreditbox() {
 
-    $('.kreditbox').removeClass('box--hidden');
-    $('.kreditbox').addClass('box--transition');
+    $('.kreditbox').slideDown('fast');
 
 }
 
 function hideKreditbox() {
 
-    $('.kreditbox').addClass('box--hidden');
-    $('.kreditbox').removeClass('box--transition');
+    $('.kreditbox').slideUp('fast');
 
 }
 
@@ -70,6 +66,10 @@ $(document).ready(function($) {
 
     // Hide loading spinner
     $('.spinner').hide();
+
+    // Hide additional boxes
+    $('.adressbox').hide();
+    $('.kreditbox').hide();
 
 
     function scrollCart() {

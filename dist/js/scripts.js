@@ -32,6 +32,34 @@ function hideKreditbox() {
 
 }
 
+function checkStep() {
+
+    if ($('.step-one').hasClass('steps-item--active')) {
+        $('.step-two--done').addClass('is-hidden');
+        $('.steps-number-two').removeClass('is-invisible');
+
+        if ($('.steps-number-one').hasClass('is-invisible')) {
+            $('.steps-number-one').removeClass('is-invisible');
+            $('.step-one--done').addClass('is-hidden');
+        }
+
+    } else if ($('.step-two').hasClass('steps-item--active')) {
+        $('.step-one--done').removeClass('is-hidden');
+        $('.steps-number-one').addClass('is-invisible');
+
+        if ($('.steps-number-two').hasClass('is-invisible')) {
+            $('.steps-number-two').removeClass('is-invisible');
+            $('.step-two--done').addClass('is-hidden');
+        }
+
+    } else if ($('.step-three').hasClass('steps-item--active')) {
+        $('.step-one--done').removeClass('is-hidden');
+        $('.step-two--done').removeClass('is-hidden');
+        $('.steps-number-one').addClass('is-invisible');
+        $('.steps-number-two').addClass('is-invisible');
+    }
+}
+
 
 $(document).ready(function($) {
 
@@ -69,7 +97,11 @@ $(document).ready(function($) {
         $step_two    = $('.step-two'),
         $step_three  = $('.step-three'),
         $tab_active  = $('.tab--active > .box'),
-        $spinner     = $('.spinner');
+        $spinner     = $('.spinner'),
+        $one_number  = $('.step-one > .step-number'),
+        $two_number  = $('.step-two > .step-number'),
+        $one_done    = $('.step-one--done'),
+        $two_done    = $('.step-two--done');
 
         // Show loading spinner on click
         $tab_active.addClass('box-overlay');
@@ -146,13 +178,14 @@ $(document).ready(function($) {
                 // Hide loading spinner after tab-switch
                 $tab_active.removeClass('box-overlay');
                 $spinner.hide();
+                checkStep();
             }
         }
     });
 
 
     // Animate and switch tabs on button clicks
-    $(document).on('click', '.button', function() {
+    $(document).on('click', '.button-next', function() {
 
         //smooth scroll to top
         $('body,html').animate({
@@ -252,8 +285,99 @@ $(document).ready(function($) {
                 // Hide loading spinner after tab-switch
                 $tab_active.removeClass('box-overlay');
                 $spinner.hide();
+                checkStep();
             }
         }
+    });
+
+
+    // Animate and switch tabs on button clicks
+    $(document).on('click', '.button-prev', function() {
+
+        //smooth scroll to top
+        $('body,html').animate({
+            scrollTop: 0 ,
+            }, 300
+        );
+
+        var $clicked_button = $(this),
+        $tab_one     = $('.tab-one'),
+        $tab_two     = $('.tab-two'),
+        $tab_three   = $('.tab-three'),
+        $tab_four    = $('.tab-four'),
+        $step_one    = $('.step-one'),
+        $step_two    = $('.step-two'),
+        $step_three  = $('.step-three');
+
+        // click on button 1
+        if ($clicked_button.hasClass('button-one')) {
+            $tab_one.removeClass('tab--inactive');
+            $tab_one.addClass('tab--active');
+            $tab_two.removeClass('tab--active');
+            $tab_two.addClass('tab--inactive');
+            $tab_three.removeClass('tab--active');
+            $tab_three.addClass('tab--inactive');
+
+            $step_one.addClass('steps-item--active');
+            if ($step_two.hasClass('steps-item--active')) {
+                $step_two.removeClass('steps-item--active');
+            } else if ($step_three.hasClass('steps-item--active')) {
+                $step_three.removeClass('steps-item--active');
+            }
+
+            if ($step_one.hasClass('steps-item--done')) {
+                $step_one.removeClass('steps-item--done');
+            }
+
+        // click on button 2
+        } else if ($clicked_button.hasClass('button-two')) {
+            $tab_two.removeClass('tab--inactive');
+            $tab_two.addClass('tab--active');
+            $tab_one.removeClass('tab--active');
+            $tab_one.addClass('tab--inactive');
+            $tab_three.removeClass('tab--active');
+            $tab_three.addClass('tab--inactive');
+
+            $step_two.addClass('steps-item--active');
+            $step_one.addClass('steps-item--done');
+            if ($step_one.hasClass('steps-item--active')) {
+                $step_one.removeClass('steps-item--active');
+            } else if ($step_three.hasClass('steps-item--active')) {
+                $step_three.removeClass('steps-item--active');
+            }
+
+            if ($step_two.hasClass('steps-item--done')) {
+                $step_two.removeClass('steps-item--done');
+            }
+
+        // click on button 3
+        } else if ($clicked_button.hasClass('button-three')) {
+            $tab_three.removeClass('tab--inactive');
+            $tab_three.addClass('tab--active');
+            $tab_one.removeClass('tab--active');
+            $tab_one.addClass('tab--inactive');
+            $tab_two.removeClass('tab--active');
+            $tab_two.addClass('tab--inactive');
+
+            $step_three.addClass('steps-item--active');
+            $step_one.addClass('steps-item--done');
+            $step_two.addClass('steps-item--done');
+            if ($step_one.hasClass('steps-item--active')) {
+                $step_one.removeClass('steps-item--active');
+            } else if ($step_two.hasClass('steps-item--active')) {
+                $step_two.removeClass('steps-item--active');
+            }
+
+        // click on button 4
+        } else if ($clicked_button.hasClass('button-four')) {
+            $tab_four.removeClass('tab--inactive');
+            $tab_four.addClass('tab--active');
+            $tab_three.removeClass('tab--active');
+            $tab_three.addClass('tab--inactive');
+
+            $('.steps').hide();
+        }
+        checkStep();
     });
 
 

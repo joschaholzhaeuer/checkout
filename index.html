@@ -34,51 +34,58 @@
                                 <h3 class="fields-heading">Lieferadresse</h3>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item-inline fields-item-radio">
-                                        <input id="female1" class="fields-radio" type="radio" name="gender1" value="female1" checked>
+                                        <input id="female1" class="fields-radio" type="radio" name="gender1" checked>
                                         <label class="fields-label fields-label-radio" for="female1">Frau</label>
                                     </div>
                                     <div class="fields-item fields-item-inline fields-item-radio">
-                                        <input id="male1" class="fields-radio" type="radio" name="gender1" value="male1">
+                                        <input id="male1" class="fields-radio" type="radio" name="gender1">
                                         <label class="fields-label fields-label-radio" for="male1">Mann</label>
                                     </div>
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--half fields-item--left fl-s">
-                                        <input class="fields-item-frame fields-error-frame" type="text" name="name1">
-                                        <label class="fields-item-label fields-item-placeholder" for="name1"></label>
+                                        <input class="fields-input fields-item-frame" type="text" name="name1">
+                                        <label class="fields-item-label fields-item-placeholder" for="name1">Vorname</label>
                                         <span class="fields-error">Bitte geben Sie einen Vornamen ein.</span>
                                     </div>
                                     <div class="fields-item fields-item--half fields-item--right fl-s">
-                                        <input class="fields-item-frame" type="text" name="surname1">
+                                        <input class="fields-input fields-item-frame" type="text" name="surname1">
                                         <label class="fields-item-label fields-item-placeholder" for="surname1">Nachname</label>
+                                        <span class="fields-error">Bitte geben Sie einen Nachnamen ein.</span>
                                     </div>
                                 </div>
                                 <div class="fields-item fields-item--left fields-item--long">
-                                    <input class="fields-item-frame" type="text" name="company1">
+                                    <input class="fields-input fields-item-frame fields-optional" type="text" name="company1">
                                     <label class="fields-item-label fields-item-placeholder fields-item-optional" for="company1">Firma (optional)</label>
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left fl-s">
-                                        <input class="fields-item-frame" type="text" name="street1">
+                                        <input class="fields-input fields-item-frame" type="text" name="street1">
                                         <label class="fields-item-label fields-item-placeholder" for="street1">Straße</label>
+                                    <span class="fields-error">Bitte geben Sie eine Straße an.</span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right fl-s">
-                                        <input class="fields-item-frame" type="text" name="number1">
+                                        <input class="fields-number fields-item-frame" type="text" name="number1">
                                         <label class="fields-item-label fields-item-placeholder" for="number1">Nr.</label>
+                                    <span class="fields-error">Bitte geben Sie eine Nummer an.</span>
+                                    <span class="fields-error2">Haben Sie eine Nummer angegeben?</span>
                                     </div>
                                 </div>
                                 <div class="fields-item fields-item--left fields-item--long">
-                                    <input class="fields-item-frame" type="text" name="additional1">
+                                    <input class="fields-input fields-item-frame fields-optional" type="text" name="additional1">
                                     <label class="fields-item-label fields-item-placeholder fields-item-optional" for="additional1">Zusatz (optional)</label>
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left fl-s">
-                                        <input class="fields-item-frame" type="text" name="city1">
+                                        <input class="fields-input fields-item-frame" type="text" name="city1">
                                         <label class="fields-item-label fields-item-placeholder" for="city1">Ort</label>
+                                        <span class="fields-error">Bitte geben Sie einen Ort an.</span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right fl-s">
-                                        <input class="fields-item-frame" type="text" name="plz1">
+                                        <input class="fields-number fields-item-frame" type="text" name="plz1" data-validation="min5">
                                         <label class="fields-item-label fields-item-placeholder" for="plz1">Postleitzahl</label>
+                                        <span class="fields-error">Bitte geben Sie eine Postleitzahl an.</span>
+                                        <span class="fields-error2">Ihre PLZ sollte aus 5 Ziffern bestehen.</span>
                                     </div>
                                 </div>
                                 <div class="fields-item fields-item--left fields-item--long">
@@ -92,9 +99,11 @@
                             <div class="fields-section">
                                 <h3 class="fields-heading">Kontakt</h3>
                                 <div class="fields-item fields-item--left fields-item--long">
-                                    <input class="fields-item-frame" type="text" name="mail1">
+                                    <input class="fields-mail fields-item-frame" type="text" name="mail1">
                                     <label class="fields-item-label fields-item-placeholder" for="mail1">E-Mail</label>
                                     <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">max.mustermax@gmail.com</span>
+                                    <span class="fields-error">Bitte geben Sie eine E-Mail-Adresse an.</span>
+                                    <span class="fields-error2">Bitte geben Sie eine gültige E-Mail-Adresse an. (z.B.: max.mustermax@gmail.com)</span>
                                 </div>
                             </div>
                         </div>
@@ -105,14 +114,14 @@
                         <div class="fields">
                             <div class="fields-section">
                                 <div class="fields-item-radio">
-                                    <input id="standard1" class="fields-radio" type="radio" name="versand1" value="standard1" checked>
+                                    <input id="standard1" class="fields-radio" type="radio" name="versand1"checked>
                                     <label class="fields-label fields-label-radio" for="standard1">€ 0,00 Standardversand</label>
                                 </div>
                                 <p class="fields-text">Lieferung 2-4 Werktage nach Bestelleingang</p>
                             </div>
                             <div class="fields-section">
                                 <div class="fields-item-radio">
-                                    <input id="express1" class="fields-radio" type="radio" name="versand1" value="express1">
+                                    <input id="express1" class="fields-radio" type="radio" name="versand1">
                                     <label class="fields-label fields-label-radio" for="express1">€ 3,99 Expressversand</label>
                                 </div>
                                 <p class="fields-text">Lieferung am nächsten Morgen nach Bestelleingang</p>
@@ -161,12 +170,6 @@
 
             <div class="tab tab-two tab--inactive">
 
-                <!-- <nav class="steps clearfix">
-                    <span class="steps-item step-one steps-item--done">Lieferangaben</span>
-                    <span class="steps-item step-two steps-item--active">Bezahlungsart</span>
-                    <span class="steps-item step-three lastitem">Überprüfung</span>
-                </nav> -->
-
                 <div class="box">
                     <div class="box-section">
                         <h2 class="box-section-heading">Bezahlungsart</h2>
@@ -185,49 +188,49 @@
                                 <h3 class="fields-heading">Rechnungsadresse</h3>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--dark fields-item-inline fields-item-radio">
-                                        <input id="female2" class="fields-radio" type="radio" name="gender2" value="female2" checked>
+                                        <input id="female2" class="fields-radio" type="radio" name="gender2" checked>
                                         <label class="fields-label fields-label-radio" for="female2">Frau</label>
                                     </div>
                                     <div class="fields-item fields-item--dark fields-item-inline fields-item-radio">
-                                        <input id="male2" class="fields-radio" type="radio" name="gender2" value="male2">
+                                        <input id="male2" class="fields-radio" type="radio" name="gender2">
                                         <label class="fields-label fields-label-radio" for="male2">Mann</label>
                                     </div>
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--half fields-item--left--dark fl-s">
-                                        <input class="fields-item-frame" type="text" name="name2">
+                                        <input class="fields-input fields-item-frame" type="text" name="name2">
                                         <label class="fields-item-label fields-item-placeholder" for="name2">Vorname</label>
                                     </div>
                                     <div class="fields-item fields-item--half fields-item--right--dark fl-s">
-                                        <input class="fields-item-frame" type="text" name="surname2">
+                                        <input class="fields-input fields-item-frame" type="text" name="surname2">
                                         <label class="fields-item-label fields-item-placeholder" for="surname2">Nachname</label>
                                     </div>
                                 </div>
                                 <div class="fields-item fields-item-optional fields-item--left--dark fields-item--long">
-                                    <input class="fields-item-frame" type="text" name="company2">
+                                    <input class="fields-input fields-item-frame" type="text" name="company2">
                                     <label class="fields-item-label fields-item-placeholder" for="company2">Firma (optional)</label>
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left--dark fl-s">
-                                        <input class="fields-item-frame" type="text" name="street2">
+                                        <input class="fields-input fields-item-frame" type="text" name="street2">
                                         <label class="fields-item-label fields-item-placeholder" for="street2">Straße</label>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right--dark fl-s">
-                                        <input class="fields-item-frame" type="text" name="number2">
+                                        <input class="fields-input fields-item-frame" type="text" name="number2">
                                         <label class="fields-item-label fields-item-placeholder" for="number2">Nr.</label>
                                     </div>
                                 </div>
                                 <div class="fields-item fields-item-optional fields-item--left--dark fields-item--long">
-                                    <input class="fields-item-frame" type="text" name="additional2">
+                                    <input class="fields-input fields-item-frame" type="text" name="additional2">
                                     <label class="fields-item-label fields-item-placeholder" for="additional2">Zusatz (optional)</label>
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left--dark fl-s">
-                                        <input class="fields-item-frame" type="text" name="city2">
+                                        <input class="fields-input fields-item-frame" type="text" name="city2">
                                         <label class="fields-item-label fields-item-placeholder" for="city2">Ort</label>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right--dark fl-s">
-                                        <input class="fields-item-frame" type="text" name="plz2">
+                                        <input class="fields-input fields-item-frame" type="text" name="plz2">
                                         <label class="fields-item-label fields-item-placeholder" for="plz2">Postleitzahl</label>
                                     </div>
                                 </div>
@@ -245,7 +248,7 @@
                         <div class="fields">
                             <div class="fields-section">
                                 <div class="fields-item-radio">
-                                    <input id="rechnung" class="fields-radio kredit-toggle--off" type="radio" name="bezahlart" value="rechnung" checked>
+                                    <input id="rechnung" class="fields-radio kredit-toggle--off" type="radio" name="bezahlart" checked>
                                     <label class="fields-label fields-label-radio kredit-toggle--off" for="rechnung">auf Rechnung</label>
                                 </div>
                                 <p class="fields-text">Wir bieten Bestellungen auf Rechnung nur für Privatkunden an</p>
@@ -254,14 +257,14 @@
                             </div>
                             <div class="fields-section">
                                 <div class="fields-item-radio">
-                                    <input id="paypal" class="fields-radio kredit-toggle--off" type="radio" name="bezahlart" value="paypal">
+                                    <input id="paypal" class="fields-radio kredit-toggle--off" type="radio" name="bezahlart">
                                     <label class="fields-label fields-label-radio kredit-toggle--off" for="paypal">PayPal</label>
                                 </div>
                                 <img class="fields-img" src="http://placehold.it/100x50" alt="PayPal Logo">
                             </div>
                             <div class="fields-section">
                                 <div class="fields-item-radio">
-                                    <input id="kreditkarte" class="fields-radio kredit-toggle" type="radio" name="bezahlart" value="kreditkarte">
+                                    <input id="kreditkarte" class="fields-radio kredit-toggle" type="radio" name="bezahlart">
                                     <label class="fields-label fields-label-radio kredit-toggle" for="kreditkarte">Kreditkarte</label>
                                 </div>
                                 <img class="fields-img" src="http://placehold.it/100x50" alt="VISA Logo">
@@ -276,7 +279,7 @@
                             <div class="fields fields-section">
                                 <div class="clearfix">
                                     <div class="fields-item fields-item--long fl-s">
-                                        <input class="fields-item-frame" type="text" name="cardnumber">
+                                        <input class="fields-input fields-item-frame" type="text" name="cardnumber">
                                         <label class="fields-item-label fields-item-placeholder" for="cardnumber">Kreditkartennummer</label>
                                         <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">1234 1234 1234 1234</span>
                                     </div>
@@ -284,7 +287,7 @@
                                 </div>
                                 <div class="clearfix">
                                     <div class="fields-item fields-item--short fl-s">
-                                        <input class="fields-item-frame" type="text" name="code">
+                                        <input class="fields-input fields-item-frame" type="text" name="code">
                                         <label class="fields-item-label fields-item-placeholder" for="code">Sicherheitscode</label>
                                         <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">123</span>
                                     </div>
@@ -292,7 +295,7 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--short">
-                                        <input class="fields-item-frame" type="text" name="valid">
+                                        <input class="fields-input fields-item-frame" type="text" name="valid">
                                         <label class="fields-item-label fields-item-placeholder" for="valid">Gültig bis</label>
                                         <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">MM/JJ</span>
                                     </div>

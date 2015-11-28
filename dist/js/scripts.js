@@ -56,6 +56,135 @@ function checkStep() {
     }
 }
 
+function checkErrorsInput($element) {
+
+    var $current_field = $element;
+
+    // input field was left empty
+    if ($current_field.val().length === 0) {
+        $current_field.addClass('fields-error-frame');
+        $current_field.siblings('.fields-item-label').hide();
+        $current_field.siblings('.fields-error').show();
+
+    // input was entered
+    } else {
+        if ($current_field.hasClass('fields-error-frame')) {
+            $current_field.removeClass('fields-error-frame');
+            $current_field.siblings('.fields-item-label').show();
+            $current_field.siblings('.fields-error').hide();
+        }
+    }
+}
+
+function checkErrorsNumber($element) {
+
+    var $current_field_n = $element,
+        entered_input   = $current_field_n.val();
+
+    // input field was left empty
+    if (entered_input.length === 0) {
+        $current_field_n.addClass('fields-error-frame');
+        $current_field_n.siblings('.fields-item-label').hide();
+        $current_field_n.siblings('.fields-error2').hide();
+        $current_field_n.siblings('.fields-error').show();
+
+    // input was entered
+    } else {
+
+        // if no number was entered
+        if (!$.isNumeric(entered_input)) {
+
+            // show error message for wrong input and hide previous error, if it is still visible
+            if ($current_field_n.hasClass('fields-error-frame')) {
+                $current_field_n.siblings('.fields-error').hide();
+                $current_field_n.siblings('.fields-error2').show();
+
+            // otherwise show error message for wrong input
+            } else {
+                $current_field_n.addClass('fields-error-frame');
+                $current_field_n.siblings('.fields-item-label').hide();
+                $current_field_n.siblings('.fields-error2').show();
+            }
+
+        // user entered a correct input
+        } else {
+
+            // if user did not enter 5 numbers, show error
+            if (($current_field_n.data('validation') == 'min5') && (entered_input.length != 5)) {
+
+                // show error message for wrong input and hide previous error, if it is still visible
+                if ($current_field_n.hasClass('fields-error-frame')) {
+                    $current_field_n.siblings('.fields-error').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+
+                // otherwise show error message for wrong input
+                } else {
+                    $current_field_n.addClass('fields-error-frame');
+                    $current_field_n.siblings('.fields-item-label').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+                }
+
+            // user entered correct number
+            } else {
+
+                // hide error message
+                if ($current_field_n.hasClass('fields-error-frame')) {
+                    $current_field_n.removeClass('fields-error-frame');
+                    $current_field_n.siblings('.fields-item-label').show();
+                    $current_field_n.siblings('.fields-error').hide();
+                    $current_field_n.siblings('.fields-error2').hide();
+                }
+            }
+        }
+    }
+}
+
+
+function checkErrorsMail($element) {
+
+    var $current_field_n = $element,
+        entered_input    = $current_field_n.val(),
+        test_mail        = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+    // input field was left empty
+    if (entered_input.length === 0) {
+        $current_field_n.addClass('fields-error-frame');
+        $current_field_n.siblings('.fields-item-label').hide();
+        $current_field_n.siblings('.fields-error2').hide();
+        $current_field_n.siblings('.fields-error').show();
+
+    // input was entered
+    } else {
+
+        // if no correct email address was entered
+        if (!test_mail.test(entered_input)) {
+
+            // show error message for wrong input and hide previous error, if it is still visible
+            if ($current_field_n.hasClass('fields-error-frame')) {
+                $current_field_n.siblings('.fields-error').hide();
+                $current_field_n.siblings('.fields-error2').show();
+
+            // otherwise show error message for wrong input
+            } else {
+                $current_field_n.addClass('fields-error-frame');
+                $current_field_n.siblings('.fields-item-label').hide();
+                $current_field_n.siblings('.fields-error2').show();
+            }
+
+        // user entered a correct email address
+        } else {
+
+            // hide error message
+            if ($current_field_n.hasClass('fields-error-frame')) {
+                $current_field_n.removeClass('fields-error-frame');
+                $current_field_n.siblings('.fields-item-label').show();
+                $current_field_n.siblings('.fields-error').hide();
+                $current_field_n.siblings('.fields-error2').hide();
+            }
+        }
+    }
+}
+
 
 $(document).ready(function($) {
 
@@ -70,6 +199,10 @@ $(document).ready(function($) {
     // Hide additional boxes
     $('.adressbox').hide();
     $('.kreditbox').hide();
+
+    // Hide error messages
+    $('.fields-error').hide();
+    $('.fields-error2').hide();
 
 
     function scrollCart() {
@@ -107,69 +240,89 @@ $(document).ready(function($) {
         $tab_active.addClass('box-overlay');
         $spinner.show();
 
-        setTimeout(delay_one, 1500);
+        //check for errors
+        $('.fields-input').each(function(index, el) {
+            if (!$(this).hasClass('fields-optional')) {
+                checkErrorsInput($(this));
+            }
+        });
+        $('.fields-number').each(function(index, el) {
+            checkErrorsNumber($(this));
+        });
+        $('.fields-mail').each(function(index, el) {
+            checkErrorsMail($(this));
+        });
+
+        setTimeout(delay_one, 600);
         function delay_one() {
 
-            // click on tab 1
-            if ($clicked_tab.hasClass('step-one') && !$clicked_tab.hasClass('steps-item--active')) {
-                $tab_one.removeClass('tab--inactive');
-                $tab_one.addClass('tab--active');
-                $tab_two.removeClass('tab--active');
-                $tab_two.addClass('tab--inactive');
-                $tab_three.removeClass('tab--active');
-                $tab_three.addClass('tab--inactive');
+            // check if there are any errors or empty fields in the current tab
+            if ($('.tab--active').find('.fields-error-frame').length) {
 
-                $step_one.addClass('steps-item--active');
-                if ($step_two.hasClass('steps-item--active')) {
-                    $step_two.removeClass('steps-item--active');
-                } else if ($step_three.hasClass('steps-item--active')) {
-                    $step_three.removeClass('steps-item--active');
-                }
+            // go to next step if there are no errors
+            } else {
 
-                if ($step_one.hasClass('steps-item--done')) {
-                    $step_one.removeClass('steps-item--done');
-                }
-                if ($step_two.hasClass('steps-item--done')) {
-                    $step_two.removeClass('steps-item--done');
-                }
+                // click on tab 1
+                if ($clicked_tab.hasClass('step-one') && !$clicked_tab.hasClass('steps-item--active')) {
+                    $tab_one.removeClass('tab--inactive');
+                    $tab_one.addClass('tab--active');
+                    $tab_two.removeClass('tab--active');
+                    $tab_two.addClass('tab--inactive');
+                    $tab_three.removeClass('tab--active');
+                    $tab_three.addClass('tab--inactive');
 
-            // click on tab 2
-            } else if ($clicked_tab.hasClass('step-two') && !$clicked_tab.hasClass('steps-item--active')) {
-                $tab_two.removeClass('tab--inactive');
-                $tab_two.addClass('tab--active');
-                $tab_one.removeClass('tab--active');
-                $tab_one.addClass('tab--inactive');
-                $tab_three.removeClass('tab--active');
-                $tab_three.addClass('tab--inactive');
+                    $step_one.addClass('steps-item--active');
+                    if ($step_two.hasClass('steps-item--active')) {
+                        $step_two.removeClass('steps-item--active');
+                    } else if ($step_three.hasClass('steps-item--active')) {
+                        $step_three.removeClass('steps-item--active');
+                    }
 
-                $step_two.addClass('steps-item--active');
-                $step_one.addClass('steps-item--done');
-                if ($step_one.hasClass('steps-item--active')) {
-                    $step_one.removeClass('steps-item--active');
-                } else if ($step_three.hasClass('steps-item--active')) {
-                    $step_three.removeClass('steps-item--active');
-                }
+                    if ($step_one.hasClass('steps-item--done')) {
+                        $step_one.removeClass('steps-item--done');
+                    }
+                    if ($step_two.hasClass('steps-item--done')) {
+                        $step_two.removeClass('steps-item--done');
+                    }
 
-                if ($step_two.hasClass('steps-item--done')) {
-                    $step_two.removeClass('steps-item--done');
-                }
+                // click on tab 2
+                } else if ($clicked_tab.hasClass('step-two') && !$clicked_tab.hasClass('steps-item--active')) {
+                    $tab_two.removeClass('tab--inactive');
+                    $tab_two.addClass('tab--active');
+                    $tab_one.removeClass('tab--active');
+                    $tab_one.addClass('tab--inactive');
+                    $tab_three.removeClass('tab--active');
+                    $tab_three.addClass('tab--inactive');
 
-            // click on tab 3
-            } else if ($clicked_tab.hasClass('step-three') && !$clicked_tab.hasClass('steps-item--active')) {
-                $tab_three.removeClass('tab--inactive');
-                $tab_three.addClass('tab--active');
-                $tab_one.removeClass('tab--active');
-                $tab_one.addClass('tab--inactive');
-                $tab_two.removeClass('tab--active');
-                $tab_two.addClass('tab--inactive');
+                    $step_two.addClass('steps-item--active');
+                    $step_one.addClass('steps-item--done');
+                    if ($step_one.hasClass('steps-item--active')) {
+                        $step_one.removeClass('steps-item--active');
+                    } else if ($step_three.hasClass('steps-item--active')) {
+                        $step_three.removeClass('steps-item--active');
+                    }
 
-                $step_three.addClass('steps-item--active');
-                $step_one.addClass('steps-item--done');
-                $step_two.addClass('steps-item--done');
-                if ($step_one.hasClass('steps-item--active')) {
-                    $step_one.removeClass('steps-item--active');
-                } else if ($step_two.hasClass('steps-item--active')) {
-                    $step_two.removeClass('steps-item--active');
+                    if ($step_two.hasClass('steps-item--done')) {
+                        $step_two.removeClass('steps-item--done');
+                    }
+
+                // click on tab 3
+                } else if ($clicked_tab.hasClass('step-three') && !$clicked_tab.hasClass('steps-item--active')) {
+                    $tab_three.removeClass('tab--inactive');
+                    $tab_three.addClass('tab--active');
+                    $tab_one.removeClass('tab--active');
+                    $tab_one.addClass('tab--inactive');
+                    $tab_two.removeClass('tab--active');
+                    $tab_two.addClass('tab--inactive');
+
+                    $step_three.addClass('steps-item--active');
+                    $step_one.addClass('steps-item--done');
+                    $step_two.addClass('steps-item--done');
+                    if ($step_one.hasClass('steps-item--active')) {
+                        $step_one.removeClass('steps-item--active');
+                    } else if ($step_two.hasClass('steps-item--active')) {
+                        $step_two.removeClass('steps-item--active');
+                    }
                 }
             }
 
@@ -208,76 +361,96 @@ $(document).ready(function($) {
         $tab_active.addClass('box-overlay');
         $spinner.show();
 
-        setTimeout(delay_two, 2000);
+        //check for errors
+        $('.fields-input').each(function(index, el) {
+            if (!$(this).hasClass('fields-optional')) {
+                checkErrorsInput($(this));
+            }
+        });
+        $('.fields-number').each(function(index, el) {
+            checkErrorsNumber($(this));
+        });
+        $('.fields-mail').each(function(index, el) {
+            checkErrorsMail($(this));
+        });
+
+        setTimeout(delay_two, 600);
         function delay_two() {
 
-            // click on button 1
-            if ($clicked_button.hasClass('button-one')) {
-                $tab_one.removeClass('tab--inactive');
-                $tab_one.addClass('tab--active');
-                $tab_two.removeClass('tab--active');
-                $tab_two.addClass('tab--inactive');
-                $tab_three.removeClass('tab--active');
-                $tab_three.addClass('tab--inactive');
+            // check if there are any errors or empty fields in the current tab
+            if ($('.tab--active').find('.fields-error-frame').length) {
 
-                $step_one.addClass('steps-item--active');
-                if ($step_two.hasClass('steps-item--active')) {
-                    $step_two.removeClass('steps-item--active');
-                } else if ($step_three.hasClass('steps-item--active')) {
-                    $step_three.removeClass('steps-item--active');
+            // go to next step if there are no errors
+            } else {
+
+                // click on button 1
+                if ($clicked_button.hasClass('button-one')) {
+                    $tab_one.removeClass('tab--inactive');
+                    $tab_one.addClass('tab--active');
+                    $tab_two.removeClass('tab--active');
+                    $tab_two.addClass('tab--inactive');
+                    $tab_three.removeClass('tab--active');
+                    $tab_three.addClass('tab--inactive');
+
+                    $step_one.addClass('steps-item--active');
+                    if ($step_two.hasClass('steps-item--active')) {
+                        $step_two.removeClass('steps-item--active');
+                    } else if ($step_three.hasClass('steps-item--active')) {
+                        $step_three.removeClass('steps-item--active');
+                    }
+
+                    if ($step_one.hasClass('steps-item--done')) {
+                        $step_one.removeClass('steps-item--done');
+                    }
+
+                // click on button 2
+                } else if ($clicked_button.hasClass('button-two')) {
+                    $tab_two.removeClass('tab--inactive');
+                    $tab_two.addClass('tab--active');
+                    $tab_one.removeClass('tab--active');
+                    $tab_one.addClass('tab--inactive');
+                    $tab_three.removeClass('tab--active');
+                    $tab_three.addClass('tab--inactive');
+
+                    $step_two.addClass('steps-item--active');
+                    $step_one.addClass('steps-item--done');
+                    if ($step_one.hasClass('steps-item--active')) {
+                        $step_one.removeClass('steps-item--active');
+                    } else if ($step_three.hasClass('steps-item--active')) {
+                        $step_three.removeClass('steps-item--active');
+                    }
+
+                    if ($step_two.hasClass('steps-item--done')) {
+                        $step_two.removeClass('steps-item--done');
+                    }
+
+                // click on button 3
+                } else if ($clicked_button.hasClass('button-three')) {
+                    $tab_three.removeClass('tab--inactive');
+                    $tab_three.addClass('tab--active');
+                    $tab_one.removeClass('tab--active');
+                    $tab_one.addClass('tab--inactive');
+                    $tab_two.removeClass('tab--active');
+                    $tab_two.addClass('tab--inactive');
+
+                    $step_three.addClass('steps-item--active');
+                    $step_one.addClass('steps-item--done');
+                    $step_two.addClass('steps-item--done');
+                    if ($step_one.hasClass('steps-item--active')) {
+                        $step_one.removeClass('steps-item--active');
+                    } else if ($step_two.hasClass('steps-item--active')) {
+                        $step_two.removeClass('steps-item--active');
+                    }
+
+                // click on button 4
+                } else if ($clicked_button.hasClass('button-four')) {
+                    $tab_four.removeClass('tab--inactive');
+                    $tab_four.addClass('tab--active');
+                    $tab_three.removeClass('tab--active');
+                    $tab_three.addClass('tab--inactive');
+
+                    $('.steps').hide();
                 }
-
-                if ($step_one.hasClass('steps-item--done')) {
-                    $step_one.removeClass('steps-item--done');
-                }
-
-            // click on button 2
-            } else if ($clicked_button.hasClass('button-two')) {
-                $tab_two.removeClass('tab--inactive');
-                $tab_two.addClass('tab--active');
-                $tab_one.removeClass('tab--active');
-                $tab_one.addClass('tab--inactive');
-                $tab_three.removeClass('tab--active');
-                $tab_three.addClass('tab--inactive');
-
-                $step_two.addClass('steps-item--active');
-                $step_one.addClass('steps-item--done');
-                if ($step_one.hasClass('steps-item--active')) {
-                    $step_one.removeClass('steps-item--active');
-                } else if ($step_three.hasClass('steps-item--active')) {
-                    $step_three.removeClass('steps-item--active');
-                }
-
-                if ($step_two.hasClass('steps-item--done')) {
-                    $step_two.removeClass('steps-item--done');
-                }
-
-            // click on button 3
-            } else if ($clicked_button.hasClass('button-three')) {
-                $tab_three.removeClass('tab--inactive');
-                $tab_three.addClass('tab--active');
-                $tab_one.removeClass('tab--active');
-                $tab_one.addClass('tab--inactive');
-                $tab_two.removeClass('tab--active');
-                $tab_two.addClass('tab--inactive');
-
-                $step_three.addClass('steps-item--active');
-                $step_one.addClass('steps-item--done');
-                $step_two.addClass('steps-item--done');
-                if ($step_one.hasClass('steps-item--active')) {
-                    $step_one.removeClass('steps-item--active');
-                } else if ($step_two.hasClass('steps-item--active')) {
-                    $step_two.removeClass('steps-item--active');
-                }
-
-            // click on button 4
-            } else if ($clicked_button.hasClass('button-four')) {
-                $tab_four.removeClass('tab--inactive');
-                $tab_four.addClass('tab--active');
-                $tab_three.removeClass('tab--active');
-                $tab_three.addClass('tab--inactive');
-
-                $('.steps').hide();
             }
 
             setTimeout(delay_spinner2, 300);
@@ -416,8 +589,6 @@ $(document).ready(function($) {
 
         var value = $.trim($(this).val());
 
-        console.log(value);
-
         if (value.length > 0) {
 
             $(this).siblings('.fields-item-placeholder--info').addClass('is-invisible');
@@ -478,6 +649,29 @@ $(document).ready(function($) {
                 $trigger2.removeData('isClicked');
             }, 100);
         }
+    });
+
+
+    // Form validation on input fields
+    $(document).on('focusout', '.fields-input', function() {
+
+        if (!$(this).hasClass('fields-optional')) {
+            checkErrorsInput($(this));
+        }
+    });
+
+
+    // Form validation on number fields
+    $(document).on('focusout', '.fields-number', function() {
+
+        checkErrorsNumber($(this));
+    });
+
+
+    // Form validation on mail fields
+    $(document).on('focusout', '.fields-mail', function() {
+
+        checkErrorsMail($(this));
     });
 
 

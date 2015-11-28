@@ -91,20 +91,45 @@ function checkStep() {
 
 function checkErrorsInput($element) {
 
-    var $current_field = $element;
+    var $current_field = $element,
+        entered_input    = $current_field.val(),
+        test_text        = /^[A-Z ]*$/i;
 
     // input field was left empty
     if ($current_field.val().length === 0) {
         $current_field.addClass('fields-error-frame');
         $current_field.siblings('.fields-item-label').hide();
+        $current_field.siblings('.fields-error2').hide();
         $current_field.siblings('.fields-error').show();
 
     // input was entered
     } else {
-        if ($current_field.hasClass('fields-error-frame')) {
-            $current_field.removeClass('fields-error-frame');
-            $current_field.siblings('.fields-item-label').show();
-            $current_field.siblings('.fields-error').hide();
+
+        // if no correct input was entered
+        if (!test_text.test(entered_input)) {
+
+            // show error message for wrong input and hide previous error, if it is still visible
+            if ($current_field.hasClass('fields-error-frame')) {
+                $current_field.siblings('.fields-error').hide();
+                $current_field.siblings('.fields-error2').show();
+
+            // otherwise show error message for wrong input
+            } else {
+                $current_field.addClass('fields-error-frame');
+                $current_field.siblings('.fields-item-label').hide();
+                $current_field.siblings('.fields-error2').show();
+            }
+
+        // user entered correct input
+        } else {
+
+            // hide error message
+            if ($current_field.hasClass('fields-error-frame')) {
+                $current_field.removeClass('fields-error-frame');
+                $current_field.siblings('.fields-item-label').show();
+                $current_field.siblings('.fields-error').hide();
+                $current_field.siblings('.fields-error2').hide();
+            }
         }
     }
 }
@@ -205,16 +230,16 @@ function checkErrorsNumber($element) {
 
 function checkErrorsMail($element) {
 
-    var $current_field_n = $element,
-        entered_input    = $current_field_n.val(),
+    var $current_field_m = $element,
+        entered_input    = $current_field_m.val(),
         test_mail        = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
 
     // input field was left empty
     if (entered_input.length === 0) {
-        $current_field_n.addClass('fields-error-frame');
-        $current_field_n.siblings('.fields-item-label').hide();
-        $current_field_n.siblings('.fields-error2').hide();
-        $current_field_n.siblings('.fields-error').show();
+        $current_field_m.addClass('fields-error-frame');
+        $current_field_m.siblings('.fields-item-label').hide();
+        $current_field_m.siblings('.fields-error2').hide();
+        $current_field_m.siblings('.fields-error').show();
 
     // input was entered
     } else {
@@ -223,26 +248,26 @@ function checkErrorsMail($element) {
         if (!test_mail.test(entered_input)) {
 
             // show error message for wrong input and hide previous error, if it is still visible
-            if ($current_field_n.hasClass('fields-error-frame')) {
-                $current_field_n.siblings('.fields-error').hide();
-                $current_field_n.siblings('.fields-error2').show();
+            if ($current_field_m.hasClass('fields-error-frame')) {
+                $current_field_m.siblings('.fields-error').hide();
+                $current_field_m.siblings('.fields-error2').show();
 
             // otherwise show error message for wrong input
             } else {
-                $current_field_n.addClass('fields-error-frame');
-                $current_field_n.siblings('.fields-item-label').hide();
-                $current_field_n.siblings('.fields-error2').show();
+                $current_field_m.addClass('fields-error-frame');
+                $current_field_m.siblings('.fields-item-label').hide();
+                $current_field_m.siblings('.fields-error2').show();
             }
 
         // user entered a correct email address
         } else {
 
             // hide error message
-            if ($current_field_n.hasClass('fields-error-frame')) {
-                $current_field_n.removeClass('fields-error-frame');
-                $current_field_n.siblings('.fields-item-label').show();
-                $current_field_n.siblings('.fields-error').hide();
-                $current_field_n.siblings('.fields-error2').hide();
+            if ($current_field_m.hasClass('fields-error-frame')) {
+                $current_field_m.removeClass('fields-error-frame');
+                $current_field_m.siblings('.fields-item-label').show();
+                $current_field_m.siblings('.fields-error').hide();
+                $current_field_m.siblings('.fields-error2').hide();
             }
         }
     }
@@ -269,10 +294,19 @@ $(document).ready(function($) {
 
 
     function scrollCart() {
-        var scroll_offset = $(window).scrollTop(),
-            cart_scroll_offset = cart_offset + scroll_offset;
+        var scroll_offset      = $(window).scrollTop(),
+            cart_scroll_offset = cart_offset + scroll_offset,
+            $active_box        = $('.tab--active > .box'),
+            box_height         = ($active_box.offset().top + $active_box.outerHeight()),
+            cart_max_offset    = (cart_scroll_offset + $cart.outerHeight()),
+            cart_max_position  = (box_height - $cart.outerHeight());
 
-        $cart.css('top', cart_scroll_offset);
+        // if cart reaches box end, stop moving it
+        if (cart_max_offset <= box_height) {
+            $cart.css('top', cart_scroll_offset);
+        } else {
+            $cart.css('top', cart_max_position);
+        }
     }
 
 

@@ -10,11 +10,11 @@ function showVersandbox() {
     //smooth scroll to box
     $('body,html').animate({
         scrollTop: 500,
-        }, 300
+        }, 600
     );
 
     // show versandbox
-    $versandbox.slideDown('fast');
+    $versandbox.slideDown(400);
 }
 
 function adressbox() {
@@ -26,14 +26,14 @@ function adressbox() {
     // if checkbox is unchecked, show additional box
     if ($label.hasClass('checked')) {
         $label.removeClass('checked');
-        $adressbox.slideDown('fast');
+        $adressbox.slideDown(400);
         $adressbox.removeClass('no-validation');
         $val_fields.removeClass('no-validation-required');
 
     // if checkbox is checked, hide additional box
     } else {
         $label.addClass('checked');
-        $adressbox.slideUp('fast');
+        $adressbox.slideUp(400);
         $adressbox.addClass('no-validation');
 
         // remove all input and error messages
@@ -53,7 +53,7 @@ function showKreditbox() {
 
     var $kreditbox = $('.kreditbox');
 
-    $kreditbox.slideDown('fast');
+    $kreditbox.slideDown(400);
     $kreditbox.removeClass('no-validation');
     $('.no-validation-fields2').removeClass('no-validation-required');
 
@@ -63,7 +63,7 @@ function hideKreditbox() {
 
     var $kreditbox = $('.kreditbox');
 
-    $kreditbox.slideUp('fast');
+    $kreditbox.slideUp(400);
     $kreditbox.addClass('no-validation');
 
     var $val_fields = $('.no-validation-fields2');
@@ -90,11 +90,11 @@ function showCheckboxes() {
         //smooth scroll to boxes
         $('body,html').animate({
             scrollTop: 220,
-            }, 300
+            }, 600
         );
 
         // show versandbox
-        $checkangabenbox.slideDown('fast');
+        $checkangabenbox.slideDown(400);
     }
 }
 
@@ -130,7 +130,7 @@ function checkErrorsInput($element) {
 
     var $current_field = $element,
         entered_input    = $current_field.val(),
-        test_text        = /^[A-Zäöü ]*$/i;
+        test_text        = /^[A-Zäöüß ]*$/i;
 
     // input field was left empty
     if ($current_field.val().length === 0) {
@@ -154,6 +154,7 @@ function checkErrorsInput($element) {
             } else {
                 $current_field.addClass('fields-error-frame');
                 $current_field.siblings('.fields-item-label').hide();
+                $current_field.siblings('.fields-error').hide();
                 $current_field.siblings('.fields-error2').show();
             }
 
@@ -357,7 +358,7 @@ $(document).ready(function($) {
         //smooth scroll to top
         $('body,html').animate({
             scrollTop: 0 ,
-            }, 300
+            }, 600
         );
 
         var $clicked_tab = $(this),
@@ -379,21 +380,21 @@ $(document).ready(function($) {
         $spinner.show();
 
         //check for errors
-        // $('.fields-input').each(function(index, el) {
-        //     if (!$(this).hasClass('fields-optional') && !$(this).hasClass('no-validation-required')) {
-        //         checkErrorsInput($(this));
-        //     }
-        // });
-        // $('.fields-number').each(function(index, el) {
-        //     if (!$(this).hasClass('no-validation-required')) {
-        //         checkErrorsNumber($(this));
-        //     }
-        // });
-        // $('.fields-mail').each(function(index, el) {
-        //     if (!$(this).hasClass('no-validation-required')) {
-        //         checkErrorsMail($(this));
-        //     }
-        // });
+        $('.fields-input').each(function(index, el) {
+            if (!$(this).hasClass('fields-optional') && !$(this).hasClass('no-validation-required')) {
+                checkErrorsInput($(this));
+            }
+        });
+        $('.fields-number').each(function(index, el) {
+            if (!$(this).hasClass('no-validation-required')) {
+                checkErrorsNumber($(this));
+            }
+        });
+        $('.fields-mail').each(function(index, el) {
+            if (!$(this).hasClass('no-validation-required')) {
+                checkErrorsMail($(this));
+            }
+        });
 
         setTimeout(delay_one, 600);
         function delay_one() {
@@ -488,7 +489,7 @@ $(document).ready(function($) {
         //smooth scroll to top
         $('body,html').animate({
             scrollTop: 0 ,
-            }, 300
+            }, 600
         );
 
         var $clicked_button = $(this),
@@ -622,7 +623,7 @@ $(document).ready(function($) {
         //smooth scroll to top
         $('body,html').animate({
             scrollTop: 0 ,
-            }, 300
+            }, 600
         );
 
         var $clicked_button = $(this),

@@ -5,27 +5,60 @@ JAVASCRIPT: MAIN.JS
 
 function adressbox() {
 
-    var $label = $('.fields-label-check');
+    var $label      = $('.fields-label-check'),
+        $val_fields = $('.no-validation-fields');
 
+    // if checkbox is unchecked, show additional box
     if ($label.hasClass('checked')) {
         $label.removeClass('checked');
         $('.adressbox').slideDown('fast');
+        $('.adressbox').removeClass('no-validation');
+        $val_fields.removeClass('no-validation-required');
+
+    // if checkbox is checked, hide additional box
     } else {
         $label.addClass('checked');
         $('.adressbox').slideUp('fast');
+        $('.adressbox').addClass('no-validation');
+
+        // remove all input and error messages
+        if ($val_fields.hasClass('fields-error-frame')) {
+            $val_fields.removeClass('fields-error-frame');
+            $val_fields.siblings('.fields-item-label').removeClass('label--correct');
+            $val_fields.siblings('.fields-item-label').show();
+            $val_fields.siblings('.fields-error').hide();
+            $val_fields.siblings('.fields-error2').hide();
+            $val_fields.addClass('no-validation-required');
+            $val_fields.val('');
+        }
     }
 }
 
 function showKreditbox() {
 
     $('.kreditbox').slideDown('fast');
+    $('.kreditbox').removeClass('no-validation');
+    $('.no-validation-fields2').removeClass('no-validation-required');
 
 }
 
 function hideKreditbox() {
 
     $('.kreditbox').slideUp('fast');
+    $('.kreditbox').addClass('no-validation');
 
+    var $val_fields = $('.no-validation-fields2');
+
+    // remove all input and error messages
+    if ($val_fields.hasClass('fields-error-frame')) {
+        $val_fields.removeClass('fields-error-frame');
+        $val_fields.siblings('.fields-item-label').removeClass('label--correct');
+        $val_fields.siblings('.fields-item-label').show();
+        $val_fields.siblings('.fields-error').hide();
+        $val_fields.siblings('.fields-error2').hide();
+        $val_fields.addClass('no-validation-required');
+        $val_fields.val('');
+    }
 }
 
 function checkStep() {
@@ -111,6 +144,36 @@ function checkErrorsNumber($element) {
 
             // if user did not enter 5 numbers, show error
             if (($current_field_n.data('validation') == 'min5') && (entered_input.length != 5)) {
+
+                // show error message for wrong input and hide previous error, if it is still visible
+                if ($current_field_n.hasClass('fields-error-frame')) {
+                    $current_field_n.siblings('.fields-error').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+
+                // otherwise show error message for wrong input
+                } else {
+                    $current_field_n.addClass('fields-error-frame');
+                    $current_field_n.siblings('.fields-item-label').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+                }
+
+            // if user did not enter 16 numbers, show error
+            } else if (($current_field_n.data('validation') == 'min16') && (entered_input.length != 16)) {
+
+                // show error message for wrong input and hide previous error, if it is still visible
+                if ($current_field_n.hasClass('fields-error-frame')) {
+                    $current_field_n.siblings('.fields-error').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+
+                // otherwise show error message for wrong input
+                } else {
+                    $current_field_n.addClass('fields-error-frame');
+                    $current_field_n.siblings('.fields-item-label').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+                }
+
+            // if user did not enter 3 numbers, show error
+            } else if (($current_field_n.data('validation') == 'min3') && (entered_input.length != 3)) {
 
                 // show error message for wrong input and hide previous error, if it is still visible
                 if ($current_field_n.hasClass('fields-error-frame')) {
@@ -242,22 +305,26 @@ $(document).ready(function($) {
 
         //check for errors
         $('.fields-input').each(function(index, el) {
-            if (!$(this).hasClass('fields-optional')) {
+            if (!$(this).hasClass('fields-optional') && !$(this).hasClass('no-validation-required')) {
                 checkErrorsInput($(this));
             }
         });
         $('.fields-number').each(function(index, el) {
-            checkErrorsNumber($(this));
+            if (!$(this).hasClass('no-validation-required')) {
+                checkErrorsNumber($(this));
+            }
         });
         $('.fields-mail').each(function(index, el) {
-            checkErrorsMail($(this));
+            if (!$(this).hasClass('no-validation-required')) {
+                checkErrorsMail($(this));
+            }
         });
 
         setTimeout(delay_one, 600);
         function delay_one() {
 
             // check if there are any errors or empty fields in the current tab
-            if ($('.tab--active').find('.fields-error-frame').length) {
+            if ($('.tab--active').find('.fields-error-frame').length > 0) {
 
             // go to next step if there are no errors
             } else {
@@ -363,22 +430,26 @@ $(document).ready(function($) {
 
         //check for errors
         $('.fields-input').each(function(index, el) {
-            if (!$(this).hasClass('fields-optional')) {
+            if (!$(this).hasClass('fields-optional') && !$(this).hasClass('no-validation-required')) {
                 checkErrorsInput($(this));
             }
         });
         $('.fields-number').each(function(index, el) {
-            checkErrorsNumber($(this));
+            if (!$(this).hasClass('no-validation-required')) {
+                checkErrorsNumber($(this));
+            }
         });
         $('.fields-mail').each(function(index, el) {
-            checkErrorsMail($(this));
+            if (!$(this).hasClass('no-validation-required')) {
+                checkErrorsMail($(this));
+            }
         });
 
         setTimeout(delay_two, 600);
         function delay_two() {
 
             // check if there are any errors or empty fields in the current tab
-            if ($('.tab--active').find('.fields-error-frame').length) {
+            if ($('.tab--active').find('.fields-error-frame').length > 0) {
 
             // go to next step if there are no errors
             } else {
@@ -655,7 +726,7 @@ $(document).ready(function($) {
     // Form validation on input fields
     $(document).on('focusout', '.fields-input', function() {
 
-        if (!$(this).hasClass('fields-optional')) {
+        if (!$(this).hasClass('fields-optional') && !$(this).hasClass('no-validation')) {
             checkErrorsInput($(this));
         }
     });
@@ -664,14 +735,18 @@ $(document).ready(function($) {
     // Form validation on number fields
     $(document).on('focusout', '.fields-number', function() {
 
-        checkErrorsNumber($(this));
+        if (!$(this).hasClass('no-validation')) {
+            checkErrorsNumber($(this));
+        }
     });
 
 
     // Form validation on mail fields
     $(document).on('focusout', '.fields-mail', function() {
 
-        checkErrorsMail($(this));
+        if (!$(this).hasClass('no-validation')) {
+            checkErrorsMail($(this));
+        }
     });
 
 

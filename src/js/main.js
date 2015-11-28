@@ -3,23 +3,38 @@ JAVASCRIPT: MAIN.JS
 
 ******************************************************************/
 
+function showVersandbox() {
+
+    var $versandbox = $('.versandbox');
+
+    //smooth scroll to box
+    $('body,html').animate({
+        scrollTop: 500,
+        }, 300
+    );
+
+    // show versandbox
+    $versandbox.slideDown('fast');
+}
+
 function adressbox() {
 
     var $label      = $('.fields-label-check'),
-        $val_fields = $('.no-validation-fields');
+        $val_fields = $('.no-validation-fields'),
+        $adressbox  = $('.adressbox');
 
     // if checkbox is unchecked, show additional box
     if ($label.hasClass('checked')) {
         $label.removeClass('checked');
-        $('.adressbox').slideDown('fast');
-        $('.adressbox').removeClass('no-validation');
+        $adressbox.slideDown('fast');
+        $adressbox.removeClass('no-validation');
         $val_fields.removeClass('no-validation-required');
 
     // if checkbox is checked, hide additional box
     } else {
         $label.addClass('checked');
-        $('.adressbox').slideUp('fast');
-        $('.adressbox').addClass('no-validation');
+        $adressbox.slideUp('fast');
+        $adressbox.addClass('no-validation');
 
         // remove all input and error messages
         if ($val_fields.hasClass('fields-error-frame')) {
@@ -36,16 +51,20 @@ function adressbox() {
 
 function showKreditbox() {
 
-    $('.kreditbox').slideDown('fast');
-    $('.kreditbox').removeClass('no-validation');
+    var $kreditbox = $('.kreditbox');
+
+    $kreditbox.slideDown('fast');
+    $kreditbox.removeClass('no-validation');
     $('.no-validation-fields2').removeClass('no-validation-required');
 
 }
 
 function hideKreditbox() {
 
-    $('.kreditbox').slideUp('fast');
-    $('.kreditbox').addClass('no-validation');
+    var $kreditbox = $('.kreditbox');
+
+    $kreditbox.slideUp('fast');
+    $kreditbox.addClass('no-validation');
 
     var $val_fields = $('.no-validation-fields2');
 
@@ -58,6 +77,24 @@ function hideKreditbox() {
         $val_fields.siblings('.fields-error2').hide();
         $val_fields.addClass('no-validation-required');
         $val_fields.val('');
+    }
+}
+
+function showCheckboxes() {
+
+    var $checkangabenbox = $('.checkangabenbox');
+
+    // show additional boxes after delay
+    setTimeout(delayTabClick, 2000);
+    function delayTabClick() {
+        //smooth scroll to boxes
+        $('body,html').animate({
+            scrollTop: 220,
+            }, 300
+        );
+
+        // show versandbox
+        $checkangabenbox.slideDown('fast');
     }
 }
 
@@ -93,7 +130,7 @@ function checkErrorsInput($element) {
 
     var $current_field = $element,
         entered_input    = $current_field.val(),
-        test_text        = /^[A-Z ]*$/i;
+        test_text        = /^[A-Zäöü ]*$/i;
 
     // input field was left empty
     if ($current_field.val().length === 0) {
@@ -287,6 +324,10 @@ $(document).ready(function($) {
     // Hide additional boxes
     $('.adressbox').hide();
     $('.kreditbox').hide();
+    $('.versandbox').hide();
+    $('.checkangabenbox').hide();
+    $('.checkagbbox').hide();
+    $('.checkbestellungbox').hide();
 
     // Hide error messages
     $('.fields-error').hide();
@@ -338,21 +379,21 @@ $(document).ready(function($) {
         $spinner.show();
 
         //check for errors
-        $('.fields-input').each(function(index, el) {
-            if (!$(this).hasClass('fields-optional') && !$(this).hasClass('no-validation-required')) {
-                checkErrorsInput($(this));
-            }
-        });
-        $('.fields-number').each(function(index, el) {
-            if (!$(this).hasClass('no-validation-required')) {
-                checkErrorsNumber($(this));
-            }
-        });
-        $('.fields-mail').each(function(index, el) {
-            if (!$(this).hasClass('no-validation-required')) {
-                checkErrorsMail($(this));
-            }
-        });
+        // $('.fields-input').each(function(index, el) {
+        //     if (!$(this).hasClass('fields-optional') && !$(this).hasClass('no-validation-required')) {
+        //         checkErrorsInput($(this));
+        //     }
+        // });
+        // $('.fields-number').each(function(index, el) {
+        //     if (!$(this).hasClass('no-validation-required')) {
+        //         checkErrorsNumber($(this));
+        //     }
+        // });
+        // $('.fields-mail').each(function(index, el) {
+        //     if (!$(this).hasClass('no-validation-required')) {
+        //         checkErrorsMail($(this));
+        //     }
+        // });
 
         setTimeout(delay_one, 600);
         function delay_one() {
@@ -424,6 +465,9 @@ $(document).ready(function($) {
                     } else if ($step_two.hasClass('steps-item--active')) {
                         $step_two.removeClass('steps-item--active');
                     }
+
+                    // show additional boxes
+                    showCheckboxes();
                 }
             }
 
@@ -546,6 +590,9 @@ $(document).ready(function($) {
                     } else if ($step_two.hasClass('steps-item--active')) {
                         $step_two.removeClass('steps-item--active');
                     }
+
+                    // show additional boxes
+                    showCheckboxes();
 
                 // click on button 4
                 } else if ($clicked_button.hasClass('button-four')) {
@@ -702,6 +749,23 @@ $(document).ready(function($) {
             if ($('.fields-item-placeholder--info').hasClass('is-invisible')) {
                 $(this).siblings('.fields-item-placeholder--info').removeClass('is-invisible');
             }
+        }
+    });
+
+
+    // Show and hide versandbox when in vision
+    $(document).on('focus', '.kontakt-toggle', function() {
+
+        if (!$(this).data('isClicked')) {
+            var $trigger = $(this);
+
+            showVersandbox();
+
+            // Using a timer to prevent multiple clicks
+            $trigger.data('isClicked', true);
+            setTimeout(function() {
+                $trigger.removeData('isClicked');
+            }, 100);
         }
     });
 

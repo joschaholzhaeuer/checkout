@@ -19,9 +19,9 @@
         <div class="wrapper">
 
             <nav class="steps clearfix">
-                <div class="steps-item step-one steps-item--active"><span class="steps-number steps-number-one">1</span><span class="step-one--done pulse is-hidden"></span>Lieferangaben</div>
-                <div class="steps-item step-two"><span class="steps-number steps-number-two">2</span><span class="step-two--done pulse is-hidden"></span>Bezahlungsart</div>
-                <div class="steps-item step-three lastitem"><span class="steps-number">3</span>Überprüfung</div>
+                <div class="steps-item step-one steps-item--active"><span class="steps-number steps-number-one pulse">1</span><span class="step-one--done pulse is-hidden"></span>Lieferangaben</div>
+                <div class="steps-item step-two"><span class="steps-number steps-number-two pulse">2</span><span class="step-two--done pulse is-hidden"></span>Bezahlungsart</div>
+                <div class="steps-item step-three lastitem"><span class="steps-number pulse">3</span>Überprüfung</div>
             </nav>
 
             <div class="tab tab-one tab--active">
@@ -44,13 +44,13 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--half fields-item--left fl-s">
-                                        <input class="fields-input fields-item-frame" type="text" name="name1">
+                                        <input class="fields-input fields-item-frame lieferadresse-name" type="text" name="name1">
                                         <label class="fields-item-label fields-item-placeholder" for="name1">Vorname</label>
                                         <span class="fields-error">Bitte geben Sie einen Vornamen ein.</span>
                                         <span class="fields-error2">Ihr Vorname sollte nicht aus Ziffern bestehen.</span>
                                     </div>
                                     <div class="fields-item fields-item--half fields-item--right fl-s">
-                                        <input class="fields-input fields-item-frame" type="text" name="surname1">
+                                        <input class="fields-input fields-item-frame lieferadresse-surname" type="text" name="surname1">
                                         <label class="fields-item-label fields-item-placeholder" for="surname1">Nachname</label>
                                         <span class="fields-error">Bitte geben Sie einen Nachnamen ein.</span>
                                         <span class="fields-error2">Ihr Nachname sollte nicht aus Ziffern bestehen.</span>
@@ -62,13 +62,13 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left fl-s">
-                                        <input class="fields-input fields-item-frame" type="text" name="street1">
+                                        <input class="fields-input fields-item-frame lieferadresse-street" type="text" name="street1">
                                         <label class="fields-item-label fields-item-placeholder" for="street1">Straße</label>
                                         <span class="fields-error">Bitte geben Sie eine Straße an.</span>
                                         <span class="fields-error2">Die Straße sollte nicht aus Ziffern bestehen.</span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right fl-s">
-                                        <input class="fields-number fields-item-frame" type="text" name="number1">
+                                        <input class="fields-number fields-item-frame lieferadresse-number" type="text" name="number1">
                                         <label class="fields-item-label fields-item-placeholder" for="number1">Nr.</label>
                                         <span class="fields-error">Bitte geben Sie eine Nummer an.</span>
                                         <span class="fields-error2">Haben Sie eine Nummer angegeben?</span>
@@ -80,13 +80,13 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left fl-s">
-                                        <input class="fields-input fields-item-frame" type="text" name="city1">
+                                        <input class="fields-input fields-item-frame lieferadresse-city" type="text" name="city1">
                                         <label class="fields-item-label fields-item-placeholder" for="city1">Ort</label>
                                         <span class="fields-error">Bitte geben Sie einen Ort an.</span>
                                         <span class="fields-error2">Der Ort sollte nicht aus Ziffern bestehen.</span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right fl-s">
-                                        <input class="fields-number fields-item-frame" type="text" name="plz1" data-validation="min5">
+                                        <input class="fields-number fields-item-frame lieferadresse-plz" type="text" name="plz1" data-validation="min5">
                                         <label class="fields-item-label fields-item-placeholder" for="plz1">Postleitzahl</label>
                                         <span class="fields-error">Bitte geben Sie eine Postleitzahl an.</span>
                                         <span class="fields-error2">Die PLZ sollte aus 5 Ziffern bestehen.</span>
@@ -118,15 +118,15 @@
                         <div class="fields">
                             <div class="fields-section">
                                 <div class="fields-item-radio">
-                                    <input id="standard1" class="fields-radio" type="radio" name="versand1"checked>
-                                    <label class="fields-label fields-label-radio" for="standard1">€ 0,00 Standardversand</label>
+                                    <input id="standard1" class="fields-radio versand-toggle versand-s versandart-standard" type="radio" name="versand1" checked>
+                                    <label class="fields-label fields-label-radio versand-toggle versand-s" for="standard1">0,00€ Standardversand</label>
                                 </div>
                                 <p class="fields-text">Lieferung 2-4 Werktage nach Bestelleingang</p>
                             </div>
                             <div class="fields-section">
                                 <div class="fields-item-radio">
-                                    <input id="express1" class="fields-radio" type="radio" name="versand1">
-                                    <label class="fields-label fields-label-radio" for="express1">€ 3,99 Expressversand</label>
+                                    <input id="express1" class="fields-radio versand-toggle versand-e versandart-express" type="radio" name="versand1">
+                                    <label class="fields-label fields-label-radio versand-toggle versand-e" for="express1">3,00€ Expressversand</label>
                                 </div>
                                 <p class="fields-text">Lieferung am nächsten Morgen nach Bestelleingang</p>
                             </div>
@@ -139,30 +139,30 @@
                                 <img src="http://placehold.it/300x300" alt="" class="cart-img fl">
                                 <div class="cart--half fl">
                                     <p class="cart-text"><span>1</span> Hemd "Deep Blue"</p>
-                                    <p class="cart-item-price">39,95€</p>
+                                    <p class="cart-item-price">39,00€</p>
                                 </div>
                             </div>
                             <div class="cart-item clearfix">
                                 <img src="http://placehold.it/300x300" alt="" class="cart-img fl">
                                 <div class="cart--half fl">
                                     <p class="cart-text"><span>1</span> Hose "Autumn Twill"</p>
-                                    <p class="cart-item-price">69,95€</p>
+                                    <p class="cart-item-price">69,00€</p>
                                 </div>
                             </div>
                             <div class="cart-price">
                                 <div class="clearfix">
-                                    <p class="cart-price-text fr">109,90€</p>
+                                    <p class="cart-price-text fr">108,00€</p>
                                     <p class="cart-price-text cart-price--light fl">Warenkorbwert</p>
                                 </div>
                                 <div class="clearfix">
-                                    <p class="cart-price-text fr">0,00€</p>
+                                    <p class="cart-price-text fr price-toggle">0,00€</p>
                                     <p class="cart-price-text cart-price--light fl">zzgl. Versandkosten</p>
                                 </div>
                             </div>
                         </div>
                         <div class="cart-section--highlighted clearfix">
                             <p class="cart--highlighted fl">Rechnungsbetrag</p>
-                            <p class="cart--highlighted fr">109,90€</p>
+                            <p class="cart--highlighted fr price-toggle-ges">108,00€</p>
                         </div>
                     </div>
                 </div>
@@ -202,13 +202,13 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--half fields-item--left--dark fl-s">
-                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required" type="text" name="name2">
+                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-name" type="text" name="name2">
                                         <label class="fields-item-label fields-item-placeholder" for="name2">Vorname</label>
                                         <span class="fields-error">Bitte geben Sie einen Vornamen ein.</span>
                                         <span class="fields-error2">Ihr Vorname sollte nicht aus Ziffern bestehen.</span>
                                     </div>
                                     <div class="fields-item fields-item--half fields-item--right--dark fl-s">
-                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required" type="text" name="surname2">
+                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-surname" type="text" name="surname2">
                                         <label class="fields-item-label fields-item-placeholder" for="surname2">Nachname</label>
                                         <span class="fields-error">Bitte geben Sie einen Nachnamen ein.</span>
                                         <span class="fields-error2">Ihr Nachname sollte nicht aus Ziffern bestehen.</span>
@@ -220,13 +220,13 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left--dark fl-s">
-                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required" type="text" name="street2">
+                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-street" type="text" name="street2">
                                         <label class="fields-item-label fields-item-placeholder" for="street2">Straße</label>
                                         <span class="fields-error">Bitte geben Sie eine Straße an.</span>
                                         <span class="fields-error2">Die Straße sollte nicht aus Ziffern bestehen.</span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right--dark fl-s">
-                                        <input class="fields-number fields-item-frame no-validation-fields no-validation-required" type="text" name="number2">
+                                        <input class="fields-number fields-item-frame no-validation-fields no-validation-required rechnungsadresse-number" type="text" name="number2">
                                         <label class="fields-item-label fields-item-placeholder" for="number2">Nr.</label>
                                         <span class="fields-error">Bitte geben Sie eine Nummer an.</span>
                                         <span class="fields-error2">Haben Sie eine Nummer angegeben?</span>
@@ -238,13 +238,13 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left--dark fl-s">
-                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required" type="text" name="city2">
+                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-city" type="text" name="city2">
                                         <label class="fields-item-label fields-item-placeholder" for="city2">Ort</label>
                                         <span class="fields-error">Bitte geben Sie einen Ort an.</span>
                                         <span class="fields-error2">Der Ort sollte nicht aus Ziffern bestehen.</span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right--dark fl-s">
-                                        <input class="fields-number fields-item-frame no-validation-fields no-validation-required" type="text" name="plz2" data-validation="min5">
+                                        <input class="fields-number fields-item-frame no-validation-fields no-validation-required rechnungsadresse-plz" type="text" name="plz2" data-validation="min5">
                                         <label class="fields-item-label fields-item-placeholder" for="plz2">Postleitzahl</label>
                                         <span class="fields-error">Bitte geben Sie eine Postleitzahl an.</span>
                                         <span class="fields-error2">Die PLZ sollte aus 5 Ziffern bestehen.</span>
@@ -264,7 +264,7 @@
                         <div class="fields">
                             <div class="fields-section">
                                 <div class="fields-item-radio">
-                                    <input id="rechnung" class="fields-radio kredit-toggle--off" type="radio" name="bezahlart" checked>
+                                    <input id="rechnung" class="fields-radio kredit-toggle--off bezahlungsart-rechnung" type="radio" name="bezahlart" checked>
                                     <label class="fields-label fields-label-radio kredit-toggle--off" for="rechnung">auf Rechnung</label>
                                 </div>
                                 <p class="fields-text">Wir bieten Bestellungen auf Rechnung nur für Privatkunden an</p>
@@ -273,14 +273,14 @@
                             </div>
                             <div class="fields-section">
                                 <div class="fields-item-radio">
-                                    <input id="paypal" class="fields-radio kredit-toggle--off" type="radio" name="bezahlart">
+                                    <input id="paypal" class="fields-radio kredit-toggle--off bezahlungsart-paypal" type="radio" name="bezahlart">
                                     <label class="fields-label fields-label-radio kredit-toggle--off" for="paypal">PayPal</label>
                                 </div>
                                 <img class="fields-img" src="http://placehold.it/100x50" alt="PayPal Logo">
                             </div>
                             <div class="fields-section">
                                 <div class="fields-item-radio">
-                                    <input id="kreditkarte" class="fields-radio kredit-toggle" type="radio" name="bezahlart">
+                                    <input id="kreditkarte" class="fields-radio kredit-toggle bezahlungsart-kreditkarte" type="radio" name="bezahlart">
                                     <label class="fields-label fields-label-radio kredit-toggle" for="kreditkarte">Kreditkarte</label>
                                 </div>
                                 <img class="fields-img" src="http://placehold.it/100x50" alt="VISA Logo">
@@ -331,30 +331,30 @@
                                 <img src="http://placehold.it/300x300" alt="" class="cart-img fl">
                                 <div class="cart--half fl">
                                     <p class="cart-text"><span>1</span> Hemd "Deep Blue"</p>
-                                    <p class="cart-item-price">39,95€</p>
+                                    <p class="cart-item-price">39,00€</p>
                                 </div>
                             </div>
                             <div class="cart-item clearfix">
                                 <img src="http://placehold.it/300x300" alt="" class="cart-img fl">
                                 <div class="cart--half fl">
                                     <p class="cart-text"><span>1</span> Hose "Autumn Twill"</p>
-                                    <p class="cart-item-price">69,95€</p>
+                                    <p class="cart-item-price">69,00€</p>
                                 </div>
                             </div>
                             <div class="cart-price">
                                 <div class="clearfix">
-                                    <p class="cart-price-text fr">109,90€</p>
+                                    <p class="cart-price-text fr">108,00€</p>
                                     <p class="cart-price-text cart-price--light fl">Warenkorbwert</p>
                                 </div>
                                 <div class="clearfix">
-                                    <p class="cart-price-text fr">0,00€</p>
+                                    <p class="cart-price-text fr price-toggle">0,00€</p>
                                     <p class="cart-price-text cart-price--light fl">zzgl. Versandkosten</p>
                                 </div>
                             </div>
                         </div>
                         <div class="cart-section--highlighted clearfix">
                             <p class="cart--highlighted fl">Rechnungsbetrag</p>
-                            <p class="cart--highlighted fr">109,90€</p>
+                            <p class="cart--highlighted fr price-toggle-ges">108,00€</p>
                         </div>
                     </div>
                 </div>
@@ -375,21 +375,24 @@
                         <div class="fields clearfix">
                             <div class="fields-section clearfix fl fields-section--inline">
                                 <h3 class="box-section-heading">Lieferadresse</h3>
-                                <p class="box-text lastitem">Max Mustermax</p>
-                                <p class="box-text lastitem">Mäxchenstraße 13</p>
-                                <p class="box-text lastitem">78120 Maxhausen</p>
+                                <p class="box-text lastitem change-lieferadresse-name">Max Mustermax</p>
+                                <p class="box-text lastitem firstitem change-lieferadresse-street">Mäxchenstraße 13</p>
+                                <p class="box-text lastitem firstitem change-lieferadresse-city">78120 Maxhausen</p>
                             </div>
                             <div class="fields-section clearfix fl fields-section--inline">
                                 <h3 class="box-section-heading">Rechnungsadresse</h3>
-                                <p class="box-text lastitem">identisch mit Lieferadresse</p>
+                                <p class="box-text lastitem change-rechnungsadresse">identisch mit Lieferadresse</p>
+                                <p class="box-text lastitem change-rechnungsadresse-name is-hidden">Max Mustermax</p>
+                                <p class="box-text lastitem firstitem change-rechnungsadresse-street is-hidden">Mäxchenstraße 13</p>
+                                <p class="box-text lastitem firstitem change-rechnungsadresse-city is-hidden">78120 Maxhausen</p>
                             </div>
                             <div class="fields-section clearfix fl fields-section--inline">
                                 <h3 class="box-section-heading">Bezahlungsart</h3>
-                                <p class="box-text lastitem">auf Rechnung</p>
+                                <p class="box-text lastitem change-bezahlungsart">auf Rechnung</p>
                             </div>
                             <div class="fields-section clearfix fl fields-section--inline lastitem">
                                 <h3 class="box-section-heading">Versandart</h3>
-                                <p class="box-text lastitem">Standardversand</p>
+                                <p class="box-text lastitem change-versandart">Standardversand</p>
                             </div>
                         </div>
                     </div>
@@ -417,20 +420,20 @@
                                 <div class="articles--half clearfix">
                                     <p class="articles-text">Hemd "Midnight Blue"</p>
                                     <div class="articles-item">
-                                        <select class="articles-item-frame" name="country">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
+                                        <select class="articles-item-frame articles-count articles-count--one" name="country" value="1">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
                                         </select>
                                     </div>
                                     <div class="articles-item nm-m">
                                         <select class="articles-item-frame" name="country">
-                                            <option value="">S</option>
-                                            <option value="">M</option>
-                                            <option value="">L</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
                                         </select>
                                     </div>
-                                    <p class="articles-price">39,95€</p>
+                                    <p class="articles-price articles-price--one">39,00€</p>
                                 </div>
                             </div>
                             <div class="articles-row clearfix">
@@ -438,41 +441,41 @@
                                 <div class="articles--half clearfix">
                                     <p class="articles-text">Hose "Autumn Twill"</p>
                                     <div class="articles-item">
-                                        <select class="articles-item-frame" name="country">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
+                                        <select class="articles-item-frame articles-count articles-count--two" name="country" value="1">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
                                         </select>
                                     </div>
                                     <div class="articles-item nm-m">
                                         <select class="articles-item-frame" name="country">
-                                            <option value="">S</option>
-                                            <option value="">M</option>
-                                            <option value="">L</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
                                         </select>
                                     </div>
-                                    <p class="articles-price">39,95€</p>
+                                    <p class="articles-price articles-price--two">69,00€</p>
                                 </div>
                             </div>
                         </div>
                         <div class="price">
                             <div class="price-wrapper clearfix">
-                                <p class="price-text fr">109,90€</p>
+                                <p class="price-text fr price-warenkorb">108,00€</p>
                                 <p class="price-text price-text--light price-heading">Warenkorbwert</p>
                             </div>
                             <div class="price-wrapper clearfix">
-                                <p class="price-text fr">0,00€</p>
+                                <p class="price-text fr price-toggle price-versand">0,00€</p>
                                 <p class="price-text price-text--light price-heading">zzgl. Versandkosten</p>
                             </div>
                         </div>
                     </div>
                     <div class="box-section box-section--highlighted clearfix checkangabenbox">
                         <div class="clearfix">
-                            <p class="box-heading box-heading--highlighted box-heading--right">109,94€</p>
+                            <p class="box-heading box-heading--highlighted box-heading--right price-toggle-ges price-final">108,00€</p>
                             <p class="box-heading box-heading--highlighted box-heading--left">Rechnungsbetrag</p>
                         </div>
                         <div class="clearfix">
-                            <p class="box-heading-highlighted box-heading--sub box-heading--sub--right">21,97€</p>
+                            <p class="box-heading-highlighted box-heading--sub box-heading--sub--right price-mwst">21,00€</p>
                             <p class="box-heading-highlighted box-heading--sub box-heading--sub--left">inkl. 19% MwSt.</p>
                         </div>
                     </div>

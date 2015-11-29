@@ -21,10 +21,18 @@ function adressbox() {
 
     var $label      = $('.fields-label-check'),
         $val_fields = $('.no-validation-fields'),
-        $adressbox  = $('.adressbox');
+        $adressbox  = $('.adressbox'),
+        adressbox_offset = $('.rechnung-toggle').offset().top - 90;
+
+    //smooth scroll to box
+    $('body,html').animate({
+        scrollTop: adressbox_offset,
+        }, 600
+    );
 
     // if checkbox is unchecked, show additional box
     if ($label.hasClass('checked')) {
+
         $label.removeClass('checked');
         $adressbox.slideDown(400);
         $adressbox.removeClass('no-validation');
@@ -51,7 +59,14 @@ function adressbox() {
 
 function showKreditbox() {
 
-    var $kreditbox = $('.kreditbox');
+    var $kreditbox = $('.kreditbox'),
+        kreditbox_offset = $('.kredit-toggle').offset().top - 100;
+
+    //smooth scroll to box
+    $('body,html').animate({
+        scrollTop: kreditbox_offset,
+        }, 600
+    );
 
     $kreditbox.slideDown(400);
     $kreditbox.removeClass('no-validation');
@@ -102,27 +117,27 @@ function checkStep() {
 
     if ($('.step-one').hasClass('steps-item--active')) {
         $('.step-two--done').addClass('is-hidden');
-        $('.steps-number-two').removeClass('is-invisible');
+        $('.steps-number-two').removeClass('is-hidden');
 
-        if ($('.steps-number-one').hasClass('is-invisible')) {
-            $('.steps-number-one').removeClass('is-invisible');
+        if ($('.steps-number-one').hasClass('is-hidden')) {
+            $('.steps-number-one').removeClass('is-hidden');
             $('.step-one--done').addClass('is-hidden');
         }
 
     } else if ($('.step-two').hasClass('steps-item--active')) {
         $('.step-one--done').removeClass('is-hidden');
-        $('.steps-number-one').addClass('is-invisible');
+        $('.steps-number-one').addClass('is-hidden');
 
-        if ($('.steps-number-two').hasClass('is-invisible')) {
-            $('.steps-number-two').removeClass('is-invisible');
+        if ($('.steps-number-two').hasClass('is-hidden')) {
+            $('.steps-number-two').removeClass('is-hidden');
             $('.step-two--done').addClass('is-hidden');
         }
 
     } else if ($('.step-three').hasClass('steps-item--active')) {
         $('.step-one--done').removeClass('is-hidden');
         $('.step-two--done').removeClass('is-hidden');
-        $('.steps-number-one').addClass('is-invisible');
-        $('.steps-number-two').addClass('is-invisible');
+        $('.steps-number-one').addClass('is-hidden');
+        $('.steps-number-two').addClass('is-hidden');
     }
 }
 
@@ -311,6 +326,146 @@ function checkErrorsMail($element) {
     }
 }
 
+// update text fields on step3
+function updateText() {
+
+    // lieferadresse
+    var l_adresse_name    = $('.lieferadresse-name').val(),
+        l_adresse_surname = $('.lieferadresse-surname').val(),
+        l_adresse_street  = $('.lieferadresse-street').val(),
+        l_adresse_number  = $('.lieferadresse-number').val(),
+        l_adresse_city    = $('.lieferadresse-city').val(),
+        l_adresse_plz     = $('.lieferadresse-plz').val(),
+        $cl_adresse_name   = $('.change-lieferadresse-name'),
+        $cl_adresse_street = $('.change-lieferadresse-street'),
+        $cl_adresse_city   = $('.change-lieferadresse-city');
+
+    // bring text fields together
+    var l_updated_name   = l_adresse_name + ' ' + l_adresse_surname,
+        l_updated_street = l_adresse_street + ' ' + l_adresse_number,
+        l_updated_city   = l_adresse_plz + ' ' + l_adresse_city;
+
+    // update text fields
+    $cl_adresse_name.text(l_updated_name);
+    $cl_adresse_street.text(l_updated_street);
+    $cl_adresse_city.text(l_updated_city);
+
+
+    // rechnungsadresse
+    var r_adresse_name    = $('.rechnungsadresse-name').val(),
+        r_adresse_surname = $('.rechnungsadresse-surname').val(),
+        r_adresse_street  = $('.rechnungsadresse-street').val(),
+        r_adresse_number  = $('.rechnungsadresse-number').val(),
+        r_adresse_city    = $('.rechnungsadresse-city').val(),
+        r_adresse_plz     = $('.rechnungsadresse-plz').val(),
+        $cr_adresse_same   = $('.change-rechnungsadresse'),
+        $cr_adresse_name   = $('.change-rechnungsadresse-name'),
+        $cr_adresse_street = $('.change-rechnungsadresse-street'),
+        $cr_adresse_city   = $('.change-rechnungsadresse-city');
+
+    // only change if rechnungsadresse is not identical
+    if (!$('#rechnungsadresse').is(':checked')) {
+
+        $cr_adresse_same.hide();
+        $cr_adresse_name.removeClass('is-hidden');
+        $cr_adresse_street.removeClass('is-hidden');
+        $cr_adresse_city.removeClass('is-hidden');
+
+        // bring text fields together
+        var r_updated_name   = r_adresse_name + ' ' + r_adresse_surname,
+            r_updated_street = r_adresse_street + ' ' + r_adresse_number,
+            r_updated_city   = r_adresse_plz + ' ' + r_adresse_city;
+
+        // update text fields
+        $cr_adresse_name.text(r_updated_name);
+        $cr_adresse_street.text(r_updated_street);
+        $cr_adresse_city.text(r_updated_city);
+
+    // rechnungsadresse is identical to lieferadresse
+    } else {
+
+        $cr_adresse_same.show();
+        if (!$cr_adresse_name.hasClass('is-hidden')) {
+            $cr_adresse_name.addClass('is-hidden');
+            $cr_adresse_street.addClass('is-hidden');
+            $cr_adresse_city.addClass('is-hidden');
+        }
+
+    }
+
+    // bezahlungsart
+    var $b_rechnung     = $('.bezahlungsart-rechnung'),
+        $b_paypal       = $('.bezahlungsart-paypal'),
+        $b_kreditkarte  = $('.bezahlungsart-kreditkarte'),
+        $c_bezahlungsart  = $('.change-bezahlungsart');
+
+    if ($b_rechnung.is(':checked')) {
+        $c_bezahlungsart.text('auf Rechnung');
+    } else if ($b_paypal.is(':checked')) {
+        $c_bezahlungsart.text('Paypal');
+    } else if ($b_kreditkarte.is(':checked')) {
+        $c_bezahlungsart.text('Kreditkarte');
+    }
+
+    // versandart
+    var $v_standard    = $('.versandart-standard'),
+        $v_express     = $('.versandart-express'),
+        $c_versandart  = $('.change-versandart');
+
+    if ($v_standard.is(':checked')) {
+        $c_versandart.text('Standardversand');
+    } else if ($v_express.is(':checked')) {
+        $c_versandart.text('Expressversand');
+    }
+
+}
+
+
+// calculate costs for bestelluebersicht
+function calculateCosts() {
+
+    var $versandcost      = $('.price-versand'),
+        $price_wk         = $('.price-warenkorb'),
+        $price_final      = $('.price-final'),
+        $value_1          = $('.articles-price--one'),
+        $value_2          = $('.articles-price--two'),
+        $price_mwst       = $('.price-mwst'),
+        count_1,
+        count_2,
+        count_versand,
+        count_wk,
+        count_final,
+        count_mwst,
+        count_wk_rounded,
+        count_final_rounded,
+        count_mwst_rounded;
+
+    // calculate versandkosten
+    if ($versandcost.text() == '0,00€') {
+        count_versand = 0;
+    } else {
+        count_versand = 3;
+    }
+
+    // convert strings to integer and calculate prizes
+    count_1 = parseInt($value_1.text().replace('€', ''));
+    count_2 = parseInt($value_2.text().replace('€', ''));
+    count_wk = count_1 + count_2;
+    count_final = count_wk + count_versand;
+    count_mwst  = (count_final/100)*19;
+
+    // round to two digits after comma
+    count_wk_rounded = Math.round(count_wk).toFixed(2).replace('.', ',');
+    count_final_rounded = Math.round(count_final).toFixed(2).replace('.', ',');
+    count_mwst_rounded = Math.round(count_mwst).toFixed(2).replace('.', ',');
+
+    //change warenkorbwert und gesamtpreis
+    $price_wk.text(count_wk_rounded + '€');
+    $price_final.text(count_final_rounded + '€');
+    $price_mwst.text(count_mwst_rounded + '€');
+}
+
+
 
 $(document).ready(function($) {
 
@@ -380,21 +535,21 @@ $(document).ready(function($) {
         $spinner.show();
 
         //check for errors
-        $('.fields-input').each(function(index, el) {
-            if (!$(this).hasClass('fields-optional') && !$(this).hasClass('no-validation-required')) {
-                checkErrorsInput($(this));
-            }
-        });
-        $('.fields-number').each(function(index, el) {
-            if (!$(this).hasClass('no-validation-required')) {
-                checkErrorsNumber($(this));
-            }
-        });
-        $('.fields-mail').each(function(index, el) {
-            if (!$(this).hasClass('no-validation-required')) {
-                checkErrorsMail($(this));
-            }
-        });
+        // $('.fields-input').each(function(index, el) {
+        //     if (!$(this).hasClass('fields-optional') && !$(this).hasClass('no-validation-required')) {
+        //         checkErrorsInput($(this));
+        //     }
+        // });
+        // $('.fields-number').each(function(index, el) {
+        //     if (!$(this).hasClass('no-validation-required')) {
+        //         checkErrorsNumber($(this));
+        //     }
+        // });
+        // $('.fields-mail').each(function(index, el) {
+        //     if (!$(this).hasClass('no-validation-required')) {
+        //         checkErrorsMail($(this));
+        //     }
+        // });
 
         setTimeout(delay_one, 600);
         function delay_one() {
@@ -469,6 +624,8 @@ $(document).ready(function($) {
 
                     // show additional boxes
                     showCheckboxes();
+                    updateText();
+                    calculateCosts();
                 }
             }
 
@@ -594,6 +751,8 @@ $(document).ready(function($) {
 
                     // show additional boxes
                     showCheckboxes();
+                    updateText();
+                    calculateCosts();
 
                 // click on button 4
                 } else if ($clicked_button.hasClass('button-four')) {
@@ -846,6 +1005,121 @@ $(document).ready(function($) {
         if (!$(this).hasClass('no-validation')) {
             checkErrorsMail($(this));
         }
+    });
+
+
+    // Indicate versandkosten change on toggle
+    $(document).on('click', '.versand-toggle', function() {
+
+        if (!$(this).data('isClicked')) {
+
+            var $price = $('.price-toggle'),
+                $price_ges = $('.price-toggle-ges'),
+                $clicked_versand = $(this);
+
+            $price.addClass('pulse');
+            $price_ges.addClass('pulse');
+
+            // click on standardversand
+            if ($clicked_versand.hasClass('versand-s')) {
+                $price.text('0,00€');
+                $price_ges.text('108,00€');
+
+            // click on expressversand
+            } else {
+                $price.text('3,00€');
+                $price_ges.text('111,00€');
+            }
+
+            // Using a timer to prevent multiple clicks
+            $clicked_versand.data('isClicked', true);
+            setTimeout(function() {
+                $clicked_versand.removeData('isClicked');
+                $price.removeClass('pulse');
+                $price_ges.removeClass('pulse');
+            }, 500);
+        }
+    });
+
+
+    // Calculate price on dropdown selection
+    $(document).on('change', '.articles-count', function() {
+
+        if (!$(this).data('isClicked')) {
+
+            var $clicked_dropdown = $(this),
+                clicked_count     = $clicked_dropdown.val(),
+                $price_final      = $('.price-final'),
+                $value_1          = $('.articles-price--one'),
+                $value_2          = $('.articles-price--two');
+
+            $price_final.addClass('pulse');
+
+            // calculate versandkosten
+/*            if ($versandcost.text() == '0,00€') {
+                count_versand = 0;
+            } else {
+                count_versand = 3;
+            }*/
+
+            // if count of first article changed
+            if ($clicked_dropdown.hasClass('articles-count--one')) {
+                console.log(clicked_count);
+
+                if (clicked_count == 1) {
+                    $value_1.text('39,00€');
+                    console.log('1 ' + clicked_count);
+
+                } else if (clicked_count == 2) {
+                    $value_1.text('78,00€');
+                    console.log('2 ' + clicked_count);
+
+                } else if (clicked_count == 3) {
+                    $value_1.text('117,00€');
+                    console.log('3 ' + clicked_count);
+                }
+
+            // if count of second article changed
+            } else if ($clicked_dropdown.hasClass('articles-count--two')) {
+
+                if (clicked_count == 1) {
+                    $value_2.text('69,00€');
+
+                } else if (clicked_count == 2) {
+                    $value_2.text('138,00€');
+
+                } else if (clicked_count == 3) {
+                    $value_2.text('207,00€');
+                }
+            }
+
+            calculateCosts();
+
+/*            // convert strings to integer and calculate prizes
+            count_1 = parseInt($value_1.text().replace('€', ''));
+            count_2 = parseInt($value_2.text().replace('€', ''));
+            count_wk = count_1 + count_2;
+            count_final = count_wk + count_versand;
+            count_mwst  = (count_final/100)*19;
+
+            // round to two digits after comma
+            count_wk_rounded = Math.round(count_wk).toFixed(2).replace('.', ',');
+            count_final_rounded = Math.round(count_final).toFixed(2).replace('.', ',');
+            count_mwst_rounded = Math.round(count_mwst).toFixed(2).replace('.', ',');
+
+            //change warenkorbwert und gesamtpreis
+            $price_wk.text(count_wk_rounded + '€');
+            $price_final.text(count_final_rounded + '€');
+            $price_mwst.text(count_mwst_rounded + '€');*/
+
+            // Using a timer to prevent multiple clicks
+            $clicked_dropdown.data('isClicked', true);
+            setTimeout(function() {
+                $clicked_dropdown.removeData('isClicked');
+                $price_final.removeClass('pulse');
+            }, 500);
+        }
+
     });
 
 

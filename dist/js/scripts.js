@@ -424,7 +424,7 @@ function updateText() {
 // calculate costs for bestelluebersicht
 function calculateCosts() {
 
-    var $versandcost      = $('.price-versand'),
+    var $versandcost      = $('.price-toggle'),
         $price_wk         = $('.price-warenkorb'),
         $price_final      = $('.price-final'),
         $value_1          = $('.articles-price--one'),
@@ -441,9 +441,9 @@ function calculateCosts() {
         count_mwst_rounded;
 
     // calculate versandkosten
-    if ($versandcost.text() == '0,00€') {
+    if ($('.versandart-standard').is(':checked')) {
         count_versand = 0;
-    } else {
+    } else if ($('.versandart-express').is(':checked')) {
         count_versand = 3;
     }
 
@@ -463,6 +463,34 @@ function calculateCosts() {
     $price_wk.text(count_wk_rounded + '€');
     $price_final.text(count_final_rounded + '€');
     $price_mwst.text(count_mwst_rounded + '€');
+}
+
+
+// update cart text and prizes
+function updateCart() {
+
+    var $c_article1_count  = $('.cart-article1-count'),
+        $c_article1_price  = $('.cart-article1-price'),
+        $c_article2_count  = $('.cart-article2-count'),
+        $c_article2_price  = $('.cart-article2-price'),
+        $c_wk_price        = $('.cart-wk-price'),
+        $c_final_price     = $('.cart-final-price'),
+        count_1_final      = $('.articles-count--one').val(),
+        count_2_final      = $('.articles-count--two').val(),
+        value_1_final      = $('.articles-price--one').text(),
+        value_2_final      = $('.articles-price--two').text(),
+        price_wk_final     = $('.price-warenkorb').text(),
+        price_total_final  = $('.price-final').text();
+
+    console.log(value_1_final);
+
+    // update text fields
+    $c_article1_count.text(count_1_final);
+    $c_article1_price.text(value_1_final);
+    $c_article2_count.text(count_2_final);
+    $c_article2_price.text(value_2_final);
+    $c_wk_price.text(price_wk_final);
+    $c_final_price.text(price_total_final);
 }
 
 
@@ -583,6 +611,9 @@ $(document).ready(function($) {
                         $step_two.removeClass('steps-item--done');
                     }
 
+                    // update cart prizes and text on load
+                    updateCart();
+
                 // click on tab 2
                 } else if ($clicked_tab.hasClass('step-two') && !$clicked_tab.hasClass('steps-item--active')) {
                     $tab_two.removeClass('tab--inactive');
@@ -603,6 +634,9 @@ $(document).ready(function($) {
                     if ($step_two.hasClass('steps-item--done')) {
                         $step_two.removeClass('steps-item--done');
                     }
+
+                    // update cart prizes and text on load
+                    updateCart();
 
                 // click on tab 3
                 } else if ($clicked_tab.hasClass('step-three') && !$clicked_tab.hasClass('steps-item--active')) {
@@ -710,6 +744,9 @@ $(document).ready(function($) {
                         $step_one.removeClass('steps-item--done');
                     }
 
+                    // update cart prizes and text on load
+                    updateCart();
+
                 // click on button 2
                 } else if ($clicked_button.hasClass('button-two')) {
                     $tab_two.removeClass('tab--inactive');
@@ -730,6 +767,9 @@ $(document).ready(function($) {
                     if ($step_two.hasClass('steps-item--done')) {
                         $step_two.removeClass('steps-item--done');
                     }
+
+                    // update cart prizes and text on load
+                    updateCart();
 
                 // click on button 3
                 } else if ($clicked_button.hasClass('button-three')) {
@@ -1023,13 +1063,14 @@ $(document).ready(function($) {
             // click on standardversand
             if ($clicked_versand.hasClass('versand-s')) {
                 $price.text('0,00€');
-                $price_ges.text('108,00€');
+                calculateCosts();
 
             // click on expressversand
             } else {
                 $price.text('3,00€');
-                $price_ges.text('111,00€');
+                calculateCosts();
             }
+            updateCart();
 
             // Using a timer to prevent multiple clicks
             $clicked_versand.data('isClicked', true);
@@ -1054,13 +1095,6 @@ $(document).ready(function($) {
                 $value_2          = $('.articles-price--two');
 
             $price_final.addClass('pulse');
-
-            // calculate versandkosten
-/*            if ($versandcost.text() == '0,00€') {
-                count_versand = 0;
-            } else {
-                count_versand = 3;
-            }*/
 
             // if count of first article changed
             if ($clicked_dropdown.hasClass('articles-count--one')) {
@@ -1094,23 +1128,6 @@ $(document).ready(function($) {
             }
 
             calculateCosts();
-
-/*            // convert strings to integer and calculate prizes
-            count_1 = parseInt($value_1.text().replace('€', ''));
-            count_2 = parseInt($value_2.text().replace('€', ''));
-            count_wk = count_1 + count_2;
-            count_final = count_wk + count_versand;
-            count_mwst  = (count_final/100)*19;
-
-            // round to two digits after comma
-            count_wk_rounded = Math.round(count_wk).toFixed(2).replace('.', ',');
-            count_final_rounded = Math.round(count_final).toFixed(2).replace('.', ',');
-            count_mwst_rounded = Math.round(count_mwst).toFixed(2).replace('.', ',');
-
-            //change warenkorbwert und gesamtpreis
-            $price_wk.text(count_wk_rounded + '€');
-            $price_final.text(count_final_rounded + '€');
-            $price_mwst.text(count_mwst_rounded + '€');*/
 
             // Using a timer to prevent multiple clicks
             $clicked_dropdown.data('isClicked', true);

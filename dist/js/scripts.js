@@ -144,8 +144,14 @@ function checkStep() {
 function checkErrorsInput($element) {
 
     var $current_field = $element,
-        entered_input    = $current_field.val(),
-        test_text        = /^[A-Zäöüß ]*$/i;
+        entered_input  = $current_field.val(),
+        $icon_check    = $current_field.siblings('.icon--correct'),
+        test_text      = /^[A-Zäöüß ]*$/i;
+
+    // remove check icon
+    $current_field.removeClass('input--correct');
+    $icon_check.hide();
+    $icon_check.removeClass('flip');
 
     // input field was left empty
     if ($current_field.val().length === 0) {
@@ -153,6 +159,8 @@ function checkErrorsInput($element) {
         $current_field.siblings('.fields-item-label').hide();
         $current_field.siblings('.fields-error2').hide();
         $current_field.siblings('.fields-error').show();
+
+        console.log('yep');
 
     // input was entered
     } else {
@@ -183,6 +191,11 @@ function checkErrorsInput($element) {
                 $current_field.siblings('.fields-error').hide();
                 $current_field.siblings('.fields-error2').hide();
             }
+
+            // show correct icon
+            $current_field.addClass('input--correct');
+            $icon_check.show();
+            $icon_check.addClass('flip');
         }
     }
 }
@@ -190,7 +203,13 @@ function checkErrorsInput($element) {
 function checkErrorsNumber($element) {
 
     var $current_field_n = $element,
-        entered_input   = $current_field_n.val();
+        $icon_check      = $current_field_n.siblings('.icon--correct'),
+        entered_input    = $current_field_n.val();
+
+    // remove check icon
+    $current_field_n.removeClass('input--correct');
+    $icon_check.hide();
+    $icon_check.removeClass('flip');
 
     // input field was left empty
     if (entered_input.length === 0) {
@@ -275,6 +294,11 @@ function checkErrorsNumber($element) {
                     $current_field_n.siblings('.fields-error').hide();
                     $current_field_n.siblings('.fields-error2').hide();
                 }
+
+                // show correct icon
+                $current_field_n.addClass('input--correct');
+                $icon_check.show();
+                $icon_check.addClass('flip');
             }
         }
     }
@@ -285,7 +309,13 @@ function checkErrorsMail($element) {
 
     var $current_field_m = $element,
         entered_input    = $current_field_m.val(),
+        $icon_check      = $current_field_m.siblings('.icon--correct'),
         test_mail        = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+    // remove check icon
+    $current_field_m.removeClass('input--correct');
+    $icon_check.hide();
+    $icon_check.removeClass('flip');
 
     // input field was left empty
     if (entered_input.length === 0) {
@@ -322,6 +352,11 @@ function checkErrorsMail($element) {
                 $current_field_m.siblings('.fields-error').hide();
                 $current_field_m.siblings('.fields-error2').hide();
             }
+
+            // show correct icon
+            $current_field_m.addClass('input--correct');
+            $icon_check.show();
+            $icon_check.addClass('flip');
         }
     }
 }
@@ -482,8 +517,6 @@ function updateCart() {
         price_wk_final     = $('.price-warenkorb').text(),
         price_total_final  = $('.price-final').text();
 
-    console.log(value_1_final);
-
     // update text fields
     $c_article1_count.text(count_1_final);
     $c_article1_price.text(value_1_final);
@@ -491,6 +524,20 @@ function updateCart() {
     $c_article2_price.text(value_2_final);
     $c_wk_price.text(price_wk_final);
     $c_final_price.text(price_total_final);
+}
+
+
+// update username and mail on checkout finish
+function updateUserdata() {
+
+    var $pre_username = $('.prefilled-name'),
+        $pre_mail     = $('.prefilled-mail'),
+        l_name        = $('.lieferadresse-name').val(),
+        l_surname     = $('.lieferadresse-surname').val(),
+        l_mail        = $('.lieferadresse-mail').val();
+
+    $pre_username.val(l_name + '.' + l_surname);
+    $pre_mail.val(l_mail);
 }
 
 
@@ -516,6 +563,10 @@ $(document).ready(function($) {
     // Hide error messages
     $('.fields-error').hide();
     $('.fields-error2').hide();
+
+    // Hide icon for correct input
+    $('.icon--correct').hide();
+    $('.icon--precorrect').show();
 
 
     function scrollCart() {
@@ -660,6 +711,7 @@ $(document).ready(function($) {
                     showCheckboxes();
                     updateText();
                     calculateCosts();
+                    updateUserdata();
                 }
             }
 
@@ -793,6 +845,7 @@ $(document).ready(function($) {
                     showCheckboxes();
                     updateText();
                     calculateCosts();
+                    updateUserdata();
 
                 // click on button 4
                 } else if ($clicked_button.hasClass('button-four')) {
@@ -874,80 +927,73 @@ $(document).ready(function($) {
             if ($step_two.hasClass('steps-item--done')) {
                 $step_two.removeClass('steps-item--done');
             }
-
-        // click on button 3
-        } else if ($clicked_button.hasClass('button-three')) {
-            $tab_three.removeClass('tab--inactive');
-            $tab_three.addClass('tab--active');
-            $tab_one.removeClass('tab--active');
-            $tab_one.addClass('tab--inactive');
-            $tab_two.removeClass('tab--active');
-            $tab_two.addClass('tab--inactive');
-
-            $step_three.addClass('steps-item--active');
-            $step_one.addClass('steps-item--done');
-            $step_two.addClass('steps-item--done');
-            if ($step_one.hasClass('steps-item--active')) {
-                $step_one.removeClass('steps-item--active');
-            } else if ($step_two.hasClass('steps-item--active')) {
-                $step_two.removeClass('steps-item--active');
-            }
-
-        // click on button 4
-        } else if ($clicked_button.hasClass('button-four')) {
-            $tab_four.removeClass('tab--inactive');
-            $tab_four.addClass('tab--active');
-            $tab_three.removeClass('tab--active');
-            $tab_three.addClass('tab--inactive');
-
-            $('.steps').hide();
         }
+
         checkStep();
     });
 
 
     // Show and hide placeholder and labels in input fields
     $input.on('focus', function() {
+
+        var $clicked_input = $(this);
+
         // Show placeholder
-        $(this).siblings('.fields-item-placeholder--info').removeClass('is-invisible');
+        $clicked_input.siblings('.fields-item-placeholder--info').removeClass('is-invisible');
+
+        if ($clicked_input.siblings('.fields-item-placeholder--info').hasClass('fields-item--prefilled')) {
+            $clicked_input.siblings('.fields-item-placeholder--info').css('color', '#cdd3d7');
+        }
 
         // Show green, small label
-        if ($(this).siblings('label').hasClass('label--correct')) {
-            $(this).siblings('label').removeClass('label--correct');
+        if ($clicked_input.siblings('label').hasClass('label--correct')) {
+            $clicked_input.siblings('label').removeClass('label--correct');
         }
-        $(this).siblings('label').addClass('label--focused');
+        $clicked_input.siblings('label').addClass('label--focused');
     });
 
     $input.on('focusout', function() {
+
+        var $clicked_input = $(this);
+
         // Hide placeholder
-        if (!$(this).siblings('.fields-item-placeholder--info').hasClass('fields-item--prefilled')) {
-            $(this).siblings('.fields-item-placeholder--info').addClass('is-invisible');
+        if (!$clicked_input.siblings('.fields-item-placeholder--info').hasClass('fields-item--prefilled')) {
+            $clicked_input.siblings('.fields-item-placeholder--info').addClass('is-invisible');
+        } else {
+            $clicked_input.siblings('.fields-item-placeholder--info').css('color', '#34495e');
         }
 
         // Hide small label, if no input exists
-        var value = $.trim($(this).val());
+        var value = $.trim($clicked_input.val());
         if (value.length === 0) {
 
-            $(this).siblings('label').removeClass('label--focused');
+            $clicked_input.siblings('label').removeClass('label--focused');
+
+            // Show placeholder for prefilled fields
+            if ($clicked_input.siblings('.fields-item-placeholder--info').hasClass('fields-item--prefilled')) {
+                $clicked_input.siblings('.fields-item-placeholder--info').removeClass('is-invisible');
+            }
         } else {
 
-            $(this).siblings('label').removeClass('label--focused');
-            $(this).siblings('label').addClass('label--correct');
+            $clicked_input.siblings('label').removeClass('label--focused');
+            $clicked_input.siblings('label').addClass('label--correct');
         }
     });
 
     // Hide placeholder when user starts typing
     $input.on('input focus', function() {
 
-        var value = $.trim($(this).val());
+        var $clicked_input = $(this),
+            value = $.trim($clicked_input.val());
 
         if (value.length > 0) {
 
-            $(this).siblings('.fields-item-placeholder--info').addClass('is-invisible');
+            $clicked_input.siblings('.fields-item-placeholder--info').addClass('is-invisible');
+
         } else {
 
             if ($('.fields-item-placeholder--info').hasClass('is-invisible')) {
-                $(this).siblings('.fields-item-placeholder--info').removeClass('is-invisible');
+                $clicked_input.siblings('.fields-item-placeholder--info').removeClass('is-invisible');
             }
         }
     });
@@ -956,9 +1002,10 @@ $(document).ready(function($) {
     // Show and hide versandbox when in vision
     $(document).on('focus', '.kontakt-toggle', function() {
 
-        if (!$(this).data('isClicked')) {
+        if (!$(this).data('isClicked') && !$(this).hasClass('stop-trigger')) {
             var $trigger = $(this);
 
+            $trigger.addClass('stop-trigger');
             showVersandbox();
 
             // Using a timer to prevent multiple clicks
@@ -1098,19 +1145,15 @@ $(document).ready(function($) {
 
             // if count of first article changed
             if ($clicked_dropdown.hasClass('articles-count--one')) {
-                console.log(clicked_count);
 
                 if (clicked_count == 1) {
                     $value_1.text('39,00€');
-                    console.log('1 ' + clicked_count);
 
                 } else if (clicked_count == 2) {
                     $value_1.text('78,00€');
-                    console.log('2 ' + clicked_count);
 
                 } else if (clicked_count == 3) {
                     $value_1.text('117,00€');
-                    console.log('3 ' + clicked_count);
                 }
 
             // if count of second article changed

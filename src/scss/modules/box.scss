@@ -100,6 +100,10 @@ STYLESHEET: BOX
         &--light {
             color: $c-medium;
         }
+
+        &--small {
+            @include font-size(0.9);
+        }
     }
 }
 

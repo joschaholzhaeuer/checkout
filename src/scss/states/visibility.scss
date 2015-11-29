@@ -32,6 +32,10 @@ STYLESHEET: VISIBILITY
     }
 }
 
+.prefilled-name {
+   text-transform: lowercase;
+}
+
 .label--fixed {
     @include font-size(0.8);
     font-weight: 700;
@@ -53,6 +57,48 @@ STYLESHEET: VISIBILITY
 .label--correct {
     @extend .label--focused;
     color: $c-medium;
+}
+
+.input--correct {
+    border: 1px solid $c-alt-light;
+    // background-color: rgba($c-alt-light, 0.05);
+    outline: 0;
+}
+
+.icon--correct {
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    top: 13px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: $c-alt-light;
+
+    &:after {
+        content: "";
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        right: 7px;
+        top: 7px;
+        background: url('../img/check.png') no-repeat;
+    }
+}
+
+@include keyframes(flip) {
+    0% {
+        @include prefix(transform, scale(0), 'webkit' 'ms');
+    } 65% {
+        @include prefix(transform, scale(1.2), 'webkit' 'ms');
+    } 100% {
+        @include prefix(transform, scale(1), 'webkit' 'ms');
+    }
+}
+
+.flip {
+    @include prefix( animation, flip 0.3s 1 );
 }
 
 .rechnung-toggle {

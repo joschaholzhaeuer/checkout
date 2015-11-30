@@ -129,8 +129,18 @@ STYLESHEET: FIELDS
 
         &-large {
             margin-bottom: 6px;
+            margin-right: 15px;
             height: 51px;
-            width: 102px;
+            width: auto;
+        }
+
+        &-description {
+            color: $c-alt-light;
+            font-weight: 700;
+            @include font-size(0.8);
+            width: 250px;
+            float: right;
+            margin-top: 12px;
         }
     }
 
@@ -212,6 +222,10 @@ STYLESHEET: FIELDS
             background-color: rgba($c-error, 0.05);
         }
     }
+
+    &-pb {
+        padding-bottom: 80px;
+    }
 }
 
 @include small {
@@ -241,11 +255,11 @@ STYLESHEET: FIELDS
             }
 
             &--long {
-                width: 70%;
+                width: 67%;
             }
 
             &--short {
-                width: 30%;
+                width: 33%;
             }
 
             &--left {

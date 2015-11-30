@@ -46,6 +46,6 @@ p {
 .heading {
     width: 100%;
     background-color: $c-alt-light;
-    margin-bottom: 6px;
     color: $white;
+    transition: all 0.3s ease-in-out;
 }

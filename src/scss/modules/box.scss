@@ -27,6 +27,7 @@ STYLESHEET: BOX
 
     &-section {
         padding: 30px 25px;
+        position: relative;
 
         &--highlighted {
             background-color: $c-alt-light;
@@ -52,6 +53,13 @@ STYLESHEET: BOX
                 position: absolute;
                 top: -15px;
                 left: 50px;
+            }
+
+            &--light {
+
+                &:before {
+                    border-bottom: 20px solid $white;
+                }
             }
         }
     }
@@ -94,7 +102,7 @@ STYLESHEET: BOX
     &-text {
 
         &-info {
-            margin-top: 0;
+            transition: all 0.3s ease-in-out;
         }
 
         &--light {

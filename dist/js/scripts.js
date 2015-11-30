@@ -102,14 +102,36 @@ function showCheckboxes() {
     // show additional boxes after delay
     setTimeout(delayTabClick, 2000);
     function delayTabClick() {
-        //smooth scroll to boxes
-        $('body,html').animate({
-            scrollTop: 220,
-            }, 600
-        );
 
         // show versandbox
-        $checkangabenbox.slideDown(400);
+        if (!$checkangabenbox.hasClass('dropped')) {
+
+            //smooth scroll to boxes
+            $('body,html').animate({
+                scrollTop: 220,
+                }, 600
+            );
+            $checkangabenbox.slideDown(400);
+            $checkangabenbox.addClass('dropped');
+        }
+    }
+}
+
+function showDankeboxes() {
+
+    var $nutzerkontobox = $('.nutzerkontobox'),
+        $danke_info     = $('.danke-info'),
+        $tippsbox       = $('.tippsbox');
+
+    // show additional boxes after delay
+    setTimeout(delayTabClick2, 1000);
+    function delayTabClick2() {
+
+        // show info
+        $danke_info.fadeIn();
+
+        // show nutzerkontobox
+        $nutzerkontobox.slideDown(400);
     }
 }
 
@@ -159,8 +181,6 @@ function checkErrorsInput($element) {
         $current_field.siblings('.fields-item-label').hide();
         $current_field.siblings('.fields-error2').hide();
         $current_field.siblings('.fields-error').show();
-
-        console.log('yep');
 
     // input was entered
     } else {
@@ -304,7 +324,170 @@ function checkErrorsNumber($element) {
     }
 }
 
+// check street number for errors
+function checkErrorsStreetNumber($element) {
 
+    var $current_field_n = $element,
+        $icon_check      = $current_field_n.siblings('.icon--correct'),
+        entered_input    = $current_field_n.val(),
+        test_text        = /^[1-90\/]*$/i;
+
+    // remove check icon
+    $current_field_n.removeClass('input--correct');
+    $icon_check.hide();
+    $icon_check.removeClass('flip');
+
+    // input field was left empty
+    if (entered_input.length === 0) {
+        $current_field_n.addClass('fields-error-frame');
+        $current_field_n.siblings('.fields-item-label').hide();
+        $current_field_n.siblings('.fields-error2').hide();
+        $current_field_n.siblings('.fields-error').show();
+
+    // input was entered
+    } else {
+
+        // if no correct input was entered
+        if (!test_text.test(entered_input)) {
+
+            // show error message for wrong input and hide previous error, if it is still visible
+            if ($current_field_n.hasClass('fields-error-frame')) {
+                $current_field_n.siblings('.fields-error').hide();
+                $current_field_n.siblings('.fields-error2').show();
+
+            // otherwise show error message for wrong input
+            } else {
+                $current_field_n.addClass('fields-error-frame');
+                $current_field_n.siblings('.fields-item-label').hide();
+                $current_field_n.siblings('.fields-error2').show();
+            }
+
+        // user entered a correct input
+        } else {
+
+            // if user did not enter 5 numbers, show error
+            if (($current_field_n.data('validation') == 'min5') && (entered_input.length != 5)) {
+
+                // show error message for wrong input and hide previous error, if it is still visible
+                if ($current_field_n.hasClass('fields-error-frame')) {
+                    $current_field_n.siblings('.fields-error').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+
+                // otherwise show error message for wrong input
+                } else {
+                    $current_field_n.addClass('fields-error-frame');
+                    $current_field_n.siblings('.fields-item-label').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+                }
+
+            // if user did not enter 16 numbers, show error
+            } else if (($current_field_n.data('validation') == 'min16') && (entered_input.length != 16)) {
+
+                // show error message for wrong input and hide previous error, if it is still visible
+                if ($current_field_n.hasClass('fields-error-frame')) {
+                    $current_field_n.siblings('.fields-error').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+
+                // otherwise show error message for wrong input
+                } else {
+                    $current_field_n.addClass('fields-error-frame');
+                    $current_field_n.siblings('.fields-item-label').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+                }
+
+            // if user did not enter 3 numbers, show error
+            } else if (($current_field_n.data('validation') == 'min3') && (entered_input.length != 3)) {
+
+                // show error message for wrong input and hide previous error, if it is still visible
+                if ($current_field_n.hasClass('fields-error-frame')) {
+                    $current_field_n.siblings('.fields-error').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+
+                // otherwise show error message for wrong input
+                } else {
+                    $current_field_n.addClass('fields-error-frame');
+                    $current_field_n.siblings('.fields-item-label').hide();
+                    $current_field_n.siblings('.fields-error2').show();
+                }
+
+            // user entered correct number
+            } else {
+
+                // hide error message
+                if ($current_field_n.hasClass('fields-error-frame')) {
+                    $current_field_n.removeClass('fields-error-frame');
+                    $current_field_n.siblings('.fields-item-label').show();
+                    $current_field_n.siblings('.fields-error').hide();
+                    $current_field_n.siblings('.fields-error2').hide();
+                }
+
+                // show correct icon
+                $current_field_n.addClass('input--correct');
+                $icon_check.show();
+                $icon_check.addClass('flip');
+            }
+        }
+    }
+}
+
+// check expiration date for errors
+function checkErrorsExpiration($element) {
+
+    var $current_field_n = $element,
+        $icon_check      = $current_field_n.siblings('.icon--correct'),
+        entered_input    = $current_field_n.val(),
+        test_text        = /^(0[1-9]|1[0-2])+(\/)+(1[5-9]|([2-9]+[0-9]))$/i;
+
+    // remove check icon
+    $current_field_n.removeClass('input--correct');
+    $icon_check.hide();
+    $icon_check.removeClass('flip');
+
+    // input field was left empty
+    if (entered_input.length === 0) {
+        $current_field_n.addClass('fields-error-frame');
+        $current_field_n.siblings('.fields-item-label').hide();
+        $current_field_n.siblings('.fields-error2').hide();
+        $current_field_n.siblings('.fields-error').show();
+
+    // input was entered
+    } else {
+
+        // if no correct input was entered
+        if (!test_text.test(entered_input)) {
+
+            // show error message for wrong input and hide previous error, if it is still visible
+            if ($current_field_n.hasClass('fields-error-frame')) {
+                $current_field_n.siblings('.fields-error').hide();
+                $current_field_n.siblings('.fields-error2').show();
+
+            // otherwise show error message for wrong input
+            } else {
+                $current_field_n.addClass('fields-error-frame');
+                $current_field_n.siblings('.fields-item-label').hide();
+                $current_field_n.siblings('.fields-error2').show();
+            }
+
+        // user entered a correct input
+        } else {
+
+            // hide error message
+            if ($current_field_n.hasClass('fields-error-frame')) {
+                $current_field_n.removeClass('fields-error-frame');
+                $current_field_n.siblings('.fields-item-label').show();
+                $current_field_n.siblings('.fields-error').hide();
+                $current_field_n.siblings('.fields-error2').hide();
+            }
+
+            // show correct icon
+            $current_field_n.addClass('input--correct');
+            $icon_check.show();
+            $icon_check.addClass('flip');
+        }
+    }
+}
+
+// check mail input for errors
 function checkErrorsMail($element) {
 
     var $current_field_m = $element,
@@ -360,6 +543,44 @@ function checkErrorsMail($element) {
         }
     }
 }
+
+// check password
+function checkErrorsPassword($element) {
+
+    var $current_field = $element,
+        entered_input  = $current_field.val(),
+        $icon_check    = $current_field.siblings('.icon--correct');
+
+    // remove check icon
+    $current_field.removeClass('input--correct');
+    $icon_check.hide();
+    $icon_check.removeClass('flip');
+
+    // input field was left empty
+    if ($current_field.val().length === 0) {
+        $current_field.addClass('fields-error-frame');
+        $current_field.siblings('.fields-item-label').hide();
+        $current_field.siblings('.fields-error2').hide();
+        $current_field.siblings('.fields-error').show();
+
+    // input was entered
+    } else {
+
+        // hide error message
+        if ($current_field.hasClass('fields-error-frame')) {
+            $current_field.removeClass('fields-error-frame');
+            $current_field.siblings('.fields-item-label').show();
+            $current_field.siblings('.fields-error').hide();
+            $current_field.siblings('.fields-error2').hide();
+        }
+
+        // show correct icon
+        $current_field.addClass('input--correct');
+        $icon_check.show();
+        $icon_check.addClass('flip');
+    }
+}
+
 
 // update text fields on step3
 function updateText() {
@@ -536,7 +757,7 @@ function updateUserdata() {
         l_surname     = $('.lieferadresse-surname').val(),
         l_mail        = $('.lieferadresse-mail').val();
 
-    $pre_username.val(l_name + '.' + l_surname);
+    $pre_username.val(l_name + l_surname);
     $pre_mail.val(l_mail);
 }
 
@@ -559,6 +780,9 @@ $(document).ready(function($) {
     $('.checkangabenbox').hide();
     $('.checkagbbox').hide();
     $('.checkbestellungbox').hide();
+    $('.danke-info').hide();
+    $('.tippsbox').hide();
+    $('.nutzerkontobox').hide();
 
     // Hide error messages
     $('.fields-error').hide();
@@ -622,6 +846,16 @@ $(document).ready(function($) {
         // $('.fields-number').each(function(index, el) {
         //     if (!$(this).hasClass('no-validation-required')) {
         //         checkErrorsNumber($(this));
+        //     }
+        // });
+        // $('.fields-streetnumber').each(function(index, el) {
+        //     if (!$(this).hasClass('no-validation-required')) {
+        //         checkErrorsStreetNumber($(this));
+        //     }
+        // });
+        // $('.fields-date').each(function(index, el) {
+        //     if (!$(this).hasClass('no-validation-required')) {
+        //         checkErrorsExpiration($(this));
         //     }
         // });
         // $('.fields-mail').each(function(index, el) {
@@ -761,6 +995,16 @@ $(document).ready(function($) {
                 checkErrorsNumber($(this));
             }
         });
+        $('.fields-streetnumber').each(function(index, el) {
+            if (!$(this).hasClass('no-validation-required')) {
+                checkErrorsStreetNumber($(this));
+            }
+        });
+        $('.fields-date').each(function(index, el) {
+            if (!$(this).hasClass('no-validation-required')) {
+                checkErrorsExpiration($(this));
+            }
+        });
         $('.fields-mail').each(function(index, el) {
             if (!$(this).hasClass('no-validation-required')) {
                 checkErrorsMail($(this));
@@ -855,6 +1099,9 @@ $(document).ready(function($) {
                     $tab_three.addClass('tab--inactive');
 
                     $('.steps').hide();
+
+                    // show additional boxes
+                    showDankeboxes();
                 }
             }
 
@@ -905,6 +1152,10 @@ $(document).ready(function($) {
 
             if ($step_one.hasClass('steps-item--done')) {
                 $step_one.removeClass('steps-item--done');
+            }
+
+            if ($step_two.hasClass('steps-item--done')) {
+                $step_two.removeClass('steps-item--done');
             }
 
         // click on button 2
@@ -1067,6 +1318,31 @@ $(document).ready(function($) {
         }
     });
 
+    // Show/hide info on click
+    $(document).on('click', '.danke-info', function() {
+
+        if (!$(this).data('isClicked')) {
+            var $trigger3 = $(this),
+                $tippsbox = $('.tippsbox');
+
+            if (!$tippsbox.hasClass('is-shown')) {
+                $tippsbox.slideDown('400');
+                $tippsbox.addClass('is-shown');
+                $trigger3.addClass('is-shown');
+            } else {
+                $tippsbox.slideUp('400');
+                $tippsbox.removeClass('is-shown');
+                $trigger3.removeClass('is-shown');
+            }
+
+            // Using a timer to prevent multiple clicks
+            $trigger3.data('isClicked', true);
+            setTimeout(function() {
+                $trigger3.removeData('isClicked');
+            }, 100);
+        }
+    });
+
 
     // Form validation on input fields
     $(document).on('focusout', '.fields-input', function() {
@@ -1086,11 +1362,60 @@ $(document).ready(function($) {
     });
 
 
+    // Form validation on street number fields
+    $(document).on('focusout', '.fields-streetnumber', function() {
+
+        if (!$(this).hasClass('no-validation')) {
+            checkErrorsStreetNumber($(this));
+        }
+    });
+
+
+    // Form validation on expiration date
+    $(document).on('focusout', '.fields-date', function() {
+
+        if (!$(this).hasClass('no-validation')) {
+            checkErrorsExpiration($(this));
+        }
+    });
+
+
+    // Form validation on password
+    $(document).on('focusout', '.fields-password', function() {
+
+        checkErrorsPassword($(this));
+    });
+
+
     // Form validation on mail fields
     $(document).on('focusout', '.fields-mail', function() {
 
         if (!$(this).hasClass('no-validation')) {
             checkErrorsMail($(this));
+        }
+    });
+
+
+    // Show password on toggle
+    $(document).on('click', '.show-pw-toggle', function() {
+
+        if (!$(this).data('isClicked')) {
+
+            var $pw_check  = $('.pw-check'),
+                $input_pw  = $('.fields-password'),
+                $pw_toggle = $(this);
+
+            if ($pw_check.is(':checked')) {
+                $input_pw.attr('type', 'text');
+            } else {
+                $input_pw.attr('type', 'password');
+            }
+
+            // Using a timer to prevent multiple clicks
+            $pw_toggle.data('isClicked', true);
+            setTimeout(function() {
+                $pw_toggle.removeData('isClicked');
+            }, 300);
         }
     });
 
@@ -1102,19 +1427,23 @@ $(document).ready(function($) {
 
             var $price = $('.price-toggle'),
                 $price_ges = $('.price-toggle-ges'),
+                $text_lieferung = $('.text-lieferung'),
                 $clicked_versand = $(this);
 
             $price.addClass('pulse');
             $price_ges.addClass('pulse');
+            $text_lieferung.addClass('color-highlight');
 
             // click on standardversand
             if ($clicked_versand.hasClass('versand-s')) {
                 $price.text('0,00€');
+                $text_lieferung.text('Lieferung voraussichtlich am Freitag, den 11.12.2015');
                 calculateCosts();
 
             // click on expressversand
             } else {
                 $price.text('3,00€');
+                $text_lieferung.text('Lieferung voraussichtlich am Dienstag, den 08.12.2015');
                 calculateCosts();
             }
             updateCart();
@@ -1125,6 +1454,7 @@ $(document).ready(function($) {
                 $clicked_versand.removeData('isClicked');
                 $price.removeClass('pulse');
                 $price_ges.removeClass('pulse');
+                $text_lieferung.removeClass('color-highlight');
             }, 500);
         }
     });

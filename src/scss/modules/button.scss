@@ -16,11 +16,11 @@ STYLESHEET: BUTTON
     cursor: pointer;
 
     &-change {
-        border: 2px solid $c-medium;
         color: $c-medium;
-        margin-top: 15px;
         width: 100px;
-        margin-bottom: 0;
+        position: absolute;
+        top: 160px;
+        left: 0;
     }
 
     &-wrapper {

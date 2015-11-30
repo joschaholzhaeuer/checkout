@@ -87,6 +87,55 @@ STYLESHEET: VISIBILITY
     }
 }
 
+.danke-info {
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    // transition: all 0.3s ease-in-out;
+
+    &:after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        margin-left: 15px;
+        width: 20px;
+        height: 20px;
+        background: url('../img/arrow_white.png') no-repeat;
+    }
+
+    &.is-shown {
+
+        &:after {
+          // @include prefix(transform, rotate(180deg), 'webkit' 'ms');
+          display: none;
+        }
+    }
+}
+
+.color-highlight {
+    color: $c-alt-light;
+}
+
+.sicherheits-wrapper {
+    margin-bottom: 20px;
+
+    &:before {
+        content: "";
+        display: inline-block;
+        margin-right: 20px;
+        width: 70px;
+        height: 70px;
+        margin-top: 15px;
+        float: left;
+        background: url('../img/lock.png') no-repeat;
+    }
+
+    h2,
+    p {
+        display: inline-block;
+    }
+}
+
 @include keyframes(flip) {
     0% {
         @include prefix(transform, scale(0), 'webkit' 'ms');

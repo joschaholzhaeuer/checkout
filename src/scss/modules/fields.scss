@@ -80,6 +80,10 @@ STYLESHEET: FIELDS
         width: 22px;
         height: 22px;
 
+        &:hover + label:before {
+            border: 2px solid $c-alt-light;
+        }
+
         &:checked + label:after {
             content: "";
             display: inline-block;
@@ -99,6 +103,10 @@ STYLESHEET: FIELDS
 
     &-check {
         @extend .fields-radio;
+
+        &:hover + label:before {
+            border: 2px solid $c-alt-light;
+        }
 
         &:checked + label:after {
             content: "";

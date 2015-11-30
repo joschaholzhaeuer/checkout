@@ -135,6 +135,24 @@ function showDankeboxes() {
     }
 }
 
+function checkAgbs() {
+
+    var $agbs = $('#agbs'),
+        $fields_check = $('.fields-item-check'),
+        agbs_offset = $agbs.offset().top;
+
+    $fields_check.addClass('pulse');
+
+    // show additional boxes after delay
+    setTimeout(delayAgbCheck, 600);
+    function delayAgbCheck() {
+
+        // check agbs
+        $agbs.prop('checked', true);
+        $fields_check.removeClass('pulse');
+    }
+}
+
 function checkStep() {
 
     if ($('.step-one').hasClass('steps-item--active')) {
@@ -1093,15 +1111,21 @@ $(document).ready(function($) {
 
                 // click on button 4
                 } else if ($clicked_button.hasClass('button-four')) {
-                    $tab_four.removeClass('tab--inactive');
-                    $tab_four.addClass('tab--active');
-                    $tab_three.removeClass('tab--active');
-                    $tab_three.addClass('tab--inactive');
 
-                    $('.steps').hide();
+                    // check if agbs are checked
+                    if ($('#agbs').is(':checked')) {
+                        $tab_four.removeClass('tab--inactive');
+                        $tab_four.addClass('tab--active');
+                        $tab_three.removeClass('tab--active');
+                        $tab_three.addClass('tab--inactive');
 
-                    // show additional boxes
-                    showDankeboxes();
+                        $('.steps').hide();
+
+                        // show additional boxes
+                        showDankeboxes();
+                    } else {
+                        checkAgbs();
+                    }
                 }
             }
 

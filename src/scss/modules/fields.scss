@@ -46,11 +46,6 @@ STYLESHEET: FIELDS
 
             &:before {
                 border-radius: 5px;
-                transition: 0.1s all ease-out;
-            }
-
-            &:after {
-                transition: 0.1s all ease-out;
             }
         }
 
@@ -58,11 +53,6 @@ STYLESHEET: FIELDS
 
             &:before {
                 border-radius: 50%;
-                transition: 0.1s all ease-out;
-            }
-
-            &:after {
-                transition: 0.1s all ease-out;
             }
         }
     }

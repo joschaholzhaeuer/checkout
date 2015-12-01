@@ -51,7 +51,6 @@ STYLESHEET: VISIBILITY
     @include font-size(0.8);
     top: 3px;
     left: 15px;
-    transition: all 0.1s ease-out;
 }
 
 .label--correct {
@@ -91,7 +90,6 @@ STYLESHEET: VISIBILITY
     font-weight: bold;
     cursor: pointer;
     display: inline-block;
-    // transition: all 0.3s ease-in-out;
 
     &:after {
         content: "";

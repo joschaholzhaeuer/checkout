@@ -606,6 +606,15 @@ function checkErrorsPassword($element) {
     }
 }
 
+// adjust spinner position
+function adjustSpinner() {
+
+    var tab_height = $('.tab--active').outerHeight(),
+        spinner_pos = tab_height/2;
+
+    $('.spinner').css('top', spinner_pos);
+}
+
 
 // update text fields on step3
 function updateText() {
@@ -854,6 +863,7 @@ $(document).ready(function($) {
 
         // Show loading spinner on click
         $tab_active.addClass('box-overlay');
+        adjustSpinner();
         $spinner.show();
 
         //check for errors
@@ -883,19 +893,30 @@ $(document).ready(function($) {
             }
         });
 
+        // smooth scroll to top or to error, if any occured
+        if ($('.tab--active').find('.fields-error-frame').length > 0) {
+
+            var error_pos = $('.fields-error-frame').first().offset().top - 200;
+
+            //smooth scroll to error
+            $('body,html').animate({
+                scrollTop: error_pos,
+                }, 600
+            );
+
+        // smooth scroll to top
+        } else {
+            $('body,html').animate({
+                scrollTop: 0 ,
+                }, 600
+            );
+        }
+
         setTimeout(delay_one, 600);
         function delay_one() {
 
             // check if there are any errors or empty fields in the current tab
             if ($('.tab--active').find('.fields-error-frame').length > 0) {
-
-                var error_pos = $('.fields-error-frame').first().offset().top - 200;
-
-                //smooth scroll to error
-                $('body,html').animate({
-                    scrollTop: error_pos,
-                    }, 600
-                );
 
             // go to next step if there are no errors
             } else {
@@ -975,12 +996,6 @@ $(document).ready(function($) {
                     calculateCosts();
                     updateUserdata();
                 }
-
-                //smooth scroll to top
-                $('body,html').animate({
-                    scrollTop: 0 ,
-                    }, 600
-                );
             }
 
             setTimeout(delay_spinner, 300);
@@ -1010,6 +1025,7 @@ $(document).ready(function($) {
 
         // Show loading spinner on click
         $tab_active.addClass('box-overlay');
+        adjustSpinner();
         $spinner.show();
 
         //check for errors
@@ -1039,19 +1055,30 @@ $(document).ready(function($) {
             }
         });
 
+        // smooth scroll to top or to error, if any occured
+        if ($('.tab--active').find('.fields-error-frame').length > 0) {
+
+            var error_pos = $('.fields-error-frame').first().offset().top - 200;
+
+            //smooth scroll to error
+            $('body,html').animate({
+                scrollTop: error_pos,
+                }, 600
+            );
+
+        // smooth scroll to top
+        } else {
+            $('body,html').animate({
+                scrollTop: 0 ,
+                }, 600
+            );
+        }
+
         setTimeout(delay_two, 600);
         function delay_two() {
 
             // check if there are any errors or empty fields in the current tab
             if ($('.tab--active').find('.fields-error-frame').length > 0) {
-
-                var error_pos = $('.fields-error-frame').first().offset().top - 200;
-
-                //smooth scroll to error
-                $('body,html').animate({
-                    scrollTop: error_pos,
-                    }, 600
-                );
 
             // go to next step if there are no errors
             } else {
@@ -1134,7 +1161,7 @@ $(document).ready(function($) {
                     // check if agbs are checked
                     if ($('#agbs').is(':checked')) {
                         $tab_four.removeClass('tab--inactive');
-                        $tab_four.addClass('tab--active');
+                        $tab_four.addClass('tab--active flip-slow');
                         $tab_three.removeClass('tab--active');
                         $tab_three.addClass('tab--inactive');
 
@@ -1146,12 +1173,6 @@ $(document).ready(function($) {
                         checkAgbs();
                     }
                 }
-
-                //smooth scroll to top
-                $('body,html').animate({
-                    scrollTop: 0 ,
-                    }, 600
-                );
             }
 
             setTimeout(delay_spinner2, 300);

@@ -90,6 +90,7 @@ STYLESHEET: VISIBILITY
     font-weight: bold;
     cursor: pointer;
     display: inline-block;
+    transition: all 0.3s ease-in-out;
 
     &:after {
         content: "";
@@ -99,6 +100,7 @@ STYLESHEET: VISIBILITY
         width: 20px;
         height: 20px;
         background: url('../img/arrow_white.png') no-repeat;
+        transition: all 0.3s ease-in-out;
     }
 
     &.is-shown {
@@ -146,6 +148,20 @@ STYLESHEET: VISIBILITY
 
 .flip {
     @include prefix( animation, flip 0.3s 1 );
+}
+
+@include keyframes(flip-slow) {
+    0% {
+        @include prefix(transform, scale(0), 'webkit' 'ms');
+    } 65% {
+        @include prefix(transform, scale(1.1), 'webkit' 'ms');
+    } 100% {
+        @include prefix(transform, scale(1), 'webkit' 'ms');
+    }
+}
+
+.flip-slow {
+    @include prefix( animation, flip-slow 0.7s 1 );
 }
 
 .rechnung-toggle {

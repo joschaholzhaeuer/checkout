@@ -13,6 +13,7 @@ STYLESHEET: BUTTON
     font-weight: 700;
     box-shadow: 0 0 15px -1px $c-medium;
     cursor: pointer;
+    transition: background 0.2s ease-in-out;
 
     &-change {
         color: $c-medium;

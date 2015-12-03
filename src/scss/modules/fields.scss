@@ -13,6 +13,10 @@ STYLESHEET: FIELDS
         &--inline {
             width: 100%;
         }
+
+        &-agb {
+            padding-bottom: 10px;
+        }
     }
 
     &-heading {
@@ -29,6 +33,7 @@ STYLESHEET: FIELDS
     &-label {
         font-weight: 700;
         margin-left: 30px;
+        transition: all 0.2s ease-in;
 
         &:before {
             content: "";
@@ -55,6 +60,10 @@ STYLESHEET: FIELDS
                 border-radius: 50%;
             }
         }
+
+        &--error {
+            color: $c-error;
+        }
     }
 
     &-text {
@@ -69,9 +78,12 @@ STYLESHEET: FIELDS
         z-index: 30;
         width: 22px;
         height: 22px;
+        transition: all 0.2s ease-in-out;
 
-        &:hover + label:before {
+        &:hover + label:before,
+        &:focus + label:before {
             border: 2px solid $c-alt-light;
+            transition: all 0.2s ease-in-out;
         }
 
         &:checked + label:after {
@@ -94,8 +106,10 @@ STYLESHEET: FIELDS
     &-check {
         @extend .fields-radio;
 
-        &:hover + label:before {
+        &:hover + label:before,
+        &:focus + label:before {
             border: 2px solid $c-alt-light;
+            transition: all 0.2s ease-in-out;
         }
 
         &:checked + label:after {
@@ -133,7 +147,7 @@ STYLESHEET: FIELDS
         }
 
         &-description {
-            color: $c-alt-light;
+            color: $c-base;
             font-weight: 700;
             @include font-size(0.8);
             width: 250px;
@@ -176,6 +190,7 @@ STYLESHEET: FIELDS
             left: 16px;
             top: 15px;
             z-index: 5;
+            transition: all 0.1s ease-out;
 
             &--info {
                 color: $c-medium;
@@ -196,6 +211,7 @@ STYLESHEET: FIELDS
         &-radio,
         &-check {
             position: relative;
+            display: inline-block;
         }
 
         &--prefilled {
@@ -214,6 +230,7 @@ STYLESHEET: FIELDS
         font-weight: 700;
         color: $c-error;
         padding-left: 15px;
+        transition: all 0.2s ease-in-out;
 
         &-frame {
             border: 1px solid $c-error;

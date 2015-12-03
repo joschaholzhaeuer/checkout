@@ -20,6 +20,7 @@ STYLESHEET: BUTTON
         width: 100px;
         position: absolute;
         top: 160px;
+        padding: 10px;
         left: 0;
     }
 
@@ -41,18 +42,38 @@ STYLESHEET: BUTTON
             //background: linear-gradient($c-dark, $c-base);
             background-color: $c-base;
         }
+
+        &:focus {
+            border: 2px solid $c-alt-light;
+        }
     }
 
     &-next {
-        background-color: $c-alt-light;
+        background-color: $c-base;
         //border: 2px solid $c-alt-dark;
         // background: linear-gradient($c-alt-light, $c-alt-dark);
         border-radius: 3px;
         color: $white;
 
         &:hover {
-            background-color: $c-base;
+            // background-color: $c-alt-dark;
             // background: linear-gradient($c-alt-dark, $c-alt-light);
+        }
+
+        &:focus {
+            border: 2px solid $c-alt-light;
+        }
+    }
+
+    &--activated {
+        background-color: $c-alt-light;
+
+        &:hover {
+            background-color: $c-alt-dark;
+        }
+
+        &:focus {
+            border: 2px solid $c-alt-light;
         }
     }
 }

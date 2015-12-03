@@ -8,6 +8,7 @@ STYLESHEET: BOX
     padding-top: 60px;
     position: relative;
     box-shadow: 0 0 15px 5px $c-medium;
+    transition: all 0.2s ease-in-out;
 
     &-overlay {
 
@@ -22,6 +23,7 @@ STYLESHEET: BOX
             right: 0;
             bottom: 0;
             opacity: 0.9;
+            transition: opacity 0.2s ease-in-out;
         }
     }
 
@@ -100,6 +102,7 @@ STYLESHEET: BOX
     }
 
     &-text {
+        transition: all 0.2s ease-in-out;
 
         &-info {
         }

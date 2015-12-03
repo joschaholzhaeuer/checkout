@@ -7,14 +7,19 @@ function showVersandbox() {
 
     var $versandbox = $('.versandbox');
 
-    //smooth scroll to box
-    $('body,html').animate({
-        scrollTop: 500,
-        }, 600
-    );
-
     // show versandbox
     $versandbox.slideDown(400);
+
+    // scroll down after delay
+    setTimeout(delayScroll, 200);
+    function delayScroll() {
+
+        //smooth scroll to box
+        $('body,html').animate({
+            scrollTop: 500,
+            }, 600
+        );
+    }
 }
 
 function adressbox() {
@@ -22,6 +27,7 @@ function adressbox() {
     var $label      = $('.fields-label-check'),
         $val_fields = $('.no-validation-fields'),
         $adressbox  = $('.adressbox'),
+        $icon_check    = $val_fields.siblings('.icon--correct'),
         adressbox_offset = $('.rechnung-toggle').offset().top - 90;
 
     //smooth scroll to box
@@ -43,6 +49,11 @@ function adressbox() {
         $label.addClass('checked');
         $adressbox.slideUp(400);
         $adressbox.addClass('no-validation');
+
+        if ($val_fields.hasClass('input--correct')) {
+            $val_fields.removeClass('input--correct');
+            $icon_check.hide();
+        }
 
         if (!$val_fields.hasClass('no-validation-required')) {
             $val_fields.addClass('no-validation-required');
@@ -66,25 +77,36 @@ function showKreditbox() {
     var $kreditbox = $('.kreditbox'),
         kreditbox_offset = $('.kredit-toggle').offset().top - 100;
 
-    //smooth scroll to box
-    $('body,html').animate({
-        scrollTop: kreditbox_offset,
-        }, 600
-    );
-
     $kreditbox.slideDown(400);
     $kreditbox.removeClass('no-validation');
     $('.no-validation-fields2').removeClass('no-validation-required');
+
+    // scroll down after delay
+    setTimeout(delayScroll2, 200);
+    function delayScroll2() {
+
+        //smooth scroll to box
+        $('body,html').animate({
+            scrollTop: kreditbox_offset,
+            }, 600
+        );
+    }
 
 }
 
 function hideKreditbox() {
 
     var $kreditbox = $('.kreditbox'),
-        $val_fields = $('.no-validation-fields2');
+        $val_fields = $('.no-validation-fields2'),
+        $icon_check = $val_fields.siblings('.icon--correct');
 
     $kreditbox.slideUp(400);
     $kreditbox.addClass('no-validation');
+
+    if ($val_fields.hasClass('input--correct')) {
+        $val_fields.removeClass('input--correct');
+        $icon_check.hide();
+    }
 
     if (!$val_fields.hasClass('no-validation-required')) {
         $val_fields.addClass('no-validation-required');
@@ -112,12 +134,6 @@ function showCheckboxes() {
 
         // show versandbox
         if (!$checkangabenbox.hasClass('dropped')) {
-
-            //smooth scroll to boxes
-            $('body,html').animate({
-                scrollTop: 220,
-                }, 600
-            );
             $checkangabenbox.slideDown(400);
             $checkangabenbox.addClass('dropped');
         }
@@ -130,12 +146,12 @@ function showDankeboxes() {
         $danke_info     = $('.danke-info'),
         $tippsbox       = $('.tippsbox');
 
-    // show additional boxes after delay
-    setTimeout(delayTabClick2, 1000);
-    function delayTabClick2() {
+    // show info
+    $danke_info.fadeIn();
 
-        // show info
-        $danke_info.fadeIn();
+    // show additional boxes after delay
+    setTimeout(delayTabClick2, 2000);
+    function delayTabClick2() {
 
         // show nutzerkontobox
         $nutzerkontobox.slideDown(400);
@@ -146,17 +162,27 @@ function checkAgbs() {
 
     var $agbs = $('#agbs'),
         $fields_check = $('.fields-item-check'),
-        agbs_offset = $agbs.offset().top;
+        agbs_offset = $agbs.offset().top,
+        $agb_label = $agbs.siblings('.fields-label');
 
-    $fields_check.addClass('pulse');
+    $fields_check.addClass('pop-in');
 
-    // show additional boxes after delay
+    if (!$agbs.is(':checked')) {
+
+        $agb_label.addClass('fields-label--error');
+
+    } else {
+
+        if ($agb_label.hasClass('fields-label--error')) {
+            $agb_label.removeClass('fields-label--error');
+        }
+    }
+
     setTimeout(delayAgbCheck, 600);
     function delayAgbCheck() {
 
         // check agbs
-        $agbs.prop('checked', true);
-        $fields_check.removeClass('pulse');
+        $fields_check.removeClass('pop-in');
     }
 }
 
@@ -345,6 +371,63 @@ function checkErrorsNumber($element) {
                 $icon_check.show();
                 $icon_check.addClass('flip');
             }
+        }
+    }
+}
+
+// check street number for errors
+function checkErrorsStreet($element) {
+
+    var $current_field_n = $element,
+        $icon_check      = $current_field_n.siblings('.icon--correct'),
+        entered_input    = $current_field_n.val(),
+        test_text        = /^([A-Zäöüß \-]|[A-Zäöüß \-]+[\.])*$/i;
+
+    // remove check icon
+    $current_field_n.removeClass('input--correct');
+    $icon_check.hide();
+    $icon_check.removeClass('flip');
+
+    // input field was left empty
+    if (entered_input.length === 0) {
+        $current_field_n.addClass('fields-error-frame');
+        $current_field_n.siblings('.fields-item-label').hide();
+        $current_field_n.siblings('.fields-error2').hide();
+        $current_field_n.siblings('.fields-error').show();
+
+    // input was entered
+    } else {
+
+        // if no correct input was entered
+        if (!test_text.test(entered_input)) {
+
+            // show error message for wrong input and hide previous error, if it is still visible
+            if ($current_field_n.hasClass('fields-error-frame')) {
+                $current_field_n.siblings('.fields-error').hide();
+                $current_field_n.siblings('.fields-error2').show();
+
+            // otherwise show error message for wrong input
+            } else {
+                $current_field_n.addClass('fields-error-frame');
+                $current_field_n.siblings('.fields-item-label').hide();
+                $current_field_n.siblings('.fields-error2').show();
+            }
+
+        // user entered a correct input
+        } else {
+
+            // hide error message
+            if ($current_field_n.hasClass('fields-error-frame')) {
+                $current_field_n.removeClass('fields-error-frame');
+                $current_field_n.siblings('.fields-item-label').show();
+                $current_field_n.siblings('.fields-error').hide();
+                $current_field_n.siblings('.fields-error2').hide();
+            }
+
+            // show correct icon
+            $current_field_n.addClass('input--correct');
+            $icon_check.show();
+            $icon_check.addClass('flip');
         }
     }
 }
@@ -606,15 +689,6 @@ function checkErrorsPassword($element) {
     }
 }
 
-// adjust spinner position
-function adjustSpinner() {
-
-    var tab_height = $('.tab--active').outerHeight(),
-        spinner_pos = tab_height/2;
-
-    $('.spinner').css('top', spinner_pos);
-}
-
 
 // update text fields on step3
 function updateText() {
@@ -796,6 +870,45 @@ function updateUserdata() {
 }
 
 
+// change button to green if fields are filled out correctly
+function changeButtonColor() {
+
+    var $tab_active = $('.tab--active'),
+        $tab_button = $tab_active.find('.button-next'),
+        $req_fields = $tab_active.find('.required'),
+        fields_correct = true;
+
+    $req_fields.each(function(index, el) {
+
+        var $current_req = $(this);
+
+        if (!$current_req.hasClass('no-validation-required')) {
+
+            if (!$current_req.hasClass('input--correct')) {
+                fields_correct = false;
+            }
+        }
+    });
+
+    // if tab 3, check for checkbox agbs
+    if ($tab_active.hasClass('tab-three')) {
+
+        if (!$('#agbs').is(':checked')) {
+            fields_correct = false;
+        }
+    }
+
+    // check if there are any errors or empty fields in the current tab
+    if (fields_correct === true) {
+        $tab_button.addClass('button--activated');
+
+    // go to next step if there are no errors
+    } else {
+        $tab_button.removeClass('button--activated');
+    }
+}
+
+
 
 $(document).ready(function($) {
 
@@ -863,7 +976,6 @@ $(document).ready(function($) {
 
         // Show loading spinner on click
         $tab_active.addClass('box-overlay');
-        adjustSpinner();
         $spinner.show();
 
         //check for errors
@@ -882,6 +994,11 @@ $(document).ready(function($) {
                 checkErrorsStreetNumber($(this));
             }
         });
+        $('.fields-street').each(function(index, el) {
+            if (!$(this).hasClass('no-validation-required')) {
+                checkErrorsStreet($(this));
+            }
+        });
         $('.fields-date').each(function(index, el) {
             if (!$(this).hasClass('no-validation-required')) {
                 checkErrorsExpiration($(this));
@@ -896,7 +1013,7 @@ $(document).ready(function($) {
         // smooth scroll to top or to error, if any occured
         if ($('.tab--active').find('.fields-error-frame').length > 0) {
 
-            var error_pos = $('.fields-error-frame').first().offset().top - 200;
+            var error_pos = $('.fields-error-frame').first().offset().top - 300;
 
             //smooth scroll to error
             $('body,html').animate({
@@ -970,6 +1087,7 @@ $(document).ready(function($) {
 
                     // update cart prizes and text on load
                     updateCart();
+                    changeButtonColor();
 
                 // click on tab 3
                 } else if ($clicked_tab.hasClass('step-three') && !$clicked_tab.hasClass('steps-item--active')) {
@@ -995,6 +1113,7 @@ $(document).ready(function($) {
                     updateText();
                     calculateCosts();
                     updateUserdata();
+                    changeButtonColor();
                 }
             }
 
@@ -1025,7 +1144,6 @@ $(document).ready(function($) {
 
         // Show loading spinner on click
         $tab_active.addClass('box-overlay');
-        adjustSpinner();
         $spinner.show();
 
         //check for errors
@@ -1044,6 +1162,11 @@ $(document).ready(function($) {
                 checkErrorsStreetNumber($(this));
             }
         });
+        $('.fields-street').each(function(index, el) {
+            if (!$(this).hasClass('no-validation-required')) {
+                checkErrorsStreet($(this));
+            }
+        });
         $('.fields-date').each(function(index, el) {
             if (!$(this).hasClass('no-validation-required')) {
                 checkErrorsExpiration($(this));
@@ -1058,7 +1181,7 @@ $(document).ready(function($) {
         // smooth scroll to top or to error, if any occured
         if ($('.tab--active').find('.fields-error-frame').length > 0) {
 
-            var error_pos = $('.fields-error-frame').first().offset().top - 200;
+            var error_pos = $('.fields-error-frame').first().offset().top - 300;
 
             //smooth scroll to error
             $('body,html').animate({
@@ -1129,6 +1252,7 @@ $(document).ready(function($) {
 
                     // update cart prizes and text on load
                     updateCart();
+                    changeButtonColor();
 
                 // click on button 3
                 } else if ($clicked_button.hasClass('button-three')) {
@@ -1154,6 +1278,7 @@ $(document).ready(function($) {
                     updateText();
                     calculateCosts();
                     updateUserdata();
+                    changeButtonColor();
 
                 // click on button 4
                 } else if ($clicked_button.hasClass('button-four')) {
@@ -1189,12 +1314,6 @@ $(document).ready(function($) {
     // Animate and switch tabs on button clicks
     $(document).on('click', '.button-prev', function() {
 
-        //smooth scroll to top
-        $('body,html').animate({
-            scrollTop: 0 ,
-            }, 600
-        );
-
         var $clicked_button = $(this),
         $tab_one     = $('.tab-one'),
         $tab_two     = $('.tab-two'),
@@ -1203,6 +1322,37 @@ $(document).ready(function($) {
         $step_one    = $('.step-one'),
         $step_two    = $('.step-two'),
         $step_three  = $('.step-three');
+
+        // click on change button
+        if ($clicked_button.hasClass('button-change--versand')) {
+
+            var versand_offset = $('.versandbox').offset().top - 400;
+
+            //smooth scroll to section
+            $('body,html').animate({
+                scrollTop: versand_offset,
+                }, 600
+            );
+
+        } else if ($clicked_button.hasClass('button-change--bezahlart')) {
+
+            var bezahlungsart_offset = $('.bezahlungsart-rechnung').offset().top - 400;
+
+            //smooth scroll to section
+            $('body,html').animate({
+                scrollTop: bezahlungsart_offset,
+                }, 600
+            );
+
+        // no click on change-button
+        } else {
+
+            //smooth scroll to top
+            $('body,html').animate({
+                scrollTop: 0,
+                }, 600
+            );
+        }
 
         // click on button 1
         if ($clicked_button.hasClass('button-one')) {
@@ -1345,6 +1495,7 @@ $(document).ready(function($) {
             var $trigger = $(this);
 
             adressbox();
+            changeButtonColor();
 
             // Using a timer to prevent multiple clicks
             $trigger.data('isClicked', true);
@@ -1362,6 +1513,7 @@ $(document).ready(function($) {
 
             if (!$('#kreditkarte').is(':checked')) {
                 showKreditbox();
+                changeButtonColor();
             }
 
             // Using a timer to prevent multiple clicks
@@ -1379,6 +1531,7 @@ $(document).ready(function($) {
             var $trigger2 = $(this);
 
             hideKreditbox();
+            changeButtonColor();
 
             // Using a timer to prevent multiple clicks
             $trigger2.data('isClicked', true);
@@ -1419,6 +1572,7 @@ $(document).ready(function($) {
 
         if (!$(this).hasClass('fields-optional') && !$(this).hasClass('no-validation')) {
             checkErrorsInput($(this));
+            changeButtonColor();
         }
     });
 
@@ -1428,6 +1582,7 @@ $(document).ready(function($) {
 
         if (!$(this).hasClass('no-validation')) {
             checkErrorsNumber($(this));
+            changeButtonColor();
         }
     });
 
@@ -1437,6 +1592,17 @@ $(document).ready(function($) {
 
         if (!$(this).hasClass('no-validation')) {
             checkErrorsStreetNumber($(this));
+            changeButtonColor();
+        }
+    });
+
+
+    // Form validation on street fields
+    $(document).on('focusout', '.fields-street', function() {
+
+        if (!$(this).hasClass('no-validation')) {
+            checkErrorsStreet($(this));
+            changeButtonColor();
         }
     });
 
@@ -1446,6 +1612,7 @@ $(document).ready(function($) {
 
         if (!$(this).hasClass('no-validation')) {
             checkErrorsExpiration($(this));
+            changeButtonColor();
         }
     });
 
@@ -1454,6 +1621,7 @@ $(document).ready(function($) {
     $(document).on('focusout', '.fields-password', function() {
 
         checkErrorsPassword($(this));
+        changeButtonColor();
     });
 
 
@@ -1462,7 +1630,21 @@ $(document).ready(function($) {
 
         if (!$(this).hasClass('no-validation')) {
             checkErrorsMail($(this));
+            changeButtonColor();
         }
+    });
+
+
+    // Check button color on click on agbs checkbox
+    $(document).on('click', '#agbs', function() {
+
+        var $agbs = $('#agbs'),
+            $agb_label = $agbs.siblings('.fields-label');
+
+        if ($agb_label.hasClass('fields-label--error')) {
+            $agb_label.removeClass('fields-label--error');
+        }
+        changeButtonColor();
     });
 
 

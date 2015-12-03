@@ -97,18 +97,27 @@ STYLESHEET: VISIBILITY
         display: inline-block;
         position: absolute;
         margin-left: 15px;
+        margin-top: 2px;
         width: 20px;
         height: 20px;
         background: url('../img/arrow_white.png') no-repeat;
         transition: all 0.3s ease-in-out;
     }
+}
 
-    &.is-shown {
+@include keyframes(is-shown) {
+    0% {
+        @include prefix(transform, rotate(0), 'webkit' 'ms');
+    } 100% {
+        @include prefix(transform, rotate(180deg), 'webkit' 'ms');
+    }
+}
 
-        &:after {
-          // @include prefix(transform, rotate(180deg), 'webkit' 'ms');
-          display: none;
-        }
+.is-shown {
+
+    &:after {
+        @include prefix( animation, is-shown 0.3s 1 );
+        @include prefix(transform, rotate(180deg), 'webkit' 'ms');
     }
 }
 
@@ -161,7 +170,21 @@ STYLESHEET: VISIBILITY
 }
 
 .flip-slow {
-    @include prefix( animation, flip-slow 0.7s 1 );
+    @include prefix( animation, flip-slow 0.5s 1 );
+}
+
+@include keyframes(pop-in) {
+    0% {
+        @include prefix(transform, scale(0), 'webkit' 'ms');
+    } 80% {
+        @include prefix(transform, scale(1.05), 'webkit' 'ms');
+    } 100% {
+        @include prefix(transform, scale(1), 'webkit' 'ms');
+    }
+}
+
+.pop-in {
+    @include prefix( animation, pop-in 0.5s 1 );
 }
 
 .rechnung-toggle {
@@ -176,7 +199,7 @@ STYLESHEET: VISIBILITY
 .spinner {
     width: 70px;
     text-align: center;
-    position: absolute;
+    position: fixed;
     z-index: 180;
     top: 400px;
     left: 50%;

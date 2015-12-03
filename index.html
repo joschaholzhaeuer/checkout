@@ -44,14 +44,14 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--half fields-item--left fl-s">
-                                        <input class="fields-input fields-item-frame lieferadresse-name" type="text" name="name1" maxlength="30">
+                                        <input class="fields-input fields-item-frame lieferadresse-name required" type="text" name="name1" maxlength="30" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="name1">Vorname</label>
                                         <span class="fields-error">Bitte geben Sie einen Vornamen ein.</span>
                                         <span class="fields-error2">Ihr Vorname sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
                                     </div>
                                     <div class="fields-item fields-item--half fields-item--right fl-s">
-                                        <input class="fields-input fields-item-frame lieferadresse-surname" type="text" name="surname1" maxlength="30">
+                                        <input class="fields-input fields-item-frame lieferadresse-surname required" type="text" name="surname1" maxlength="30" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="surname1">Nachname</label>
                                         <span class="fields-error">Bitte geben Sie einen Nachnamen ein.</span>
                                         <span class="fields-error2">Ihr Nachname sollte nicht aus Ziffern bestehen.</span>
@@ -59,19 +59,19 @@
                                     </div>
                                 </div>
                                 <div class="fields-item fields-item--left fields-item--long">
-                                    <input class="fields-input fields-item-frame fields-optional" type="text" name="company1" maxlength="40">
+                                    <input class="fields-input fields-item-frame fields-optional" type="text" name="company1" maxlength="40" autocomplete="off">
                                     <label class="fields-item-label fields-item-placeholder fields-item-optional" for="company1">Firma (optional)</label>
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left fl-s">
-                                        <input class="fields-input fields-item-frame lieferadresse-street" type="text" name="street1" maxlength="40">
+                                        <input class="fields-street fields-item-frame lieferadresse-street required" type="text" name="street1" maxlength="40" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="street1">Straße</label>
                                         <span class="fields-error">Bitte geben Sie eine Straße an.</span>
                                         <span class="fields-error2">Die Straße sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right fl-s">
-                                        <input class="fields-streetnumber fields-item-frame lieferadresse-number" type="text" name="number1" maxlength="10">
+                                        <input class="fields-streetnumber fields-item-frame lieferadresse-number required" type="text" name="number1" maxlength="10" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="number1">Nr.</label>
                                         <span class="fields-error">Bitte geben Sie eine Nummer an.</span>
                                         <span class="fields-error2">Haben Sie eine Nummer angegeben?</span>
@@ -79,19 +79,19 @@
                                     </div>
                                 </div>
                                 <div class="fields-item fields-item--left fields-item--long">
-                                    <input class="fields-input fields-item-frame fields-optional" type="text" name="additional1" maxlength="40">
+                                    <input class="fields-input fields-item-frame fields-optional" type="text" name="additional1" maxlength="40" autocomplete="off">
                                     <label class="fields-item-label fields-item-placeholder fields-item-optional" for="additional1">Zusatz (optional)</label>
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left fl-s">
-                                        <input class="fields-input fields-item-frame lieferadresse-city" type="text" name="city1" maxlength="40">
+                                        <input class="fields-input fields-item-frame lieferadresse-city required" type="text" name="city1" maxlength="40" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="city1">Ort</label>
                                         <span class="fields-error">Bitte geben Sie einen Ort an.</span>
                                         <span class="fields-error2">Der Ort sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right fl-s">
-                                        <input class="fields-number fields-item-frame lieferadresse-plz" type="text" name="plz1" data-validation="min5" maxlength="5">
+                                        <input class="fields-number fields-item-frame lieferadresse-plz required" type="text" name="plz1" data-validation="min5" maxlength="5" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="plz1">Postleitzahl</label>
                                         <span class="fields-error">Bitte geben Sie eine Postleitzahl an.</span>
                                         <span class="fields-error2">Die PLZ sollte aus 5 Ziffern bestehen.</span>
@@ -102,6 +102,8 @@
                                     <select class="fields-item-frame fields-item-frame--select" name="country1">
                                         <option value="">Deutschland</option>
                                         <option value="">Schweiz</option>
+                                        <option value="">Österreich</option>
+                                        <option value="">Liechtenstein</option>
                                     </select>
                                     <label class="label--fixed" for="country1">Land</label>
                                 </div>
@@ -109,7 +111,7 @@
                             <div class="fields-section">
                                 <h3 class="fields-heading">Kontakt</h3>
                                 <div class="fields-item fields-item--left fields-item--long">
-                                    <input class="fields-mail fields-item-frame kontakt-toggle lieferadresse-mail" type="text" name="mail1" maxlength="45">
+                                    <input class="fields-mail fields-item-frame kontakt-toggle lieferadresse-mail required" type="text" name="mail1" maxlength="45" autocomplete="off">
                                     <label class="fields-item-label fields-item-placeholder" for="mail1">E-Mail</label>
                                     <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">max.mustermax@gmail.com</span>
                                     <span class="fields-error">Bitte geben Sie eine E-Mail-Adresse an.</span>
@@ -175,7 +177,7 @@
                 </div>
 
                 <div class="button-wrapper clearfix">
-                    <div class="button button-next button-two lastitem fr">Weiter zur Bezahlungsart</div>
+                    <a class="button button-next button-two lastitem fr">Weiter zur Bezahlungsart</a>
                 </div>
             </div>
 
@@ -209,14 +211,14 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--half fields-item--left--dark fl-s">
-                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-name" type="text" name="name2" maxlength="30">
+                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-name required" type="text" name="name2" maxlength="30" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="name2">Vorname</label>
                                         <span class="fields-error">Bitte geben Sie einen Vornamen ein.</span>
                                         <span class="fields-error2">Ihr Vorname sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
                                     </div>
                                     <div class="fields-item fields-item--half fields-item--right--dark fl-s">
-                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-surname" type="text" name="surname2" maxlength="30">
+                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-surname required" type="text" name="surname2" maxlength="30" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="surname2">Nachname</label>
                                         <span class="fields-error">Bitte geben Sie einen Nachnamen ein.</span>
                                         <span class="fields-error2">Ihr Nachname sollte nicht aus Ziffern bestehen.</span>
@@ -224,19 +226,19 @@
                                     </div>
                                 </div>
                                 <div class="fields-item fields-item--left--dark fields-item--long">
-                                    <input class="fields-input fields-item-frame fields-optional no-validation-fields no-validation-required" type="text" name="company2" maxlength="40">
+                                    <input class="fields-input fields-item-frame fields-optional no-validation-fields no-validation-required" type="text" name="company2" maxlength="40" autocomplete="off">
                                     <label class="fields-item-label fields-item-placeholder fields-item-optional" for="company2">Firma (optional)</label>
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left--dark fl-s">
-                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-street" type="text" name="street2" maxlength="40">
+                                        <input class="fields-street fields-item-frame no-validation-fields no-validation-required rechnungsadresse-street required" type="text" name="street2" maxlength="40" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="street2">Straße</label>
                                         <span class="fields-error">Bitte geben Sie eine Straße an.</span>
                                         <span class="fields-error2">Die Straße sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right--dark fl-s">
-                                        <input class="fields-streetnumber fields-item-frame no-validation-fields no-validation-required rechnungsadresse-number" type="text" name="number2" maxlength="10">
+                                        <input class="fields-streetnumber fields-item-frame no-validation-fields no-validation-required rechnungsadresse-number required" type="text" name="number2" maxlength="10" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="number2">Nr.</label>
                                         <span class="fields-error">Bitte geben Sie eine Nummer an.</span>
                                         <span class="fields-error2">Haben Sie eine Nummer angegeben?</span>
@@ -244,19 +246,19 @@
                                     </div>
                                 </div>
                                 <div class="fields-item fields-item--left--dark fields-item--long">
-                                    <input class="fields-input fields-item-frame fields-optional no-validation-fields no-validation-required" type="text" name="additional2">
+                                    <input class="fields-input fields-item-frame fields-optional no-validation-fields no-validation-required" type="text" name="additional2" autocomplete="off">
                                     <label class="fields-item-label fields-item-placeholder fields-item-optional" for="additional2">Zusatz (optional)</label>
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left--dark fl-s">
-                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-city" type="text" name="city2" maxlength="40">
+                                        <input class="fields-input fields-item-frame no-validation-fields no-validation-required rechnungsadresse-city required" type="text" name="city2" maxlength="40" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="city2">Ort</label>
                                         <span class="fields-error">Bitte geben Sie einen Ort an.</span>
                                         <span class="fields-error2">Der Ort sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right--dark fl-s">
-                                        <input class="fields-number fields-item-frame no-validation-fields no-validation-required rechnungsadresse-plz" type="text" name="plz2" data-validation="min5" maxlength="5">
+                                        <input class="fields-number fields-item-frame no-validation-fields no-validation-required rechnungsadresse-plz required" type="text" name="plz2" data-validation="min5" maxlength="5" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="plz2">Postleitzahl</label>
                                         <span class="fields-error">Bitte geben Sie eine Postleitzahl an.</span>
                                         <span class="fields-error2">Die PLZ sollte aus 5 Ziffern bestehen.</span>
@@ -267,6 +269,8 @@
                                     <select class="fields-item-frame fields-item-frame--select" name="country2">
                                         <option value="">Deutschland</option>
                                         <option value="">Schweiz</option>
+                                        <option value="">Österreich</option>
+                                        <option value="">Liechtenstein</option>
                                     </select>
                                     <label class="label--fixed" for="country2">Land</label>
                                 </div>
@@ -289,15 +293,19 @@
                                     <input id="paypal" class="fields-radio kredit-toggle--off bezahlungsart-paypal" type="radio" name="bezahlart">
                                     <label class="fields-label fields-label-radio kredit-toggle--off" for="paypal">PayPal</label>
                                 </div>
-                                <img class="fields-img" src="dist/img/paypal.png" alt="PayPal Logo">
+                                <div class="db">
+                                    <img class="fields-img" src="dist/img/paypal.png" alt="PayPal Logo">
+                                </div>
                             </div>
                             <div class="fields-section">
                                 <div class="fields-item-radio">
                                     <input id="kreditkarte" class="fields-radio kredit-toggle bezahlungsart-kreditkarte" type="radio" name="bezahlart">
                                     <label class="fields-label fields-label-radio kredit-toggle" for="kreditkarte">Kreditkarte</label>
                                 </div>
-                                <img class="fields-img" src="dist/img/visa.png" alt="VISA Logo">
-                                <img class="fields-img" src="dist/img/mastercard.png" alt="MasterCard Logo">
+                                <div class="db">
+                                    <img class="fields-img" src="dist/img/visa.png" alt="VISA Logo">
+                                    <img class="fields-img" src="dist/img/mastercard.png" alt="MasterCard Logo">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -310,7 +318,7 @@
                             <div class="fields fields-section">
                                 <div class="clearfix">
                                     <div class="fields-item fields-item--half fl-s">
-                                        <input class="fields-number fields-item-frame no-validation-fields2 no-validation-required" type="text" name="cardnumber" data-validation="min16" maxlength="16">
+                                        <input class="fields-number fields-item-frame no-validation-fields2 no-validation-required required" type="text" name="cardnumber" data-validation="min16" maxlength="16" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="cardnumber">Kreditkartennummer</label>
                                         <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">1234123412341234</span>
                                         <span class="fields-error">Bitte geben Sie die Kreditkartennummer an.</span>
@@ -322,7 +330,7 @@
                                 </div>
                                 <div class="clearfix">
                                     <div class="fields-item fields-item--half fl-s">
-                                        <input class="fields-number fields-item-frame no-validation-fields2 no-validation-required" type="text" name="code" data-validation="min3" maxlength="3">
+                                        <input class="fields-number fields-item-frame no-validation-fields2 no-validation-required required" type="text" name="code" data-validation="min3" maxlength="3" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="code">Sicherheitscode</label>
                                         <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">123</span>
                                         <span class="fields-error">Bitte geben Sie den Sicherheitscode an.</span>
@@ -334,7 +342,7 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--half">
-                                        <input class="fields-date fields-item-frame no-validation-fields2 no-validation-required" type="text" name="valid" maxlength="5">
+                                        <input class="fields-date fields-item-frame no-validation-fields2 no-validation-required required" type="text" name="valid" maxlength="5" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="valid">Gültig bis</label>
                                         <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">MM/JJ</span>
                                         <span class="fields-error">Bitte geben Sie das Gültigkeitsdatum an.</span>
@@ -381,8 +389,8 @@
                 </div>
 
                 <div class="button-wrapper clearfix">
-                    <div class="button button-one button-prev">Zurück zu den Lieferangaben</div>
-                    <div class="button button-three button-next lastitem">Weiter zur Überprüfung</div>
+                    <a class="button button-one button-prev">Zurück zu den Lieferangaben</a>
+                    <a class="button button-three button-next lastitem">Weiter zur Überprüfung</a>
                 </div>
             </div>
             <div class="tab tab-three tab--inactive">
@@ -399,7 +407,7 @@
                                 <p class="box-text lastitem change-lieferadresse-name">Max Mustermax</p>
                                 <p class="box-text lastitem firstitem change-lieferadresse-street">Mäxchenstraße 13</p>
                                 <p class="box-text lastitem firstitem change-lieferadresse-city">78120 Maxhausen</p>
-                                <div class="button button-prev button-one button-change">Ändern</div>
+                                <a class="button button-prev button-one button-change">Ändern</a>
                             </div>
                             <div class="fields-section clearfix fl fields-section--inline">
                                 <h3 class="box-section-heading">Rechnungsadresse</h3>
@@ -407,25 +415,25 @@
                                 <p class="box-text lastitem change-rechnungsadresse-name is-hidden">Max Mustermax</p>
                                 <p class="box-text lastitem firstitem change-rechnungsadresse-street is-hidden">Mäxchenstraße 13</p>
                                 <p class="box-text lastitem firstitem change-rechnungsadresse-city is-hidden">78120 Maxhausen</p>
-                                <div class="button button-prev button-two button-change">Ändern</div>
+                                <a class="button button-prev button-two button-change">Ändern</a>
                             </div>
                             <div class="fields-section clearfix fl fields-section--inline">
                                 <h3 class="box-section-heading">Bezahlungsart</h3>
                                 <p class="box-text lastitem change-bezahlungsart">auf Rechnung</p>
-                                <div class="button button-prev button-two button-change">Ändern</div>
+                                <a class="button button-prev button-two button-change button-change--bezahlart">Ändern</a>
                             </div>
                             <div class="fields-section clearfix fl fields-section--inline lastitem">
                                 <h3 class="box-section-heading">Versandart</h3>
                                 <p class="box-text lastitem change-versandart">Standardversand</p>
-                                <div class="button button-prev button-one button-change">Ändern</div>
+                                <a class="button button-prev button-one button-change button-change--versand">Ändern</a>
                             </div>
                         </div>
                     </div>
                     <div class="box-section checkangabenbox">
                         <div class="fields">
-                            <div class="fields-section">
+                            <div class="fields-section fields-section-agb">
                                 <div class="fields-item-check">
-                                    <input id="agbs" class="fields-check" type="checkbox" name="adresse" checked>
+                                    <input id="agbs" class="fields-check" type="checkbox" name="adresse">
                                     <label class="fields-label fields-label-check fields-label--aligned" for="agbs">Ich habe die Datenschutzhinweise und die Allgemeinen Geschäftsbedingungen zur Kenntnis genommen.</label>
                                 </div>
                             </div>
@@ -507,8 +515,8 @@
                 </div>
 
                 <div class="button-wrapper clearfix checkangabenbox">
-                    <div class="button button-two button-prev">Zurück zur Bezahlungsart</div>
-                    <div class="button button-four button-next lastitem">Zahlungspflichtig bestellen</div>
+                    <a class="button button-two button-prev">Zurück zur Bezahlungsart</a>
+                    <a class="button button-four button-next lastitem">Zahlungspflichtig bestellen</a>
                 </div>
             </div>
 
@@ -516,7 +524,7 @@
 
                 <div class="box no-pt">
                     <div class="heading box-section">
-                        <h2 class="heading--full">Vielen Dank für Ihre Bestellung!</h2>
+                        <h2 class="heading--full">Ihre Bestellung war erfolgreich! Vielen Dank!</h2>
                         <p class="box-text danke-info">Was passiert als Nächstes?</p>
                     </div>
                     <div class="box-section box-section-icon box-section-icon--light clearfix tippsbox">
@@ -537,14 +545,14 @@
                             <div class="fields-section">
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--half fields-item--left--dark fl-s">
-                                        <input class="fields-input fields-item-frame prefilled-name" type="text" name="username" maxlength="40">
+                                        <input class="fields-input fields-item-frame prefilled-name" type="text" name="username" maxlength="40" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder label--fixed" for="username">Nutzername</label>
                                         <span class="fields-error">Bitte geben Sie einen Nutzernamen ein.</span>
                                         <span class="fields-error2">Ihr Nutzername sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct icon--precorrect"></span>
                                     </div>
                                     <div class="fields-item fields-item--half fields-item--right--dark fl-s">
-                                        <input class="fields-mail fields-item-frame prefilled-mail" type="text" name="mail2" maxlength="45">
+                                        <input class="fields-mail fields-item-frame prefilled-mail" type="text" name="mail2" maxlength="45" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder label--fixed" for="mail2">E-Mail</label>
                                         <span class="fields-error">Bitte geben Sie eine E-Mail-Adresse an.</span>
                                         <span class="fields-error2">Bitte geben Sie eine gültige E-Mail-Adresse an.</span>
@@ -553,7 +561,7 @@
                                 </div>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--half fields-item--left--dark fl-s">
-                                        <input class="fields-password fields-item-frame" type="password" name="password" maxlength="35">
+                                        <input class="fields-password fields-item-frame" type="password" name="password" maxlength="35" autocomplete="off">
                                         <label class="fields-item-label fields-item-placeholder" for="password">Passwort</label>
                                         <span class="fields-error">Bitte geben Sie ein Passwort ein.</span>
                                         <span class="icon--correct"></span>
@@ -566,11 +574,11 @@
                             </div>
                             <div class="fields-section">
                                 <div class="fields-item-check">
-                                    <input id="newsletter" class="fields-check" type="checkbox" name="newsletter" checked>
+                                    <input id="newsletter" class="fields-check" type="checkbox" name="newsletter">
                                     <label class="fields-label fields-label-check" for="newsletter">Ich möchte über Neuigkeiten und spezielle Angebote informiert werden</label>
                                 </div>
                                 <div class="fields-item-check mt">
-                                    <input id="agb" class="fields-check" type="checkbox" name="agb" checked>
+                                    <input id="agb" class="fields-check" type="checkbox" name="agb">
                                     <label class="fields-label fields-label-check" for="agb">Ich akzeptiere die Datenschutzhinweise und die Allgemeinen Geschäftsbedingungen</label>
                                 </div>
                             </div>

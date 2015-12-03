@@ -14,6 +14,7 @@ STYLESHEET: BUTTON
     box-shadow: 0 0 15px -1px $c-medium;
     cursor: pointer;
     transition: background 0.2s ease-in-out;
+    border: 0;
 
     &-change {
         color: $c-medium;
@@ -27,6 +28,11 @@ STYLESHEET: BUTTON
     &-wrapper {
         width: 100%;
         margin-top: 30px;
+
+        &--ende {
+            text-align: center;
+            margin-top: 100px;
+        }
     }
 
     &-prev {
@@ -42,10 +48,6 @@ STYLESHEET: BUTTON
             //background: linear-gradient($c-dark, $c-base);
             background-color: $c-base;
         }
-
-        &:focus {
-            border: 2px solid $c-alt-light;
-        }
     }
 
     &-next {
@@ -59,10 +61,6 @@ STYLESHEET: BUTTON
             // background-color: $c-alt-dark;
             // background: linear-gradient($c-alt-dark, $c-alt-light);
         }
-
-        &:focus {
-            border: 2px solid $c-alt-light;
-        }
     }
 
     &--activated {
@@ -71,10 +69,11 @@ STYLESHEET: BUTTON
         &:hover {
             background-color: $c-alt-dark;
         }
+    }
 
-        &:focus {
-            border: 2px solid $c-alt-light;
-        }
+    &-final {
+        float: none;
+        text-align: center;
     }
 }
 

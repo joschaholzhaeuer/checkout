@@ -147,7 +147,7 @@ STYLESHEET: FIELDS
         }
 
         &-description {
-            color: $c-base;
+            color: $c-alt-light;
             font-weight: 700;
             @include font-size(0.8);
             width: 250px;

@@ -75,7 +75,7 @@ function adressbox() {
 function showKreditbox() {
 
     var $kreditbox = $('.kreditbox'),
-        kreditbox_offset = $('.kredit-toggle').offset().top - 100;
+        kreditbox_offset = $('.kredit-toggle').offset().top - 280;
 
     $kreditbox.slideDown(400);
     $kreditbox.removeClass('no-validation');
@@ -178,11 +178,61 @@ function checkAgbs() {
         }
     }
 
-    setTimeout(delayAgbCheck, 600);
+    setTimeout(delayAgbCheck, 1000);
     function delayAgbCheck() {
 
         // check agbs
         $fields_check.removeClass('pop-in');
+    }
+}
+
+function checkKontoCheckboxes() {
+
+    var $agb = $('#agb'),
+        $news = $('#newsletter'),
+        $agb_label = $agb.siblings('.fields-label'),
+        $news_label = $news.siblings('.fields-label'),
+        $agb_parent = $agb.parent(),
+        $news_parent = $news.parent();
+
+    setTimeout(delayKonto, 600);
+    function delayKonto() {
+
+        if (!$agb.is(':checked')) {
+
+            $agb_parent.addClass('pop-in');
+            $agb_label.addClass('fields-label--error');
+
+        } else {
+
+            if ($agb_label.hasClass('fields-label--error')) {
+                $agb_label.removeClass('fields-label--error');
+            }
+        }
+
+        if (!$news.is(':checked')) {
+
+            $news_parent.addClass('pop-in');
+            $news_label.addClass('fields-label--error');
+
+        } else {
+
+            if ($news_label.hasClass('fields-label--error')) {
+                $news_label.removeClass('fields-label--error');
+            }
+        }
+    }
+
+    setTimeout(delayKonto2, 1200);
+    function delayKonto2() {
+
+        if ($agb_parent.hasClass('pop-in')) {
+            $agb_parent.removeClass('pop-in');
+        }
+
+        if ($news_parent.hasClass('pop-in')) {
+            $news_parent.removeClass('pop-in');
+        }
     }
 }
 
@@ -896,6 +946,13 @@ function changeButtonColor() {
         if (!$('#agbs').is(':checked')) {
             fields_correct = false;
         }
+
+    // if tab 4, check for news and agbs
+    } else if ($tab_active.hasClass('tab-four')) {
+
+        if (!$('#newsletter').is(':checked') || !$('#agb').is(':checked')) {
+            fields_correct = false;
+        }
     }
 
     // check if there are any errors or empty fields in the current tab
@@ -1064,6 +1121,9 @@ $(document).ready(function($) {
                     // update cart prizes and text on load
                     updateCart();
 
+                    // change url
+                    window.history.pushState('obj', 'lieferadresse', '/checkout/lieferadresse.html');
+
                 // click on tab 2
                 } else if ($clicked_tab.hasClass('step-two') && !$clicked_tab.hasClass('steps-item--active')) {
                     $tab_two.removeClass('tab--inactive');
@@ -1088,6 +1148,10 @@ $(document).ready(function($) {
                     // update cart prizes and text on load
                     updateCart();
                     changeButtonColor();
+
+                    // change url
+                    window.history.pushState('obj', 'bezahlungsart', '/checkout/bezahlungsart.html');
+                    // return false;
 
                 // click on tab 3
                 } else if ($clicked_tab.hasClass('step-three') && !$clicked_tab.hasClass('steps-item--active')) {
@@ -1114,6 +1178,9 @@ $(document).ready(function($) {
                     calculateCosts();
                     updateUserdata();
                     changeButtonColor();
+
+                    // change url
+                    window.history.pushState('obj', 'ueberpruefung', '/checkout/ueberpruefung.html');
                 }
             }
 
@@ -1229,6 +1296,9 @@ $(document).ready(function($) {
                     // update cart prizes and text on load
                     updateCart();
 
+                    // change url
+                    window.history.pushState('obj', 'lieferadresse', '/checkout/lieferadresse.html');
+
                 // click on button 2
                 } else if ($clicked_button.hasClass('button-two')) {
                     $tab_two.removeClass('tab--inactive');
@@ -1253,6 +1323,9 @@ $(document).ready(function($) {
                     // update cart prizes and text on load
                     updateCart();
                     changeButtonColor();
+
+                    // change url
+                    window.history.pushState('obj', 'bezahlungsart', '/checkout/bezahlungsart.html');
 
                 // click on button 3
                 } else if ($clicked_button.hasClass('button-three')) {
@@ -1280,6 +1353,9 @@ $(document).ready(function($) {
                     updateUserdata();
                     changeButtonColor();
 
+                    // change url
+                    window.history.pushState('obj', 'ueberpruefung', '/checkout/ueberpruefung.html');
+
                 // click on button 4
                 } else if ($clicked_button.hasClass('button-four')) {
 
@@ -1294,6 +1370,10 @@ $(document).ready(function($) {
 
                         // show additional boxes
                         showDankeboxes();
+
+                        // change url
+                        window.history.pushState('obj', 'erfolgreich', '/checkout/erfolgreich.html');
+
                     } else {
                         checkAgbs();
                     }
@@ -1378,6 +1458,12 @@ $(document).ready(function($) {
                 $step_two.removeClass('steps-item--done');
             }
 
+            // update cart prizes and text on load
+            updateCart();
+
+            // change url
+            window.history.pushState('obj', 'lieferadresse', '/checkout/lieferadresse.html');
+
         // click on button 2
         } else if ($clicked_button.hasClass('button-two')) {
             $tab_two.removeClass('tab--inactive');
@@ -1398,6 +1484,12 @@ $(document).ready(function($) {
             if ($step_two.hasClass('steps-item--done')) {
                 $step_two.removeClass('steps-item--done');
             }
+
+            // update cart prizes and text on load
+            updateCart();
+
+            // change url
+            window.history.pushState('obj', 'bezahlungsart', '/checkout/bezahlungsart.html');
         }
 
         checkStep();
@@ -1645,6 +1737,17 @@ $(document).ready(function($) {
             $agb_label.removeClass('fields-label--error');
         }
         changeButtonColor();
+    });
+
+
+    // Prevent button click if checkboxes agb and news are not checked
+    $(document).on('click', '.button-last', function(event) {
+
+        if (!$('#newsletter').is(':checked') || !$('#agb').is(':checked')) {
+            event.preventDefault();
+            checkErrorsPassword($('.fields-password'));
+            checkKontoCheckboxes();
+        }
     });
 
 

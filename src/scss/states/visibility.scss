@@ -187,6 +187,40 @@ STYLESHEET: VISIBILITY
     @include prefix( animation, pop-in 0.5s 1 );
 }
 
+@include keyframes(shake) {
+    0% {
+        @include prefix(transform, translateX(0), 'webkit' 'ms');
+    } 8% {
+        @include prefix(transform, translateX(-10px), 'webkit' 'ms');
+    } 16% {
+        @include prefix(transform, translateX(0), 'webkit' 'ms');
+    } 24% {
+        @include prefix(transform, translateX(10px), 'webkit' 'ms');
+    } 32% {
+        @include prefix(transform, translateX(0), 'webkit' 'ms');
+    } 40% {
+        @include prefix(transform, translateX(-10px), 'webkit' 'ms');
+    } 48% {
+        @include prefix(transform, translateX(0), 'webkit' 'ms');
+    } 56% {
+        @include prefix(transform, translateX(10px), 'webkit' 'ms');
+    } 64% {
+        @include prefix(transform, translateX(0), 'webkit' 'ms');
+    } 72% {
+        @include prefix(transform, translateX(-10px), 'webkit' 'ms');
+    } 80% {
+        @include prefix(transform, translateX(0), 'webkit' 'ms');
+    } 88% {
+        @include prefix(transform, translateX(10px), 'webkit' 'ms');
+    } 100% {
+        @include prefix(transform, translateX(0), 'webkit' 'ms');
+    }
+}
+
+.shake {
+    @include prefix( animation, shake 0.4s 1 );
+}
+
 .rechnung-toggle {
     z-index: 30;
     display: inline;

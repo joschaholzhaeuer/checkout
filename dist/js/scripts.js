@@ -189,11 +189,8 @@ function checkAgbs() {
 function checkKontoCheckboxes() {
 
     var $agb = $('#agb'),
-        $news = $('#newsletter'),
         $agb_label = $agb.siblings('.fields-label'),
-        $news_label = $news.siblings('.fields-label'),
-        $agb_parent = $agb.parent(),
-        $news_parent = $news.parent();
+        $agb_parent = $agb.parent();
 
     setTimeout(delayKonto, 600);
     function delayKonto() {
@@ -209,18 +206,6 @@ function checkKontoCheckboxes() {
                 $agb_label.removeClass('fields-label--error');
             }
         }
-
-        if (!$news.is(':checked')) {
-
-            $news_parent.addClass('pop-in');
-            $news_label.addClass('fields-label--error');
-
-        } else {
-
-            if ($news_label.hasClass('fields-label--error')) {
-                $news_label.removeClass('fields-label--error');
-            }
-        }
     }
 
     setTimeout(delayKonto2, 1200);
@@ -228,10 +213,6 @@ function checkKontoCheckboxes() {
 
         if ($agb_parent.hasClass('pop-in')) {
             $agb_parent.removeClass('pop-in');
-        }
-
-        if ($news_parent.hasClass('pop-in')) {
-            $news_parent.removeClass('pop-in');
         }
     }
 }
@@ -950,7 +931,7 @@ function changeButtonColor() {
     // if tab 4, check for news and agbs
     } else if ($tab_active.hasClass('tab-four')) {
 
-        if (!$('#newsletter').is(':checked') || !$('#agb').is(':checked')) {
+        if (!$('#agb').is(':checked')) {
             fields_correct = false;
         }
     }
@@ -1072,7 +1053,7 @@ $(document).ready(function($) {
 
             var error_pos = $('.fields-error-frame').first().offset().top - 300;
 
-            //smooth scroll to error
+            // smooth scroll to error
             $('body,html').animate({
                 scrollTop: error_pos,
                 }, 600
@@ -1091,6 +1072,9 @@ $(document).ready(function($) {
 
             // check if there are any errors or empty fields in the current tab
             if ($('.tab--active').find('.fields-error-frame').length > 0) {
+
+                // shake box
+                $tab_active.addClass('shake');
 
             // go to next step if there are no errors
             } else {
@@ -1122,7 +1106,7 @@ $(document).ready(function($) {
                     updateCart();
 
                     // change url
-                    window.history.pushState('obj', 'lieferadresse', '/checkout/lieferadresse.html');
+                    window.history.pushState('obj', 'lieferadresse', '/~holzhaeu/thesis_prototyp/checkout/lieferadresse.html');
 
                 // click on tab 2
                 } else if ($clicked_tab.hasClass('step-two') && !$clicked_tab.hasClass('steps-item--active')) {
@@ -1150,8 +1134,8 @@ $(document).ready(function($) {
                     changeButtonColor();
 
                     // change url
-                    window.history.pushState('obj', 'bezahlungsart', '/checkout/bezahlungsart.html');
-                    // return false;
+                    window.history.pushState('obj', 'bezahlungsart', '/~holzhaeu/thesis_prototyp/checkout/bezahlungsart.html');
+                    // document.location.hash = "bezahlungsart";
 
                 // click on tab 3
                 } else if ($clicked_tab.hasClass('step-three') && !$clicked_tab.hasClass('steps-item--active')) {
@@ -1180,7 +1164,7 @@ $(document).ready(function($) {
                     changeButtonColor();
 
                     // change url
-                    window.history.pushState('obj', 'ueberpruefung', '/checkout/ueberpruefung.html');
+                    window.history.pushState('obj', 'ueberpruefung', '/~holzhaeu/thesis_prototyp/checkout/ueberpruefung.html');
                 }
             }
 
@@ -1190,6 +1174,11 @@ $(document).ready(function($) {
                 $tab_active.removeClass('box-overlay');
                 $spinner.hide();
                 checkStep();
+            }
+
+            setTimeout(delay_shake, 1000);
+            function delay_shake() {
+                $tab_active.removeClass('shake');
             }
         }
     });
@@ -1270,6 +1259,9 @@ $(document).ready(function($) {
             // check if there are any errors or empty fields in the current tab
             if ($('.tab--active').find('.fields-error-frame').length > 0) {
 
+                // shake box
+                $tab_active.addClass('shake');
+
             // go to next step if there are no errors
             } else {
 
@@ -1297,7 +1289,7 @@ $(document).ready(function($) {
                     updateCart();
 
                     // change url
-                    window.history.pushState('obj', 'lieferadresse', '/checkout/lieferadresse.html');
+                    window.history.pushState('obj', 'lieferadresse', '/~holzhaeu/thesis_prototyp/checkout/lieferadresse.html');
 
                 // click on button 2
                 } else if ($clicked_button.hasClass('button-two')) {
@@ -1325,7 +1317,7 @@ $(document).ready(function($) {
                     changeButtonColor();
 
                     // change url
-                    window.history.pushState('obj', 'bezahlungsart', '/checkout/bezahlungsart.html');
+                    window.history.pushState('obj', 'bezahlungsart', '/~holzhaeu/thesis_prototyp/checkout/bezahlungsart.html');
 
                 // click on button 3
                 } else if ($clicked_button.hasClass('button-three')) {
@@ -1354,7 +1346,7 @@ $(document).ready(function($) {
                     changeButtonColor();
 
                     // change url
-                    window.history.pushState('obj', 'ueberpruefung', '/checkout/ueberpruefung.html');
+                    window.history.pushState('obj', 'ueberpruefung', '/~holzhaeu/thesis_prototyp/checkout/ueberpruefung.html');
 
                 // click on button 4
                 } else if ($clicked_button.hasClass('button-four')) {
@@ -1372,10 +1364,13 @@ $(document).ready(function($) {
                         showDankeboxes();
 
                         // change url
-                        window.history.pushState('obj', 'erfolgreich', '/checkout/erfolgreich.html');
+                        window.history.pushState('obj', 'erfolgreich', '/~holzhaeu/thesis_prototyp/checkout/erfolgreich.html');
 
                     } else {
                         checkAgbs();
+
+                        // shake box
+                        $tab_active.addClass('shake');
                     }
                 }
             }
@@ -1386,6 +1381,11 @@ $(document).ready(function($) {
                 $tab_active.removeClass('box-overlay');
                 $spinner.hide();
                 checkStep();
+            }
+
+            setTimeout(delay_shake2, 1000);
+            function delay_shake2() {
+                $tab_active.removeClass('shake');
             }
         }
     });
@@ -1462,7 +1462,7 @@ $(document).ready(function($) {
             updateCart();
 
             // change url
-            window.history.pushState('obj', 'lieferadresse', '/checkout/lieferadresse.html');
+            window.history.pushState('obj', 'lieferadresse', '/~holzhaeu/thesis_prototyp/checkout/lieferadresse.html');
 
         // click on button 2
         } else if ($clicked_button.hasClass('button-two')) {
@@ -1489,7 +1489,7 @@ $(document).ready(function($) {
             updateCart();
 
             // change url
-            window.history.pushState('obj', 'bezahlungsart', '/checkout/bezahlungsart.html');
+            window.history.pushState('obj', 'bezahlungsart', '/~holzhaeu/thesis_prototyp/checkout/bezahlungsart.html');
         }
 
         checkStep();
@@ -1740,15 +1740,49 @@ $(document).ready(function($) {
     });
 
 
+    // Check button color on click on agb checkbox
+    $(document).on('click', '#agb', function() {
+
+        var $agb = $('#agb'),
+            $agb_label = $agb.siblings('.fields-label');
+
+        if ($agb_label.hasClass('fields-label--error')) {
+            $agb_label.removeClass('fields-label--error');
+        }
+        changeButtonColor();
+    });
+
+
     // Prevent button click if checkboxes agb and news are not checked
     $(document).on('click', '.button-last', function(event) {
 
-        if (!$('#newsletter').is(':checked') || !$('#agb').is(':checked')) {
+        checkErrorsPassword($('.fields-password'));
+
+        if (!$('#agb').is(':checked')) {
             event.preventDefault();
-            checkErrorsPassword($('.fields-password'));
             checkKontoCheckboxes();
+
+            setTimeout(delay_shake3, 600);
+
+        } else if ($('.tab--active').find('.fields-error-frame').length > 0) {
+            event.preventDefault();
+            checkKontoCheckboxes();
+
+            setTimeout(delay_shake3, 600);
         }
     });
+
+    function delay_shake3() {
+
+        var $tab_active = $('.tab-four > .box');
+
+        $tab_active.addClass('shake');
+
+        setTimeout(remove_shake3, 1000);
+        function remove_shake3() {
+            $tab_active.removeClass('shake');
+        }
+    }
 
 
     // Show password on toggle

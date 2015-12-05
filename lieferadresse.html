@@ -27,11 +27,13 @@
             <div class="tab tab-one tab--active">
 
                 <div class="box">
+                    <div class="box-overlay"></div>
                     <div class="box-section">
                         <h2 class="box-section-heading">Lieferangaben</h2>
                         <div class="fields">
                             <div class="fields-section">
                                 <h3 class="fields-heading">Lieferadresse</h3>
+                                <p class="fields-section-info">Felder mit einem * müssen ausgefüllt werden.</p>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item-inline fields-item-radio">
                                         <input id="female1" class="fields-radio" type="radio" name="gender1" checked>
@@ -45,14 +47,14 @@
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--half fields-item--left fl-s">
                                         <input class="fields-input fields-item-frame lieferadresse-name required" type="text" name="name1" maxlength="30" autocomplete="off">
-                                        <label class="fields-item-label fields-item-placeholder" for="name1">Vorname</label>
+                                        <label class="fields-item-label fields-item-placeholder" for="name1">Vorname<span class="fields-req">&#x2731;</span></label>
                                         <span class="fields-error">Bitte geben Sie einen Vornamen ein.</span>
                                         <span class="fields-error2">Ihr Vorname sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
                                     </div>
                                     <div class="fields-item fields-item--half fields-item--right fl-s">
                                         <input class="fields-input fields-item-frame lieferadresse-surname required" type="text" name="surname1" maxlength="30" autocomplete="off">
-                                        <label class="fields-item-label fields-item-placeholder" for="surname1">Nachname</label>
+                                        <label class="fields-item-label fields-item-placeholder" for="surname1">Nachname<span class="fields-req">&#x2731;</span></label>
                                         <span class="fields-error">Bitte geben Sie einen Nachnamen ein.</span>
                                         <span class="fields-error2">Ihr Nachname sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
@@ -65,14 +67,14 @@
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left fl-s">
                                         <input class="fields-street fields-item-frame lieferadresse-street required" type="text" name="street1" maxlength="40" autocomplete="off">
-                                        <label class="fields-item-label fields-item-placeholder" for="street1">Straße</label>
+                                        <label class="fields-item-label fields-item-placeholder" for="street1">Straße<span class="fields-req">&#x2731;</span></label>
                                         <span class="fields-error">Bitte geben Sie eine Straße an.</span>
                                         <span class="fields-error2">Die Straße sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right fl-s">
                                         <input class="fields-streetnumber fields-item-frame lieferadresse-number required" type="text" name="number1" maxlength="10" autocomplete="off">
-                                        <label class="fields-item-label fields-item-placeholder" for="number1">Nr.</label>
+                                        <label class="fields-item-label fields-item-placeholder" for="number1">Nr.<span class="fields-req">&#x2731;</span></label>
                                         <span class="fields-error">Bitte geben Sie eine Nummer an.</span>
                                         <span class="fields-error2">Haben Sie eine Nummer angegeben?</span>
                                         <span class="icon--correct"></span>
@@ -85,14 +87,14 @@
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item--long fields-item--left fl-s">
                                         <input class="fields-input fields-item-frame lieferadresse-city required" type="text" name="city1" maxlength="40" autocomplete="off">
-                                        <label class="fields-item-label fields-item-placeholder" for="city1">Ort</label>
+                                        <label class="fields-item-label fields-item-placeholder" for="city1">Ort<span class="fields-req">&#x2731;</span></label>
                                         <span class="fields-error">Bitte geben Sie einen Ort an.</span>
                                         <span class="fields-error2">Der Ort sollte nicht aus Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
                                     </div>
                                     <div class="fields-item fields-item--short fields-item--right fl-s">
                                         <input class="fields-number fields-item-frame lieferadresse-plz required" type="text" name="plz1" data-validation="min5" maxlength="5" autocomplete="off">
-                                        <label class="fields-item-label fields-item-placeholder" for="plz1">Postleitzahl</label>
+                                        <label class="fields-item-label fields-item-placeholder" for="plz1">Postleitzahl<span class="fields-req">&#x2731;</span></label>
                                         <span class="fields-error">Bitte geben Sie eine Postleitzahl an.</span>
                                         <span class="fields-error2">Die PLZ sollte aus 5 Ziffern bestehen.</span>
                                         <span class="icon--correct"></span>
@@ -101,18 +103,18 @@
                                 <div class="fields-item fields-item--left fields-item--long">
                                     <select class="fields-item-frame fields-item-frame--select" name="country1">
                                         <option value="">Deutschland</option>
-                                        <option value="">Schweiz</option>
                                         <option value="">Österreich</option>
-                                        <option value="">Liechtenstein</option>
+                                        <option value="">Schweiz</option>
                                     </select>
                                     <label class="label--fixed" for="country1">Land</label>
                                 </div>
                             </div>
                             <div class="fields-section">
                                 <h3 class="fields-heading">Kontakt</h3>
+                                <!-- <p class="fields-section-info">Wir benötigen Ihre E-Mail-Adresse, damit wir Sie über den Bestellprozess auf dem Laufenden halten können.</p> -->
                                 <div class="fields-item fields-item--left fields-item--long">
                                     <input class="fields-mail fields-item-frame kontakt-toggle lieferadresse-mail required" type="text" name="mail1" maxlength="45" autocomplete="off">
-                                    <label class="fields-item-label fields-item-placeholder" for="mail1">E-Mail</label>
+                                    <label class="fields-item-label fields-item-placeholder" for="mail1">E-Mail<span class="fields-req">&#x2731;</span></label>
                                     <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">max.mustermax@gmail.com</span>
                                     <span class="fields-error">Bitte geben Sie eine E-Mail-Adresse an.</span>
                                     <span class="fields-error2">Bitte geben Sie eine gültige E-Mail-Adresse an. (z.B.: max.mustermax@gmail.com)</span>
@@ -184,6 +186,7 @@
             <div class="tab tab-two tab--inactive">
 
                 <div class="box">
+                    <div class="box-overlay"></div>
                     <div class="box-section">
                         <h2 class="box-section-heading">Bezahlungsart</h2>
                         <div class="fields">
@@ -198,7 +201,7 @@
                     <div class="box-section box-section--dark box-section-icon adressbox no-validation">
                         <div class="fields">
                             <div class="fields-section">
-                                <h3 class="fields-heading">Rechnungsadresse</h3>
+                                <h3 class="fields-heading fields-heading--dark">Rechnungsadresse</h3>
                                 <div class="fields-item-wrapper clearfix">
                                     <div class="fields-item fields-item-inline fields-item--dark fields-item-radio">
                                         <input id="female2" class="fields-radio" type="radio" name="gender2" checked>
@@ -268,9 +271,8 @@
                                 <div class="fields-item fields-item--left--dark fields-item--long">
                                     <select class="fields-item-frame fields-item-frame--select" name="country2">
                                         <option value="">Deutschland</option>
-                                        <option value="">Schweiz</option>
                                         <option value="">Österreich</option>
-                                        <option value="">Liechtenstein</option>
+                                        <option value="">Schweiz</option>
                                     </select>
                                     <label class="label--fixed" for="country2">Land</label>
                                 </div>
@@ -346,7 +348,7 @@
                                         <label class="fields-item-label fields-item-placeholder" for="valid">Gültig bis</label>
                                         <span class="fields-item-placeholder fields-item-placeholder--info is-invisible">MM/JJ</span>
                                         <span class="fields-error">Bitte geben Sie das Gültigkeitsdatum an.</span>
-                                        <span class="fields-error2">Haben Sie das Format MM/JJ richtig angegeben?</span>
+                                        <span class="fields-error2">Haben Sie das Datum (MM/JJ) richtig angegeben?</span>
                                         <span class="icon--correct"></span>
                                     </div>
                                 </div>
@@ -396,6 +398,7 @@
             <div class="tab tab-three tab--inactive">
 
                 <div class="box">
+                    <div class="box-overlay"></div>
                     <div class="box-section">
                         <h2 class="box-section-heading box-heading--strong">Bitte überprüfen Sie noch einmal Ihre Angaben</h2>
                         <p class="box-text box-text--light">Bitte schauen Sie sich die unten aufgelisteten Produkte noch einmal an. Wenn Sie keine Änderungen mehr an der Bestellung vornehmen möchten, können Sie mit der Bezahlung fortfahren. Dazu klicken Sie auf die Schaltfläche "Zahlungspflichtig bestellen".</p>
@@ -536,10 +539,11 @@
                         <div class="box-section--half fl lastitem">
                             <h3 class="box-section-heading">Was können Sie als Nächstes tun?</h3>
                             <p class="box-text box-text--small">Schauen Sie in Ihrem Posteingang nach, ob Sie unsere Bestellbestätigung erhalten haben.</p>
-                            <p class="box-text box-text--small">Registrieren Sie sich, um bei Ihrem nächsten Einkauf von vielen Vorteilen zu profitieren: Eine Bestellübersicht über Ihre bisher getätigten Einkäufe sowie Zugang zu exklusiven Angeboten.</p>
+                            <p class="box-text box-text--small">Registrieren Sie sich, um bei Ihrem nächsten Einkauf von vielen Vorteilen zu profitieren: Einen schnelleren Checkout, eine Bestellübersicht über Ihre bisher getätigten Einkäufe sowie Zugang zu exklusiven Angeboten.</p>
                         </div>
                     </div>
                     <div class="box-section box-section--dark nutzerkontobox">
+                        <div class="box-overlay"></div>
                         <div class="fields">
                             <h3 class="fields-heading">Möchten Sie mit Ihrer E-Mail ein Nutzerkonto anlegen?</h3>
                             <div class="fields-section">

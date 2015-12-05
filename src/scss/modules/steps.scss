@@ -144,11 +144,11 @@ STYLESHEET: STEPS
 @include large {
 
     .steps {
-        max-width: 900px;
+        max-width: 960px;
         margin: 0 auto;
 
         &-item {
-            width: 300px;
+            width: 320px;
         }
     }
 }

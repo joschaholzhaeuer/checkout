@@ -17,6 +17,20 @@ STYLESHEET: FIELDS
         &-agb {
             padding-bottom: 10px;
         }
+
+        &-info {
+            position: absolute;
+            right: 0;
+            top: 30px;
+            @include font-size(0.8);
+            color: rgba($c-medium, 0.7);
+        }
+    }
+
+    &-req {
+        @include font-size(0.5);
+        position: absolute;
+        margin-left: 2px;
     }
 
     &-heading {
@@ -27,6 +41,13 @@ STYLESHEET: FIELDS
             display: block;
             margin-top: 10px;
             border-bottom: 1px dashed $c-light;
+        }
+
+        &--dark {
+
+            &:after {
+                border-bottom: 1px dashed $c-medium;
+            }
         }
     }
 

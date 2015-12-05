@@ -11,9 +11,9 @@ STYLESHEET: BUTTON
     margin-right: 2%;
     text-align: center;
     font-weight: 700;
-    box-shadow: 0 0 15px -1px $c-medium;
+    // box-shadow: 0 8px 15px -5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
-    transition: background 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     border: 0;
 
     &-change {
@@ -47,6 +47,7 @@ STYLESHEET: BUTTON
             //color: $c-alt-light;
             //background: linear-gradient($c-dark, $c-base);
             background-color: $c-base;
+            box-shadow: 0 8px 15px -5px rgba(0, 0, 0, 0.4);
         }
     }
 
@@ -60,6 +61,7 @@ STYLESHEET: BUTTON
         &:hover {
             // background-color: $c-alt-dark;
             // background: linear-gradient($c-alt-dark, $c-alt-light);
+            box-shadow: 0 8px 15px -5px rgba(0, 0, 0, 0.4);
         }
     }
 

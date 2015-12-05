@@ -52,7 +52,9 @@ function adressbox() {
 
         if ($val_fields.hasClass('input--correct')) {
             $val_fields.removeClass('input--correct');
+            $val_fields.siblings('.fields-item-label').removeClass('label--correct');
             $icon_check.hide();
+            $val_fields.val('');
         }
 
         if (!$val_fields.hasClass('no-validation-required')) {
@@ -106,6 +108,8 @@ function hideKreditbox() {
     if ($val_fields.hasClass('input--correct')) {
         $val_fields.removeClass('input--correct');
         $icon_check.hide();
+        $val_fields.siblings('.fields-item-label').removeClass('label--correct');
+        $val_fields.val('');
     }
 
     if (!$val_fields.hasClass('no-validation-required')) {
@@ -720,7 +724,6 @@ function checkErrorsPassword($element) {
     }
 }
 
-
 // update text fields on step3
 function updateText() {
 
@@ -957,6 +960,7 @@ $(document).ready(function($) {
 
     // Hide loading spinner
     $('.spinner').hide();
+    $('.box-overlay').hide();
 
     // Hide additional boxes
     $('.adressbox').hide();
@@ -1006,6 +1010,7 @@ $(document).ready(function($) {
         $step_two    = $('.step-two'),
         $step_three  = $('.step-three'),
         $tab_active  = $('.tab--active > .box'),
+        $box_overlay = $('.box-overlay'),
         $spinner     = $('.spinner'),
         $one_number  = $('.step-one > .step-number'),
         $two_number  = $('.step-two > .step-number'),
@@ -1013,7 +1018,7 @@ $(document).ready(function($) {
         $two_done    = $('.step-two--done');
 
         // Show loading spinner on click
-        $tab_active.addClass('box-overlay');
+        $box_overlay.show();
         $spinner.show();
 
         //check for errors
@@ -1171,7 +1176,7 @@ $(document).ready(function($) {
             setTimeout(delay_spinner, 300);
             function delay_spinner() {
                 // Hide loading spinner after tab-switch
-                $tab_active.removeClass('box-overlay');
+                $box_overlay.fadeOut();
                 $spinner.hide();
                 checkStep();
             }
@@ -1196,10 +1201,11 @@ $(document).ready(function($) {
         $step_two    = $('.step-two'),
         $step_three  = $('.step-three'),
         $tab_active  = $('.tab--active > .box'),
+        $box_overlay = $('.box-overlay'),
         $spinner     = $('.spinner');
 
         // Show loading spinner on click
-        $tab_active.addClass('box-overlay');
+        $box_overlay.show();
         $spinner.show();
 
         //check for errors
@@ -1378,7 +1384,7 @@ $(document).ready(function($) {
             setTimeout(delay_spinner2, 300);
             function delay_spinner2() {
                 // Hide loading spinner after tab-switch
-                $tab_active.removeClass('box-overlay');
+                $box_overlay.fadeOut();
                 $spinner.hide();
                 checkStep();
             }
@@ -1750,6 +1756,22 @@ $(document).ready(function($) {
             $agb_label.removeClass('fields-label--error');
         }
         changeButtonColor();
+    });
+
+
+    // Add / when entering expiry date
+    $(document).on('keyup', '.fields-date', function(key) {
+
+        var $fields_date = $(this),
+            code = key.which;
+
+        // allow backspace
+        if (code != 8) {
+
+            if ($fields_date.val().length == 2){
+                $fields_date.val($fields_date.val() + "/");
+            }
+        }
     });
 
 
